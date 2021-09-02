@@ -1,0 +1,403 @@
+@charset "UTF-8";
+section.message_type {
+  padding: .625rem 0 0 0;
+  background: #fff;
+  -webkit-box-shadow: 0 2px 4px 0 #e4e4e4;
+          box-shadow: 0 2px 4px 0 #e4e4e4;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+section.message_type ul {
+  padding: 0 .75rem 0 .75rem;
+  white-space: nowrap;
+}
+
+section.message_type ul li {
+  width: 24%;
+  text-align: center;
+  font-size: 1.125rem;
+  color: #838ba0;
+  padding: .3125rem 0 .4375rem 0;
+  position: relative;
+  display: inline-block;
+}
+
+section.message_type ul li:first-child {
+  float: left;
+}
+
+section.message_type ul li:last-child {
+  float: right;
+}
+
+section.message_type ul li:hover, section.message_type ul li:active, section.message_type ul li.active {
+  border-bottom: 3px solid #7c87bc;
+  font-weight: bold;
+  color: #4d515d;
+}
+
+section.message_type ul span.yet_ready {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: center;
+  background: #f30d0d;
+  line-height: 1.2;
+  color: #fff;
+  font-size: .8rem;
+  padding: 0.0625rem .375rem 0.0625rem .375rem;
+  border-radius: 6px;
+}
+
+section.message.content {
+  height: 100vh;
+  padding-bottom: 50vh;
+  overflow-y: scroll;
+  position: relative;
+  width: 100vw;
+}
+
+section.message.message_inner {
+  margin: .625rem 0 0 0;
+  background: #fff;
+}
+
+section.message ul {
+  padding: 0 .75rem 60px .75rem;
+  overflow-y: scroll;
+  background: #fff;
+  width: 100%;
+}
+
+section.message ul li {
+  padding: .625rem 0 .625rem 0;
+  border-bottom: 1px solid #e0e3f3;
+  position: relative;
+  height: 5rem;
+  line-height: 3.75rem;
+  text-align: right;
+}
+
+section.message ul li.inner_content {
+  border-bottom: none;
+  color: #4d515d;
+  line-height: 1.25rem;
+  height: auto;
+  text-align: left;
+}
+
+section.message ul li.editing .edit_p {
+  display: block;
+}
+
+section.message ul li.editing .box {
+  width: 75%;
+}
+
+section.message ul li.yet_ready:before {
+  content: "";
+  position: absolute;
+  width: .625rem;
+  height: .625rem;
+  background: #f30d0d;
+  right: 0vw;
+  bottom: 1.875rem;
+  border-radius: .625rem;
+}
+
+section.message ul li div.edit_p {
+  display: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 100px;
+  border: 1px solid #c7cbe0;
+  background: none;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+section.message ul li div.edit_p:hover, section.message ul li div.edit_p:active, section.message ul li div.edit_p.active {
+  background: #a0b0ff;
+}
+
+section.message ul li div.edit_p:hover:before, section.message ul li div.edit_p:active:before, section.message ul li div.edit_p.active:before {
+  content: '';
+  position: absolute;
+  left: .3125rem;
+  top: 30%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%) rotate(45deg);
+  width: .5rem;
+  height: .75rem;
+  border-right: solid 1px #fff;
+  border-bottom: solid 1px #fff;
+}
+
+section.message ul li div.icon {
+  background: url(../images/icon/message_horn.png) no-repeat;
+  background-size: 100%;
+  background-position: center center;
+  width: 2.1875rem;
+  height: 2.1875rem;
+  margin: 0 .625rem 0 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+section.message ul li div.box {
+  width: 80%;
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+  line-height: 1;
+  position: relative;
+}
+
+section.message ul li div.box.inner {
+  width: 100%;
+}
+
+section.message ul li div.box h1 {
+  color: #4d515d;
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  margin: 0 0 .625rem 0;
+}
+
+section.message ul li div.box h1.important:before {
+  content: "重要";
+  position: absolute;
+  right: -2.375rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  color: #f30d0d;
+  font-size: .8rem;
+  line-height: 1;
+  vertical-align: bottom;
+  border: 1px solid #f30d0d;
+  padding: 0.25rem .25rem .0625rem .25rem;
+  border-radius: 3px;
+}
+
+section.message ul li div.box p {
+  color: #838ba0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 1;
+  display: block;
+}
+
+section.message ul li div.time {
+  white-space: nowrap;
+  position: absolute;
+  right: .75rem;
+  top: 0px;
+  color: #838ba0;
+  font-size: .8rem;
+}
+
+section.waitting {
+  text-align: center;
+}
+
+section.waitting .watting_icon {
+  background: url(../images/message_page/wait.gif) no-repeat;
+  background-size: 100%;
+  background-position: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+  margin: 1.125rem auto .625rem auto;
+}
+
+section.game_message_type {
+  background: #fff;
+  padding: .625rem .75rem .625rem .75rem;
+  border-bottom: .0625rem solid #e0e3f3;
+}
+
+section.game_message_type .warp {
+  padding: .125rem;
+  background: #cdd0dd;
+  border-radius: .5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  overflow: auto;
+}
+
+section.game_message_type .warp div {
+  width: 50%;
+  text-align: center;
+  color: #838ba0;
+  border-radius: .5rem;
+}
+
+section.game_message_type .warp div:first-child {
+  float: left;
+}
+
+section.game_message_type .warp div:last-child {
+  float: right;
+}
+
+section.game_message_type .warp div.active, section.game_message_type .warp div:hover, section.game_message_type .warp div:active {
+  background: #fff;
+  color: #4d515d;
+  -webkit-animation: scale_jump2 0.3s 1 cubic-bezier(0, 0.62, 0.27, 0.63);
+          animation: scale_jump2 0.3s 1 cubic-bezier(0, 0.62, 0.27, 0.63);
+}
+
+section.game_message_content {
+  background: #fff;
+  height: calc(100vh - (3rem + 2.625rem + 2.9375rem));
+  overflow-y: scroll;
+}
+
+section.game_message_content ul li {
+  padding: .6875rem 1.5625rem .6875rem 1.5625rem;
+  border-bottom: 1px solid #e0e3f3;
+}
+
+section.game_message_content ul li .top_warp {
+  line-height: 1.125rem;
+  margin: 0 0 .75rem 0;
+}
+
+section.game_message_content ul li .top_warp h1 {
+  color: #4d515d;
+  font-size: 1.125rem;
+  display: inline-block;
+}
+
+section.game_message_content ul li .top_warp p {
+  color: #838ba0;
+  font-size: .8rem;
+  vertical-align: bottom;
+  float: right;
+}
+
+section.game_message_content ul li p.content {
+  display: inline-block;
+  color: #4d515d;
+  font-weight: lighter;
+  letter-spacing: 0.1px;
+}
+
+section.game_message_empty {
+  text-align: center;
+}
+
+section.game_message_empty .empty_icon {
+  background: url(../images/message_page/game_message_empty.png) no-repeat;
+  background-size: 100%;
+  background-position: center;
+  width: 12.5rem;
+  height: 12.5rem;
+  display: inline-block;
+  margin: 3.125rem 0 0 0;
+}
+
+section.game_message_empty p {
+  color: #838ba0;
+  font-weight: lighter;
+  margin: 0 0 1.25rem 0;
+}
+
+section.game_message_empty button {
+  display: inline-block;
+  font-size: 1rem;
+  color: #fff;
+  border: none;
+  background: -webkit-gradient(linear, left top, right top, from(#9ba8e4), to(#485cc4));
+  background: linear-gradient(to right, #9ba8e4 0%, #485cc4 100%);
+  border-radius: .5rem;
+  padding: .625rem 2.5rem .625rem 2.5rem;
+}
+
+aside.edit {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  background: #f7f7f7;
+  width: 100%;
+  line-height: 2.5rem;
+  padding: .625rem .75rem .625rem;
+  font-size: 1.0625rem;
+  z-index: 5;
+}
+
+aside.edit.active {
+  display: block;
+}
+
+aside.edit p {
+  display: inline-block;
+  line-height: 2.5rem;
+}
+
+aside.edit p.readed {
+  float: left;
+  color: #7685d5;
+  padding: 0.25rem .5rem 0;
+}
+
+aside.edit p.readed:hover, aside.edit p.readed:active, aside.edit p.readed.active {
+  background: #7685d5;
+  color: #fff;
+  border-radius: 5px;
+}
+
+aside.edit p.delete {
+  float: right;
+  color: #f30d0d;
+  padding: 0.25rem .5rem 0;
+}
+
+aside.edit p.delete:hover, aside.edit p.delete:active, aside.edit p.delete.active {
+  background: #f30d0d;
+  color: #fff;
+  border-radius: 5px;
+}
+
+aside.inner_edit .wrap {
+  position: fixed;
+  bottom: 0;
+  background: #f8f8f8;
+  width: 100%;
+  text-align: center;
+}
+
+aside.inner_edit .wrap p {
+  display: block;
+  padding: .625rem 0 .625rem;
+  background: #fff;
+  font-size: 1.25rem;
+}
+
+aside.inner_edit .wrap p.delete {
+  color: #f30d0d;
+  margin: 0 0 .625rem;
+}
+
+aside.inner_edit .wrap p.delete:hover {
+  background: #f30d0d;
+  color: #fff;
+}
+
+aside.inner_edit .wrap p.cancel {
+  color: #4d515d;
+}
+
+aside.inner_edit .wrap p.cancel:hover {
+  background: #4d515d;
+  color: #fff;
+}
+/*# sourceMappingURL=message.css.map */

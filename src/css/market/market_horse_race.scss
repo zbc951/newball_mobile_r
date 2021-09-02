@@ -1,0 +1,90 @@
+main{
+    &.market{
+        aside{
+            ul{
+                li{
+                    section{
+                        &.content{
+                            span{
+                                &.horse_race_wrap{
+                                    width: 80%;
+                                    margin: 0 10%;
+                                }
+                                &.horse_race_type{
+                                    width: 100%;
+                                    height: 2rem;
+                                    white-space: nowrap;
+                                    position: relative;
+                                    text-align: center;
+                                    line-height: 2rem;
+                                    p{
+                                        color: #1b255c;
+                                        font-size: .875rem;
+                                        line-height: 1;
+                                        vertical-align: middle;
+                                        display: inline-block;
+                                    }
+                                }
+                                &.horse_race_choice_box{
+                                    width: 100%;
+                                    text-align: right;
+                                    div{
+                                        line-height: 2.1875rem;
+                                        width: calc(50% - .125rem);
+                                        background: #f6f8ff;
+                                        position: relative;
+                                        &.active{
+                                            background: #556de7;
+                                            p{
+                                                &.type,&.point{
+                                                    color: #fff;
+                                                }
+                                                
+                                            }
+                                        }
+                                        &.left{
+                                            float: left;
+                                        }
+                                        &.right{
+                                            float: right;
+                                        }
+                                        p{
+                                            display: inline-block;
+                                            font-size:.9375rem;
+                                            &.point{
+                                                color: #1b255c;
+                                                font-weight: bold;
+                                                margin: 0 8% 0 0;
+                                            }
+                                            &.type{
+                                                color: #838ba0;
+                                                font-weight: bold;
+                                                position: absolute;
+                                                left: 30%;
+                                                transform: translateX(-50%);
+                                            }
+                                        }
+                                    }
+                                }
+                                &.horse_race_line{
+                                    background: #e0e3f3;
+                                    height: .063rem;
+                                    width: calc(100% - 2rem);
+                                    margin: .5625rem auto .5625rem auto;
+                                    display: block;
+                                }
+                                &.point_box{
+                                    p{
+                                        &.no_wrap{
+                                            white-space: nowrap;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,132 @@
+main.market aside ul li.motor_sport_li h1 {
+  display: inline-block;
+  color: #1b255c;
+  font-weight: bold;
+  font-size: .875rem;
+  border-bottom: .125rem solid #e0e3f3;
+  width: 100%;
+  padding: .1875rem .5625rem .1875rem .5625rem;
+  position: relative;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
+}
+
+main.market aside ul li.motor_sport_li h1 .more {
+  position: absolute;
+  right: .5625rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  color: #56585d;
+  font-size: .8rem;
+  font-weight: lighter;
+}
+
+main.market aside ul li.motor_sport_li h1 .more p {
+  display: inline-block;
+  font-size: .8rem;
+  margin-right: -.125rem;
+}
+
+main.market aside ul li.motor_sport_li h1 .more .right_arrow {
+  display: inline-block;
+  position: relative;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  height: .8rem;
+  width: 1rem;
+  line-height: 1;
+  margin-right: -.25rem;
+  vertical-align: middle;
+}
+
+main.market aside ul li.motor_sport_li h1 .more .right_arrow:before, main.market aside ul li.motor_sport_li h1 .more .right_arrow:after {
+  top: 50%;
+  content: "";
+  position: absolute;
+  background-color: #56585d;
+  width: 50%;
+  height: 1px;
+}
+
+main.market aside ul li.motor_sport_li h1 .more .right_arrow:before {
+  -webkit-transform: translate(0%, -50%) rotate(45deg);
+          transform: translate(0%, -50%) rotate(45deg);
+  left: 10%;
+}
+
+main.market aside ul li.motor_sport_li h1 .more .right_arrow:after {
+  -webkit-transform: translate(0%, -50%) rotate(-45deg);
+          transform: translate(0%, -50%) rotate(-45deg);
+  right: 9%;
+}
+
+main.market aside ul li.motor_sport_li .wrap {
+  padding: .3125rem 0 .625rem 0;
+}
+
+main.market aside ul li.motor_sport_li .wrap .line_wrap {
+  width: 100%;
+  padding: 0 .5rem 0 .5rem;
+  margin: 0 0 .625rem 0;
+  overflow: hidden;
+}
+
+main.market aside ul li.motor_sport_li .wrap .line_wrap:first-child {
+  margin: 0 0 .625rem 0;
+}
+
+main.market aside ul li.motor_sport_li .wrap .line_wrap:last-child {
+  margin: 0;
+}
+
+main.market aside ul li.motor_sport_li .wrap .line_wrap span {
+  display: inline-block;
+  width: calc(50% - .25rem);
+  background: #f6f8ff;
+  padding: 0 .375rem;
+  line-height: 2.25rem;
+}
+
+main.market aside ul li.motor_sport_li .wrap .line_wrap span:first-child {
+  float: left;
+}
+
+main.market aside ul li.motor_sport_li .wrap .line_wrap span:last-child {
+  float: right;
+}
+
+main.market aside ul li.motor_sport_li .wrap .line_wrap span:hover, main.market aside ul li.motor_sport_li .wrap .line_wrap span:active, main.market aside ul li.motor_sport_li .wrap .line_wrap span.active {
+  background: #556de7;
+}
+
+main.market aside ul li.motor_sport_li .wrap .line_wrap span:hover p, main.market aside ul li.motor_sport_li .wrap .line_wrap span:active p, main.market aside ul li.motor_sport_li .wrap .line_wrap span.active p {
+  color: #fff;
+}
+
+main.market aside ul li.motor_sport_li .wrap .line_wrap span:hover p:last-child, main.market aside ul li.motor_sport_li .wrap .line_wrap span:active p:last-child, main.market aside ul li.motor_sport_li .wrap .line_wrap span.active p:last-child {
+  color: #fff;
+}
+
+main.market aside ul li.motor_sport_li .wrap .line_wrap span p {
+  display: inline-block;
+  color: #1b255c;
+  font-size: .9375rem;
+}
+
+main.market aside ul li.motor_sport_li .wrap .line_wrap span p:first-child {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 80%;
+  float: left;
+}
+
+main.market aside ul li.motor_sport_li .wrap .line_wrap span p:last-child {
+  float: right;
+  color: #ec3b28;
+}
+/*# sourceMappingURL=market_motor_sport.css.map */

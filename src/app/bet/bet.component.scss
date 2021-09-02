@@ -1,0 +1,45 @@
+.bet_window{
+    .bet_page{
+        .title{
+            .counter{
+                .one-team{
+                    float: unset!important;
+                }
+                p{
+                    .head{
+                        display: block;
+                        padding: 5px 0 0 0;
+                    }
+                }
+                .vs{
+                    .point-h{
+                        padding: 0 3px 0 0;
+                        color: #556de7;
+                    }
+                    .point-c{
+                        padding: 0 0 0 3px;
+                        color: #556de7;
+                    }
+                }
+            }
+        }
+        .content{
+            .result_wrap{
+                &.bet_success{
+                    .box{
+                        width: 49%!important;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+.odd_color{
+    color: red;
+}
+.bill_line {
+    border-bottom:1px #000 solid;
+     padding-bottom:5px; 
+}

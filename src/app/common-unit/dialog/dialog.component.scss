@@ -1,0 +1,57 @@
+.alret_bg {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 500;
+  position: fixed;
+  top: 0;
+  display: none;
+  &.active{
+    display: block;
+  }
+  .alret {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    background: #f6f8ff;
+    width: 70vw;
+    // height: 10em;
+    line-height: 9.5em;
+    border-radius: 8px;
+    font-size: 16px;
+    text-align: center;
+    .a_wrap {
+      line-height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+      p {
+        color: #4d515d;
+        line-height: 100%;
+        display: inline-block;
+        font-weight: bold;
+        width: 100%;
+        margin: 1em 0 1.8em;
+      }
+      button {
+        background: linear-gradient(to right, #99a6e3 0%, #485cc4 100%);
+        width: 40vw;
+        border-radius: 8px;
+        border: none;
+        color: #fff;
+        display: inline-block;
+        line-height: 100%;
+        vertical-align: bottom;
+        padding: 0.7em 0;
+        font-size: 1em;
+      }
+    }
+    &.confirm{
+      .a_wrap{
+        button{
+          width: 30vw;
+        }
+      }
+    }
+  }
+}

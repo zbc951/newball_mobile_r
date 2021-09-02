@@ -1,0 +1,7 @@
+{
+    "/pub": {
+        "target": "http://big51-web3.sog88.net",
+        "secure": false,
+        "changeOrigin": true
+    }
+}

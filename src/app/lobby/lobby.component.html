@@ -1,0 +1,349 @@
+<ng-container *ngIf="!marketPage">
+    <header>
+        <ul>
+            <li class="logo"> </li>
+            <li class="message_icon" [routerLink]="RouterPath.more.billboard"> </li>
+        </ul>
+    </header>
+    <main>
+
+        <article class="banner_wrap warp swiper-container" [swiper]='swiperConfig'>
+            <div class="swiper-wrapper">
+                <div class="swiper-slide banner"></div>
+                <div class="swiper-slide banner"></div>
+                <div class="swiper-slide banner"></div>
+            </div>
+        </article>
+        <section>
+            <ul class="hot_area">
+                <li class="marquee" [routerLink]="RouterPath.more.billboard"><span class="horn_icon"></span>
+                    <div>
+                        <p>{{newBulletinMsg}}</p>
+                    </div>
+                </li>
+                <!-- <li class="hot_btn"><span class="hot_icon"></span>
+                    <p>熱門賽事</p>
+                </li> -->
+            </ul>
+            <ul class="profile">
+                <!--註冊後畫面-->
+                <li class="u_data active">
+                    <p class="u_name">{{ (member.memberInfo$ | async)?.alias}}
+                        <!-- <span class="vip"></span> -->
+                    </p>
+                    <p class="u_money"><span class="currency">NT$ </span>{{ (member.memberInfo$ | async)?.maxcredit | formatNumber }}
+                        <!-- <span class="question"></span> -->
+                    </p>
+                </li>
+                <!--註冊前畫面-->
+                <!-- <li class="u_data">
+                    <p class="u_name">您尚未登入!</p>
+                    <div class="wrap">
+                        <button class="sign_up">註冊<a href="./html/login&sign_up/sign_up.html"></a></button>
+                        <button class="sign_in">登入<a href="./html/login&sign_up/login.html"></a></button>
+                    </div>
+                </li> -->
+                <!-- <li class="u_option">
+                    <div class="save"> <span></span>
+                        <p>存款</p>
+                      
+                    </div>
+                    <div class="translate"> <span></span>
+                        <p>轉點</p>
+                      
+                    </div>
+                    <div class="get"> <span></span>
+                        <p>取款</p>
+                      
+                    </div>
+
+                </li> -->
+            </ul>
+        </section>
+        <article class="menu">
+            <aside class="btn_group">
+                <button class="today" [class.hot]="ChoosePlayMode == 'all'" (click)="processChangePlay(Play.all)"><span>{{ Play.all | translateValue: 'play' }}</span>
+                    <p>{{ballList |ballListcount:'all'}}</p>
+                </button>
+                <button class="run_ball" [class.hot]="ChoosePlayMode == Play.grounder" (click)="processChangePlay(Play.grounder)"><span>{{ Play.grounder | translateValue: 'play' }}</span>
+                    <p>{{ballList |ballListcount:'RE'}}</p>
+                </button>
+                <button class="early" [class.hot]="ChoosePlayMode == Play.single" (click)="processChangePlay(Play.single)"><span>{{ Play.single | translateValue: 'play' }}</span>
+                    <p>{{ballList |ballListcount:'ALL'}}</p>
+                </button>
+                <button class="double" [class.hot]="ChoosePlayMode == Play.mixing" (click)="processChangePlay(Play.mixing)"><span>{{ Play.mixing | translateValue: 'play' }}</span>
+                    <p>{{ballList |ballListcount:'MPR'}}</p>
+                </button>
+            </aside>
+
+            <div class="game_wrap t1">
+                <ul class="game_kinds today">
+                    <li class="{{option.icon2}}" *ngFor="let option of ballOptions ; trackBy: trackByFn"
+                        (click)="market(option.value)">
+                        <div class="title">
+                            <p class="name">{{ option.value | translateValue: 'ball' }}</p>
+                            <p class="num">{{option |ballQuantity: ChoosePlayMode}}</p>
+                            <p class="subtitle">-{{ 'Lobby.Can_bet' | translate }}-</p>
+                        </div> 
+                        <span class="text"></span>
+                        <span class="item"></span>
+                        <div class="left_triagle"></div>
+                        <div class="right_triagle"></div>
+                        <div class="point"></div>
+
+                    </li>
+
+                </ul>
+            </div>
+
+
+        </article>
+
+    </main>
+</ng-container>
+
+
+
+<!-- ---------------------------------分頁 列表內頁---------------------------------------------- -->
+
+<ng-container *ngIf="marketPage">
+
+    <header  [ngStyle]="{'z-index': (SwitchPlay)?502:100}">
+        <ul class="market">
+            <li class="back" (click)="backHome()"> </li>
+            <li class="title"  [ngClass]="{active: SwitchPlay}" (click)="SwitchPlay = !SwitchPlay">{{ ChoosePlayMode | translateValue: 'play' }}<span></span></li>
+            <li class="search" (click)="toggleSearch()"> </li>
+            <li class="wallet">
+                <div class="balance">
+                    <p>{{ 'General.Balance' | translate }}</p>
+                    <p>{{ (member.memberInfo$ | async)?.maxcredit | formatNumber }}</p>
+                </div>
+            </li>
+
+        </ul>
+    </header>
+
+    <nav class="kinds">
+        <ul class="early" *ngIf="ChoosePlayMode == 'MPR'">
+            <li class="active"[class.active]="nowSelectedDateIndex == 0" (click)="quickSelectDate(0)">{{ 'Search.AllDate' | translate }}</li>
+            <li [class.active]="nowSelectedDateIndex == (idx + 1)" *ngFor="let date of searchQuickDate;let idx = index" (click)="quickSelectDate(idx + 1);DataSearch()">{{date.showValue}}</li>
+
+        </ul>
+        <ul>
+            <!-- <li >
+            <div>
+                <span class="kind_icon all">
+                </span>
+                <p>全部</p>
+            </div>
+            <span class="num">(96)</span>
+            </li> -->
+
+            <!-- <li>
+                <div>
+                    <span class="kind_icon loves">
+                    </span>
+                    <p>最愛</p>
+                </div>
+                <span class="num">(96)</span>
+            </li> -->
+            <li class="" [class.active]="activeBall == option.value" *ngFor="let option of ballOptions ; trackBy: trackByFn"
+                (click)="changeBall(option.value)">
+                <div>
+                    <span class="kind_icon {{option.icon1}}">
+                    </span>
+                    <p>{{ option.value | translateValue: 'ball' }}</p>
+
+                </div>
+                <span class="num">({{option |ballQuantity: ChoosePlayMode}})</span>
+            </li>
+
+
+
+
+        </ul>
+    </nav>
+
+
+
+    <main class="market" [ngClass]="{early_page: ChoosePlayMode == 'MPR'}"  [class.live_mode]="!livsCss">
+        <aside>
+
+            <article class="option">
+                <div class="game_type">
+                    <p>{{ballStatus.ball  | translateValue: 'ball' }}</p> <span></span>
+
+                </div>
+
+                <div class="mode">
+                    <span class=" beginner" [ngClass]="{active:gameSwitchData['beginner']}" (click)="SwitchButton(['beginner',true ])">
+                        <p>{{ 'Lobby.Novice' | translate }}</p>
+                    </span>
+                    <span class="senior"  [ngClass]="{active:!gameSwitchData['beginner']}" (click)="SwitchButton(['beginner', false])">
+                        <p>{{ 'Lobby.profession' | translate }}</p>
+                    </span>
+                </div>
+            </article>
+
+ 
+            <ng-container *ngFor="let ball of AppBalls ">
+                <ng-container *ngIf="ballStatus.ball === ball.value">
+                    <!-- 這裡已經去認球.要分RE獨立出來做混和模式. -->
+                    <ng-container  *ngIf="ChoosePlayMode == 'all'">
+                        <ng-container  *ngFor="let leagueItem of (ball['RE'] | gamesFilter : searchDate : searchLeagues : ball.value)|gamesSort : gameSwitchData['orderLeague'] : searchTeam;trackBy: trackByFn; let idx = index">
+                            <section class="status doing" *ngIf="idx == 0">
+                                <div>
+                                  <span></span>
+                                  <p>{{ 'Lobby.processing' | translate }}</p>
+                                </div>
+                              </section>
+                            <ul >
+                                <!-- class="senior" -->
+                                <!-- <li class="beginner" > -->
+                                    <li [ngClass]="{beginner:gameSwitchData['beginner'] ,senior:!gameSwitchData['beginner']}" class="senior active ">
+                                    <span class="title table_top" *ngIf="gameSwitchData['orderLeague']">
+                                        <p>{{ leagueItem.league }}</p>
+                                        <span class="down_arrow"></span>
+                                    </span>
+                                    <ng-container *ngFor="let game of leagueItem.games; trackBy: trackByFn">
+                                        <game-table class="game content" 
+                                                    [game]="game" 
+                                                    [useBall]="ball.value" 
+                                                    [titleAry]="ball.titleAry" 
+                                                    [beginner]="gameSwitchData['beginner']" 
+                                                    [detailAry]="getDetailAry(ball)" 
+                                                    [detailCallback] = "gameDetailCallback"
+                                                    [type] = "'RE'"
+                                                    [orderLeague]="gameSwitchData['orderLeague']"
+                                                    style=" display: block;">
+                                        </game-table>
+                                    </ng-container>
+                                </li>
+                            </ul>
+                        </ng-container>
+                    </ng-container>
+
+
+
+                    <ng-container  *ngFor="let leagueItem of (((ChoosePlayMode == 'all')?ball['R']:ball[ChoosePlayMode]) | gamesFilter : searchDate : searchLeagues : ball.value : searchTeam) |gamesSort : gameSwitchData['orderLeague'];trackBy: trackByFn; let idx = index">
+                        <section class="status yet" [ngClass]="{doing: (ChoosePlayMode == 'RE') ,yet: (ChoosePlayMode != 'RE')}" *ngIf="idx == 0">
+                            <div >
+                                <span></span>
+                                <p>{{((ChoosePlayMode == 'RE')?'Lobby.processing':'Lobby.Not_started')| translate}} </p>
+                            </div>
+                        </section>
+                        <ul >
+                            <!-- class="senior" -->
+                            <!-- <li class="beginner" > -->
+                                <li [ngClass]="{beginner:gameSwitchData['beginner'] ,senior:!gameSwitchData['beginner']}" class="senior active ">
+                                <span class="title table_top" *ngIf="gameSwitchData['orderLeague']">
+                                    <p>{{ leagueItem.league }}</p>
+                                    <span class="down_arrow"></span>
+                                </span>
+                                <ng-container *ngFor="let game of leagueItem.games; trackBy: trackByFn">
+                                    <game-table class="game content" 
+                                                [game]="game" 
+                                                [useBall]="ball.value" 
+                                                [titleAry]="ball.titleAry" 
+                                                [beginner]="gameSwitchData['beginner']" 
+                                                [detailAry]="getDetailAry(ball)" 
+                                                [detailCallback] = "gameDetailCallback"
+                                                [type] = "ChoosePlayMode == 'all' ? 'R' : ChoosePlayMode"
+                                                [orderLeague]="gameSwitchData['orderLeague']"
+                                                style=" display: block;">
+                                    </game-table>
+                                </ng-container>
+                            </li>
+                        </ul>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </aside>
+        <aside class="empty_game" *ngIf="isgame()">
+            <div class="wrap">
+                <div class="empty_icon"></div>
+                <p>{{ 'Lobby.No_event' | translate }}</p>
+            </div>
+
+        </aside>
+        <aside class="loading" style="display: none;">
+            <div class="loading_icon"></div>
+        </aside>
+
+
+    </main>
+
+
+    <game-mixing-checker *ngIf="playStatus.play === Play.mixing"></game-mixing-checker>
+
+    <footer style="z-index: 300;" *ngIf="!gameDetailActive">
+        <ul class="market">
+            <li class="teach" [routerLink]="RouterPath.teach"><span></span>
+                <p>{{ 'Lobby.Tutorials' | translate }}</p>
+            </li>
+            <li class="set_table" (click)="gameSwitchData['close'] = false"><span></span>
+                <p>{{ 'Lobby.Set up' | translate }}</p>
+            </li>
+            <li class="not_yet" (click)="checkOrders(false)"><span></span>
+                <p>{{ 'Report.Order' | translate }}</p>
+            </li>
+            <li class="yes_do" [routerLink]="RouterPath.report" [queryParams]="{ history: true }"><span></span>
+                <p>{{ 'Report.History' | translate }}</p>
+            </li>
+            <li class="refresh" (click)="reflash()"><span></span>
+                <p>{{ 'Lobby.Refresh' | translate }}</p>
+            </li>
+        </ul>
+    </footer>
+
+
+
+    <aside class="type_ch" [ngClass]="{active: SwitchPlay}">
+        <ul [ngClass]="{active: SwitchPlay}">
+            <li *ngIf="ballList[ballStatus.ball]['ALL']"  (click)="processChangePlay(Play.all);SwitchPlay = !SwitchPlay"><p [class.active]="ChoosePlayMode == Play.all">{{ Play.all | translateValue: 'play' }}</p></li>
+            <li *ngIf="ballList[ballStatus.ball]['RE']" (click)="processChangePlay(Play.grounder);SwitchPlay = !SwitchPlay"><p [class.active]="ChoosePlayMode == Play.grounder">{{ Play.grounder | translateValue: 'play' }}</p></li>
+            <li *ngIf="ballList[ballStatus.ball]['ALL']" (click)="processChangePlay(Play.single);SwitchPlay = !SwitchPlay"><p [class.active]="ChoosePlayMode == Play.single">{{ Play.single | translateValue: 'play' }}</p></li>
+            <li *ngIf="ballList[ballStatus.ball]['MPR']" (click)="processChangePlay(Play.mixing);SwitchPlay = !SwitchPlay"><p [class.active]="ChoosePlayMode == Play.mixing">{{ Play.mixing | translateValue: 'play' }}</p></li>
+        </ul>
+    </aside>
+
+    <aside class="search_window" [ngClass]="{active: isSearchActive}">
+        <div class="header">
+            <ul>
+                <li class="close" (click)="toggleSearch()"></li>
+                <li class="title">{{ 'Lobby.Choose league' | translate }}</li>
+                <li class="finish"  (click) = "search()">{{ 'Lobby.complete' | translate }}</li>
+            </ul>
+        </div>
+        <div class="input_area">
+            <div class="input_box">
+                <input type="text"  [(ngModel)]="searchTeam" placeholder="{{ 'Lobby.Enter team name' | translate }}">
+            </div>
+            <div class="all" (click)="toggleAllSelect()">{{'Search.ChooseAll' | translate}}<span></span></div>
+
+        </div>
+        <div class="content">
+            <div class="group">
+                <!-- <p class="title hot"><span class="arrow_w"></span>熱門賽事</p> -->
+                <ul>
+                    <li *ngFor="let item of searchLeagueOptions" (click)="item.active = !item.active">{{ item.name }}<div class="point_area">({{item.count}})<span class="point" [class.active] = "item.active"></span>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+
+        </div>
+    </aside>
+    <game-switch [data]="gameSwitchData" (callSwitch)="SwitchButton($event)"></game-switch>
+    <game-order *ngIf="ordersActive" [finish]="finishOrder" [close] = "theBoundCallback"></game-order>
+    <game-detail    *ngIf="gameDetailActive" 
+                    [gameData]="gameDetailData" 
+                    [toLobby] = "gameDetailCloseCallback"
+                    [type] = "detailType"
+                    [ball] = "detailBall"
+                    (SwitchCSS)="SwitchCSS($event)"
+                    ></game-detail>
+</ng-container>
+

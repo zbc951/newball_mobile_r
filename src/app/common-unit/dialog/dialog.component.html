@@ -1,0 +1,15 @@
+<div class="alret_bg active" *ngIf="isOpen">
+  <div class="alret" *ngIf="dialogData.dtype === 'alert'">
+      <div class="a_wrap">
+          <p>{{dialogData.text}}</p>
+          <button (click)="cancel()">{{ 'General.Enter' | translate }}</button> 
+      </div>
+  </div>
+  <div class="alret confirm" *ngIf="dialogData.dtype === 'confirm'">
+      <div class="a_wrap">
+          <p>{{dialogData.text}}</p>
+          <button class="cancel" (click)="cancel()">{{ 'General.cancel' | translate }}</button>
+          <button (click)="doConfirm()">{{ 'General.Enter' | translate }}</button>
+      </div>
+  </div>
+</div>

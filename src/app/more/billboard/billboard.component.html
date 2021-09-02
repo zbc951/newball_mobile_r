@@ -1,0 +1,59 @@
+<header>
+
+    <ul>
+        <li class="back" [routerLink]="RouterPath.lobby"></li>
+        <li class="title">{{ 'Title.Notice' | translate }}</li>
+        <!-- <li class="pure_text for_edit"></li> -->
+    </ul>
+</header>
+     
+  <!--class yet_ready 來呈現未讀狀態-->
+  <section  class="message_type">
+    <ul>
+        <li [class.active]="tabIndex == 0" (click)="setTab(0)">{{ 'Title.Notice' | translate }}
+          <!-- <span class="yet_ready">14</span> -->
+        </li>
+        <li [class.active]="tabIndex == 1" (click)="setTab(1)">{{ 'Title.activity' | translate }}</li>
+        <li [class.active]="tabIndex == 2" (click)="setTab(2)">{{ 'Title.notice' | translate }}</li>
+        <li [class.active]="tabIndex == 3" (click)="setTab(3)">{{ 'General.Game' | translate }}{{ 'Title.Notice' | translate }}</li>
+    </ul>
+</section>
+<!--等待畫面_請指定子物件-->
+<section class="waitting">
+    <div class="watting_icon"  style="display: none;"></div>
+</section>
+<section class="content message">
+    <ul>
+        <!-- <li class="yet_ready" > -->
+        <li *ngFor="let item of notice" >
+          <div class="edit_p"></div>
+          <div class="icon"></div>
+          <div class="box">
+              <h1>{{ item[0] }}</h1>
+              <p>{{ item[1] }}</p>
+          </div>
+          <!-- <div class="time">{{ item[0] }}</div> -->
+        </li>
+    </ul>
+</section>
+<aside class="edit active">
+    <div class="wrap">
+        <p class="readed">{{ 'Title.MarkRead' | translate }}</p>
+        <p class="delete">{{ 'Title.delete' | translate }}</p>
+    </div>
+</aside>
+
+
+
+<main style="display: none;">
+  <article class="mainContent">
+    <div class="box">
+      <ul>
+        <li *ngFor="let item of notice">
+          <h4>{{ item[0] }}</h4>
+          <p>{{ item[1] }}</p>
+        </li>
+      </ul>
+    </div>
+  </article>
+</main>

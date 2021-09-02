@@ -1,0 +1,48 @@
+@import 'base/config';
+
+@keyframes loading {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-circle {
+  0% {
+    stroke-dashoffset: 0
+  }
+  100% {
+    stroke-dashoffset: -120;
+  }
+}
+
+.loading {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(#3e4955, .4);
+  @include verticalCenter(svg-loading);
+}
+
+.svg-loading {
+  width: 260px;
+  height: 260px;
+  animation: loading 1.2s linear infinite;
+  .svg-loadingInner {
+    stroke: #4a5dc1;
+    fill: transparent;
+    animation: loading-circle 3.6s linear infinite;
+    stroke: {
+      dashoffset: 0;
+      dasharray: 30;
+      width: 1.1;
+      miterlimit: 10;
+      linecap: round;
+    }
+  }
+}

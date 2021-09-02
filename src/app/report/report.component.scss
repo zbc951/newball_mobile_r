@@ -1,0 +1,45 @@
+
+.white_red{
+  &.disable{
+    background: gray !important;
+  }
+}
+aside.my_windows_bet_record{
+  div.content {
+    ul.btn_group {
+      li {
+        width: 15% !important;
+      }
+    }
+    ul.history_record{
+      li.list{
+        position: relative;
+        div.click_box{
+          width: 100vw;
+          height: 6vh;
+          position: absolute;
+          top: 0;
+        }
+      }
+    }
+  }
+}
+.red{
+  color:#d46571!important;
+}
+.green{
+  color:#54b785!important;
+}
+.bluebg{
+  color:#5b6bb8!important;
+}
+.red{
+  color: red;
+}
+.black{
+  color: #4d515d;
+}
+
+.blue{
+  color: #556de7;
+}

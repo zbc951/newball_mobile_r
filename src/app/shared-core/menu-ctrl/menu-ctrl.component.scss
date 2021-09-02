@@ -1,0 +1,21 @@
+@import 'prefix';
+@import 'media';
+.menu_icon {
+  @include pad-pro-width {
+    display: none;
+  }
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  @include transform(translateY(-50%));
+  span {
+    background: #fff;
+    width: 20px;
+    height: 3px;
+    display: block;
+    &:nth-child(2) {
+      margin: 3px 0;
+    }
+  }
+
+}

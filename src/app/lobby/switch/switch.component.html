@@ -1,0 +1,60 @@
+<aside class="set_window" [ngClass]="{active: !data['close']}">
+  <ul class="side_bar">
+      <!-- <li class="title">聯賽篩選
+          <span class="all">全部</span>
+          <span class="more">更多<p class="arrow"></p></span>
+          <span class="soccers">
+              <p></p>
+          </span>
+      </li> -->
+      <li>{{ 'Lobby.Betting mode' | translate }}
+          <div class="box">
+              <div class="check" (click)="Switch('beginner')">
+                  <span class="p_left " [ngClass]="{active: data['beginner']}">
+                      <p>{{ 'Lobby.Novice' | translate }}</p>
+                  </span>
+                  <span class="p_right" [ngClass]="{active: !data['beginner']}">
+                      <p>{{ 'Lobby.profession' | translate }}</p>
+                  </span>
+              </div>
+          </div>
+      </li>
+      <li>{{ 'Lobby.Ordering_rules' | translate }}
+          <div class="box">
+              <div class="check"  (click)="Switch('orderLeague')">
+                  <span class="p_left " [ngClass]="{active: data['orderLeague']}">
+                      <p>{{ 'Lobby.alliance' | translate }}</p>
+                  </span>
+                  <span class="p_right" [ngClass]="{active: !data['orderLeague']}">
+                      <p>{{ 'Lobby.time' | translate }}</p>
+                  </span>
+              </div>
+          </div>
+      </li>
+      <li>{{ 'Lobby.Handicap_settings' | translate }}
+          <div class="box">
+              <div class="check"  (click)="Switch('bet')">
+                  <span class="p_left" [ngClass]="{active: data['bet']}">
+                    <p>{{ 'Lobby.HK_plate' | translate }}</p> 
+                  </span>
+                  <span class="p_right" [ngClass]="{active: !data['bet']}">
+                    <p>{{ 'Lobby.European_Disk' | translate }}</p>
+                  </span>
+              </div>
+          </div>
+      </li>
+      <li class="g_style">{{ 'Lobby.Theme_style' | translate }}
+          <div class="box">
+              <div class="check" (click)="Switch('white')">
+                  <span class="p_left" [ngClass]="{active: !data['white']}">
+                      <p>{{ 'Lobby.white' | translate }}</p>
+                  </span>
+                  <span class="p_right" [ngClass]="{active: data['white']}">
+                      <p>{{ 'Lobby.black' | translate }}</p>
+                  </span>
+              </div>
+          </div>
+      </li>
+      <li class="close" (click)="Switch('close')">{{ 'General.Close' | translate }}</li>
+  </ul>
+</aside>

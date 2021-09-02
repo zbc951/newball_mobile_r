@@ -1,0 +1,95 @@
+aside.set_pw {
+  width: 100%;
+  margin: .625rem 0 0 0;
+  position: fixed;
+  top: 0;
+}
+
+aside.set_pw ul {
+  display: block;
+  padding: 0 .9375rem 0 .9375rem;
+  background: #fff;
+}
+
+aside.set_pw ul li {
+  white-space: nowrap;
+  display: block;
+  border-bottom: 1px solid #e0e3f3;
+  padding: .625rem .625rem .625rem .625rem;
+  line-height: 1.8125rem;
+  height: 3.125rem;
+}
+
+aside.set_pw ul li:last-child {
+  border-bottom: none;
+}
+
+aside.set_pw ul li p {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  color: #4d515d;
+}
+
+aside.set_pw ul li input {
+  display: inline-block;
+  float: right;
+  width: 65%;
+  height: 100%;
+  border-radius: .25rem;
+  border: 1px solid #b9bfdc;
+  padding: .625rem;
+}
+
+aside.set_pw ul li.double {
+  white-space: normal;
+  height: auto;
+  line-height: 1;
+  padding: .625rem .625rem .3125rem .625rem;
+}
+
+aside.set_pw ul li.double .wrap {
+  display: inline-block;
+  width: 100%;
+  line-height: 1.8125rem;
+  height: 2.5rem;
+}
+
+aside.set_pw ul li.double .wrap p {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  color: #4d515d;
+}
+
+aside.set_pw ul li.double .wrap input {
+  height: 1.8125rem;
+  width: 65%;
+}
+
+aside.set_pw ul li.double .wrap2 {
+  display: inline-block;
+  width: 100%;
+}
+
+aside.set_pw ul li.double .wrap2 p {
+  color: #838ba0;
+  width: 65%;
+  float: right;
+  font-size: .875rem;
+}
+
+aside.set_pw button {
+  display: block;
+  width: 70vw;
+  margin: .9375rem auto 0 auto;
+  background: -webkit-gradient(linear, left top, right top, from(#9ba8e4), to(#485cc4));
+  background: linear-gradient(to right, #9ba8e4 0%, #485cc4 100%);
+  border: none;
+  border-radius: .25rem;
+  padding: .9375rem 0 .9375rem 0;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+/*# sourceMappingURL=my_set_pw.css.map */

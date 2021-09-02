@@ -1,0 +1,58 @@
+<!-- <footer>
+  <ul>
+    <li>
+      <a [routerLink]="RouterPath.lobby" routerLinkActive="active">
+        <svg>
+          <use xlink:href="#icon-home" />
+        </svg>
+        <p>{{ 'Title.Lobby' | translate }}</p>
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="RouterPath.report" routerLinkActive="active">
+        <svg>
+          <use xlink:href="#icon-history" />
+        </svg>
+        <p>{{ 'Title.Report' | translate }}</p>
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="RouterPath.info" routerLinkActive="active">
+        <svg>
+          <use xlink:href="#icon-result" />
+        </svg>
+        <p>{{ 'Title.Info' | translate }}</p>
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="RouterPath.live" routerLinkActive="active">
+        <svg>
+          <use xlink:href="#icon-livechat" />
+        </svg>
+        <p>{{ 'Title.Live' | translate }}</p>
+      </a>
+    </li>
+  </ul>
+</footer> -->
+
+
+<footer>
+  <ul>
+      <li class="index" routerLinkActive="active"  [routerLink]="RouterPath.lobby"><span></span>
+          <p>{{ 'Title.Home' | translate }}</p>
+      </li>
+      <li class="donate" routerLinkActive="active"  [routerLink]="RouterPath.info"><span></span>
+        <p>{{ 'Title.Info' | translate }}</p>
+    </li>
+      <!-- <li *ngIf="!isCashVer" class="help" routerLinkActive="active"  [routerLink]="RouterPath.more.feedback"><span></span>
+          <p>{{ 'Title.Customer' | translate }}</p>
+      </li> -->
+      <li class="event"  routerLinkActive="active"  [routerLink]="RouterPath.report"><span></span>
+        <p>{{ 'Title.Betting_record' | translate }}</p>
+    </li>
+      <li class="my" routerLinkActive="active" [routerLink]="RouterPath.user"><span></span>
+      <!-- <li class="my have"><span></span>  have 有紅點-->
+          <p>{{ 'Title.mine' | translate }}</p>
+      </li>
+  </ul>
+</footer>

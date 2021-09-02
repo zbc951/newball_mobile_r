@@ -1,0 +1,228 @@
+  <header class="header-liveLobby">
+    <button class="btn-back" [routerLink]="RouterPath.lobby">{{ 'General.Return' | translate }}</button>
+    <h2>{{'Title.Live' | translate}}</h2>
+  </header>
+  <main class="page-liveLobby">
+    <article class="liveList">
+      <!-- 	開賽: open/close (必須)
+            球種: FT/BS/BK (必須)			-->
+      <!-- 已開賽 -->
+      <ng-container *ngFor="let liveGame of openedLive" >
+        <section class="game open {{liveGame.gtype === 'EF' ? 'FT' : liveGame.gtype}}" (click)=goPlatform(liveGame)>
+          <span class="live">LIVE</span>
+          <div class="league">
+            <p>[{{liveGame.gtypes}}]</p>
+            <p>{{liveGame.league}}</p>
+          </div>
+          <ul class="team">
+            <li>
+              <p class="name">{{ liveGame.team_id_h }}</p>
+              <p class="score">{{  scores[liveGame] ? scores[liveGame].ht : '' }}</p>
+            </li>
+            <li>
+              <p class="name">{{ liveGame.team_id_c }}</p>
+              <p class="score">{{  scores[liveGame] ? scores[liveGame].ct : '' }}</p>
+            </li>
+          </ul>
+          <ul class="bottom">
+            <li>
+              <!-- <button class="btn-heart active">
+                <svg class="icon">
+                  <use xlink:href="#icon-heart" />
+                </svg>
+              </button> -->
+            </li>
+            <li>
+              <svg class="icon-member">
+                <use xlink:href="#icon-member" />
+              </svg>
+              <span>{{ liveGame.online }}</span>
+            </li>
+          </ul>
+        </section>
+      </ng-container>
+      <!-- 未開賽 -->
+      <ng-container *ngFor="let liveGame of closeLive" >
+        <section class="game close {{liveGame.gtype}}">
+          <!-- progressBar 的 transform: scale() 為開賽倒數
+             不同寬度(s/m/l)有scaleX / scaleY的區別-->
+          <div class="progressBar" [style.transform] = "liveGame.leftPercent"></div>
+          <!-- <div class="progressBar" style="transform: scaleX(0.46)"></div> -->
+          <div class="league">
+            <p>[{{liveGame.gtypes}}]</p>
+            <p>{{ liveGame.league }}</p>
+          </div>
+          <ul class="team">
+            <li>
+              <p class="name">{{ liveGame.team_id_h }}</p>
+            </li>
+            <li>
+              <p class="name">{{ liveGame.team_id_c }}</p>
+            </li>
+          </ul>
+          <ul class="bottom">
+            <li>
+              <button class="btn-heart">
+                <svg class="icon">
+                  <use xlink:href="#icon-heart" />
+                </svg>
+              </button>
+              <button class="btn-ball">
+                <!-- 球種icon除了 AF / BS / BK......
+                也可以有 CPBL / MLB / NBA / NPB -->
+                <div class="icon icon-BS"></div>
+              </button>
+              <p class="time"><strong>{{liveGame.leftTime}}s</strong></p>
+            </li>
+          </ul>
+        </section>
+      </ng-container>
+    </article>
+  </main>
+<app-chat [newMsg] = "newMsg"  [publicRoomID] = "roomHall" [isLobby] = "true"></app-chat>
+
+<button class="btn-detail" (click)="toggleDetail()">
+  <svg>
+    <use xlink:href="#icon-detail" />
+  </svg>
+</button>
+
+<button class="btn-detail" style="bottom: 353px" (click)="toggleDetailLeague()">
+  <svg>
+    <use xlink:href="#icon-search" />
+  </svg>
+</button>
+
+<article class="dialog" *ngIf="betDetailActive">
+  <div class="dialog-content">
+      <section class="dialog-detail">
+        <h2>{{'Report.Order' | translate}}</h2>
+        <button class="btn-x" (click)="toggleDetail()">&#9587;</button>
+        <div class="content">
+          <ul class="details">
+            <ng-container *ngFor="let order of orders">
+              <ng-container *ngIf="order.wtype !== 'CPR';else CPRDetail">
+                <li class="single" [class.active]="order.active">
+                  <div class="header" (click)="order.active = !order.active">
+                    <p>{{order.gtype_c}}-{{order.gameName}}-{{order.partInfo}}-{{order.wtype_c}}</p>
+                    <p>{{order.team1}}<span class="red">{{(order.head === 'Vs.') ? order.head : transHead(order.head, order.gtype)}}</span>{{order.team2}}</p>
+                  </div>
+                  <ul class="info">
+                    <li>
+                      <span>{{ 'General.AccDate' | translate }}</span>
+                      <span>{{order.betTime}}</span>
+                      <span>{{ 'General.GameDate' | translate }}</span>
+                      <span>{{order.gameTime}}</span>
+                    </li>
+                    <li>
+                      <span>{{ 'General.Win' | translate }}</span>
+                      <span class="red">{{order.wouldWin}}</span>
+                      <span>{{ 'General.BetEffect' | translate }}</span>
+                      <span>{{order.effective_gold}}</span>
+                    </li>
+                    <li>
+                      <span>{{ 'General.Result' | translate }}</span>
+                      <span>{{ getResult(order) | translate}}</span>
+                      <!-- <span>&nbsp;</span>
+                      <span>&nbsp;</span> -->
+                    </li>
+                  </ul>
+                  <div class="footer">
+                    <p>
+                      <span class="blue">{{order.betOption}}</span> @
+                      <span class="red">{{order.odd}}</span>
+                    </p>
+                    <p class="total">{{'General.Bet' | translate}}: {{order.gold}}</p>
+                  </div>
+                </li>
+              </ng-container>
+              <ng-template #CPRDetail>
+                <li class="mix" [class.active]="order.active">
+                  <div class="header" (click)="order.active = !order.active">
+                    <p>{{order.gtype_c}}-{{order.wtype_c}}</p>
+                    <!-- <p>4串1<span class="red">11.27</span></p> -->
+                  </div>
+                  <ul class="list">
+                    <li *ngFor="let subGame of order.betAry">
+                      <p class="type">{{transOddsName(subGame.subWtype)}} [ {{subGame.gameName}} {{subGame.partInfo}}]</p>
+                      <p class="team">{{subGame.team1}}<span class="red">{{(subGame.head === 'Vs.') ? subGame.head : transHead(subGame.head, order.gtype)}}</span>{{subGame.team2}}</p>
+                      <p class="data"><span class="blue">{{subGame.betOption}}</span>@<span class="red">{{subGame.odd}}</span>{{ 'General.GameDate' | translate }}:{{subGame.gameTime}}</p>
+                    </li>
+                  </ul>
+                  <ul class="info">
+                    <li>
+                      <span>{{ 'General.AccDate' | translate }}</span>
+                      <span>{{order.betTime}}</span>
+                      <span>{{ 'General.BetEffect' | translate }}</span>
+                      <span>{{order.effective_gold}}</span>
+                    </li>
+                    <li>
+                      <span>{{ 'General.Win' | translate }}</span>
+                      <span class="red">{{order.wouldWin}}</span>
+                      <span>{{ 'General.Result' | translate }}</span>
+                      <span>{{ getResult(order) | translate}}</span>
+                    </li>
+                  </ul>
+                  <div class="footer">
+                    <p>
+                      <span class="blue">{{order.betOption}}</span> @
+                      <span class="red">{{order.odd}}</span>
+                    </p>
+                    <p class="total">{{'General.Bet' | translate}}: {{order.gold}}</p>
+                  </div>
+                </li>
+              </ng-template>
+            </ng-container>
+          </ul>
+          <!-- <button class="btn-confirm" (click)="toggleDetail()">{{'Setting.Confirm' | translate}}</button> -->
+        </div>
+      </section>
+  </div>
+</article>
+
+
+<article class="dialog" *ngIf="leagueActive">
+  <div class="dialog-content">
+      <section class="dialog-detail">
+        <h2>{{'Search.ChooseLeague' | translate}}</h2>
+        <button class="btn-x" (click)="toggleDetailLeague()">&#9587;</button>
+        <div class="content " >
+          <ul class="details" >
+            <ng-container >
+              <ng-container >
+                <div class="buttons buttons-top" >
+                    <button class="btn"(click)="filterEvent_l('all','')">{{'Search.ChooseAll' | translate}}</button>
+                  <button class="btn" *ngFor="let gtypes of AllliveData |PipeGtype;" 
+                  (click)="filterEvent_l('gtypes',gtypes)"
+                  [ngClass]="{active:gtypes == filterLeague['gtypes']}"
+                  >{{gtypes}}</button>
+                  <!-- <button class="btn active">足球</button> -->
+    
+
+                </div>
+              </ng-container>
+
+            </ng-container>
+          </ul>
+          <ul >
+            <ng-container >
+              <ng-container >
+                <div class="buttons" *ngIf="filterLeague['gtypes']">
+                 
+                  <button class="btn" *ngFor="let league of AllliveData |PipeLeague:filterLeague"
+                  (click)="filterEvent_l('league',league)"
+                  [ngClass]="{active:league == filterLeague['league']}"
+                  >{{ league }}</button>
+
+                  <!-- <button class="btn active">NBA 美國職業籃球</button> -->
+    
+
+                </div>
+              </ng-container>
+
+            </ng-container>
+          </ul>
+        </div>
+      </section>
+  </div>
+</article>

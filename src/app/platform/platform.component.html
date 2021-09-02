@@ -1,0 +1,324 @@
+<article class="fp fp-transRX" #platform>
+  <header style="z-index: 9;">
+    <article class="topInfo">
+      <button class="btn-back" (click)="closePlatform()">{{ 'General.Return' | translate }}</button>
+      <div>
+        <section>
+          <svg>
+            <use xlink:href="#icon-member" />
+          </svg>
+          <span>{{ (member.memberInfo$ | async)?.alias | formatNumber }}</span>
+        </section>
+        <section>
+          <svg>
+            <use xlink:href="#icon-point" />
+          </svg>
+          <span>{{ (member.memberInfo$ | async)?.maxcredit | formatNumber }}</span>
+        </section>
+      </div>
+    </article>
+  </header>
+
+  <main>
+    <article class="video">
+      <video id="LiveVideo" class="video-style" controls playsinline webkit-playsinline autoplay >
+         <source *ngIf="!rtmp"  [src]="VIDEO_PATH + videoID + '/1.m3u8'" type="application/x-mpegURL"> 
+          <source *ngIf="rtmp && time_hh%2 == 0"  [src]="VIDEO_PATH_leisu_2 + videoID + '.m3u8'" type="application/x-mpegURL">
+          <source *ngIf="rtmp && time_hh%2 == 1"  [src]="VIDEO_PATH_leisu_1 + videoID + '.m3u8'" type="application/x-mpegURL">
+      </video>
+    </article>
+    <article class="vote">
+      <section class="team team-home">
+        <button class="btn-like" (click)="sendVote(VoteSide.home)"></button>
+        <p>{{'Live.VoteH' | translate}}<span>{{ hVote ? hVote : 0 }}</span></p>
+      </section>
+      <section class="team team-guest">
+        <button class="btn-like" (click)="sendVote(VoteSide.guest)"></button>
+        <p>{{'Live.VoteG' | translate}}<span>{{ gVote ? gVote : 0 }}</span></p>
+      </section>
+    </article>
+
+    <!-- <article class="teams" *ngIf="game"  (click)="refresh()">
+      <div>
+        <div class="vs-team1">
+          <div class="team">[{{ 'H' | sideName }}]{{ teamInfo.team_H }}</div>
+          <div class="picther" *ngIf="game.picthers.picther_H">{{game.picthers.picther_H.name}}[{{('Game.' + game.picthers.picther_H.mode) | translate}}][SP]</div>
+        </div>
+        <div class="vs">VS</div>
+        <div class="vs-team2">
+          <div class="team">[{{ 'C' | sideName }}]{{ teamInfo.team_C }}</div>
+          <div class="picther" *ngIf="game.picthers.picther_C">{{game.picthers.picther_C.name}}[{{('Game.' + game.picthers.picther_C.mode) | translate}}][SP]</div>
+        </div>
+        <div class="refresh">{{countDown}}
+          <svg class="icon-refresh">
+            <use xlink:href="#icon-refresh" />
+          </svg>
+        </div>
+      </div>
+    </article> -->
+
+    <!-- <article class="board" *ngIf="score"> -->
+    <article class="board" *ngIf="game">
+      <ul style="transform: translateX(0)">
+
+        <!-- 隊伍+重新整理 - 棒球，有投手 -->
+        <li class="teams teams-bs" (click)="refresh()" *ngIf="game.picthers && game.picthers.picther_H && game.picthers.picther_H.name;else noPicther">
+          <!-- <button class="btn-next"></button> -->
+          <div class="row">
+            <p class="team">[{{ 'H' | sideName }}]{{ teamInfo.team_H }} </p>
+            <p class="team">[{{ 'C' | sideName }}]{{ teamInfo.team_C }} </p>
+            <p class="center purple">VS</p>
+          </div>
+          <div class="row">
+            <p class="pitcher yellow">{{game.picthers.picther_H.name}}[{{('Game.' + game.picthers.picther_H.mode) | translate}}][SP]</p>
+            <p class="pitcher yellow">{{game.picthers.picther_C.name}}[{{('Game.' + game.picthers.picther_C.mode) | translate}}][SP]</p>
+            <!-- <p class="center">
+              <svg>
+                <use xlink:href="#icon-refresh" />
+              </svg>
+              <span>{{countDown}}</span>
+            </p> -->
+          </div>
+        </li>
+        <ng-template #noPicther>
+        <!-- 隊伍+重新整理 - 除了棒球，無投手 -->
+          <li class="teams" (click)="refresh()">
+            <!-- <button class="btn-next"></button> -->
+            <div class="row">
+              <p class="team">[{{ 'H' | sideName }}]{{ teamInfo.team_H }} </p>
+              <p class="team">[{{ 'C' | sideName }}]{{ teamInfo.team_C }} </p>
+              <p class="center purple">VS</p>
+            </div>
+            <div class="row">
+              <!-- <p class="center">
+                <svg>
+                  <use xlink:href="#icon-refresh" />
+                </svg>
+                <span>{{countDown}}</span>
+              </p> -->
+            </div>
+          </li>
+        </ng-template>
+
+
+
+
+        <!-- <li class="point">
+          <button class="btn-next"></button>
+          <div class="row">
+            <p class="team">[{{ 'H' | sideName }}]{{ teamInfo.team_H }} </p>
+            <p class="team">[{{ 'C' | sideName }}]{{ teamInfo.team_C }} </p>
+            <p class="center purple">VS</p>
+          </div>
+          <div class="row">
+            <p class="score yellow">22</p>
+            <p class="score yellow">8</p>
+            <p class="center">32:45</p>
+          </div>
+        </li> -->
+
+        <!-- 棒球 BS -->
+        <!-- <li class="detail detail-BS" *ngIf = "{'BS':true, 'CB':true, 'JB':true, 'KB': true}[game?.ball]">
+          <button class="btn-prev"></button>
+          <div class="row">
+            <p>{{ teamInfo.league }}</p>
+            <p class="purple" *ngFor="let round of [1, 2, 3, 4, 5, 6, 7, 8, 9]">{{round}}</p>
+            <p class="yellow">OT</p>
+            <p class="red">{{'Live.Total' | translate}}</p>
+          </div>
+          <div class="row">
+            <p>[{{ 'H' | sideName }}]{{ teamInfo.team_H }}</p>
+            <p class="bold" *ngFor="let round of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
+              {{ (score && (score['h' + round] || score['h' + round] === 0)) ? score['h' + round] : '-'}}
+            </p>
+            <p class="bold">{{ (score && (score.hn || score.hn === 0)) ? score.hn : '-'}}</p>
+            <p class="bold">{{ (score && (score.ht || score.ht === 0)) ? score.ht : '-'}}</p>
+          </div>
+          <div class="row">
+            <p>[{{ 'C' | sideName }}]{{ teamInfo.team_C }}</p>
+            <p class="bold" *ngFor="let round of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
+                {{ (score && (score['c' + round] || score['c' + round] === 0)) ? score['c' + round] : '-'}}
+            </p>
+            <p class="bold">{{ (score && (score.cn || score.cn === 0)) ? score.cn : '-'}}</p>
+            <p class="bold">{{ (score && (score.ct || score.ct === 0)) ? score.ct : '-'}}</p>
+          </div>
+        </li> -->
+
+        <!-- 足球 FT -->
+        <!-- <li class="detail detail-FT" *ngIf = "game?.ball == 'FT'">
+          <div class="row">
+            <p>{{ teamInfo.league }}</p>
+            <p class="purple">{{'F' | detailPart}}</p>
+            <p class="yellow">{{'Live.YellowCard' | translate}}</p>
+            <p class="red">{{'Live.RedCard' | translate}}</p>
+          </div>
+          <div class="row">
+            <p>[{{ 'H' | sideName }}]{{ teamInfo.team_H }}</p>
+            <p class="bold">{{ score?.ht ? score?.ht : 0}}</p>
+            <p class="bold">0</p>
+            <p class="bold">0</p>
+          </div>
+          <div class="row">
+            <p>[{{ 'C' | sideName }}]{{ teamInfo.team_C }}</p>
+            <p class="bold">{{ score?.ct ? score?.ct : 0}}</p>
+            <p class="bold">0</p>
+            <p class="bold">0</p>
+          </div>
+        </li> -->
+
+        <!-- 籃球 BK -->
+        <!-- <li class="detail detail-BK" *ngIf = "{'BK':true, 'WB':true}[game?.ball]">
+          <div class="row">
+            <p>{{ teamInfo.league }}</p>
+            <p class="bold" *ngFor="let round of [1, 2, 3, 4]">{{round}}</p>
+            <p class="yellow">OT</p>
+            <p class="red">{{'Live.Total' | translate}}</p>
+          </div>
+          <div class="row">
+            <p>[{{ 'H' | sideName }}]{{ teamInfo.team_H }}</p>
+            <p class="bold" *ngFor="let round of [1, 2, 3, 4]">
+                {{ (score && (score['h' + round] || score['h' + round] === 0)) ? score['h' + round] : '-'}}
+            </p>
+            <p class="bold">{{ (score && (score.hn || score.hn === 0)) ? score.hn : '-'}}</p>
+            <p class="bold">{{ (score && (score.ht || score.ht === 0)) ? score.ht : '-'}}</p>
+          </div>
+          <div class="row">
+            <p>[{{ 'C' | sideName }}]{{ teamInfo.team_C }}</p>
+            <p class="bold" *ngFor="let round of [1, 2, 3, 4]">
+                {{ (score && (score['c' + round] || score['c' + round] === 0)) ? score['c' + round] : '-'}}
+            </p>
+            <p class="bold">{{ (score && (score.cn || score.cn === 0)) ? score.cn : '-'}}</p>
+            <p class="bold">{{ (score && (score.ct || score.ct === 0)) ? score.ct : '-'}}</p>
+          </div>
+        </li> -->
+      </ul>
+    </article>
+
+    <article class="bet" *ngIf="game && game.isOpen">
+        <!-- <article class="bet"> -->
+        <ng-container *ngFor="let part of handicapAry;let idx = index">
+          <section class="title">
+            <ul>
+              <li>{{'Lobby.Side' | translate}}</li>
+              <li *ngFor="let title of part.titles">{{ title | oddsName}}</li>
+            </ul>
+          </section>
+          <section class="betBox">
+            <ul *ngFor="let handicap of part.data">
+              <li class="team team-{{ handicap.side }}">{{handicap.side | sideName: '' : true}}</li>
+              <li *ngFor="let play of part.titles">
+                <a (click)="setBet(game.teamInfo, handicap[play], play)">
+                  <p>{{((handicap.side == handicap[play].strong) ? handicap[play].head : '') | headName: useBall}}</p>
+                  <span>{{ handicap[play].odd }}</span>
+                </a>
+              </li>
+            </ul>
+          </section>
+        </ng-container>
+      </article>
+
+
+  </main>
+  <app-chat [newMsg] = "newMsg" [isLobby] = "false" [publicRoomID] = "videoID" ></app-chat>
+
+</article>
+
+<button class="btn-detail" (click)="toggleDetail()">
+  <svg>
+    <use xlink:href="#icon-detail" />
+  </svg>
+</button>
+
+<button class="btn-refresh" (click)="refresh()">
+  <svg>
+    <use xlink:href="#icon-refresh" />
+  </svg>
+  {{countDown}}
+</button>
+
+<article class="dialog" *ngIf="betDetailActive">
+  <div class="dialog-content">
+      <section class="dialog-detail">
+        <h2>{{'Report.Order' | translate}}</h2>
+        <button class="btn-x" (click)="toggleDetail()">&#9587;</button>
+        <div class="content">
+          <ul class="details">
+            <ng-container *ngFor="let order of orders">
+              <ng-container *ngIf="order.wtype !== 'CPR';else CPRDetail">
+                <li class="single" [class.active]="order.active">
+                  <div class="header" (click)="order.active = !order.active">
+                    <p>{{order.gtype_c}}-{{order.gameName}}-{{order.partInfo}}-{{order.wtype_c}}</p>
+                    <p>{{order.team1}}<span class="red">{{(order.head === 'Vs.') ? order.head : transHead(order.head, order.gtype)}}</span>{{order.team2}}</p>
+                  </div>
+                  <ul class="info">
+                    <li>
+                      <span>{{ 'General.AccDate' | translate }}</span>
+                      <span>{{order.betTime}}</span>
+                      <span>{{ 'General.GameDate' | translate }}</span>
+                      <span>{{order.gameTime}}</span>
+                    </li>
+                    <li>
+                      <span>{{ 'General.Win' | translate }}</span>
+                      <span class="red">{{order.wouldWin}}</span>
+                      <span>{{ 'General.BetEffect' | translate }}</span>
+                      <span>{{order.effective_gold}}</span>
+                    </li>
+                    <li>
+                      <span>{{ 'General.Result' | translate }}</span>
+                      <span>{{ getResult(order) | translate}}</span>
+                      <!-- <span>&nbsp;</span>
+                      <span>&nbsp;</span> -->
+                    </li>
+                  </ul>
+                  <div class="footer">
+                    <p>
+                      <span class="blue">{{order.betOption}}</span>
+                      <span class="red">{{order.odd}}</span>
+                    </p>
+                    <p class="total">{{'General.Bet' | translate}}: {{order.gold}}</p>
+                  </div>
+                </li>
+              </ng-container>
+              <ng-template #CPRDetail>
+                <li class="mix" [class.active]="order.active">
+                  <div class="header" (click)="order.active = !order.active">
+                    <p>{{order.gtype_c}}-{{order.wtype_c}}</p>
+                    <!-- <p>4串1<span class="red">11.27</span></p> -->
+                  </div>
+                  <ul class="list">
+                    <li *ngFor="let subGame of order.betAry">
+                      <p class="type">{{transOddsName(subGame.subWtype)}} [ {{subGame.gameName}} {{subGame.partInfo}}]</p>
+                      <p class="team">{{subGame.team1}}<span class="red">{{(subGame.head === 'Vs.') ? subGame.head : transHead(subGame.head, order.gtype)}}</span>{{subGame.team2}}</p>
+                      <p class="data"><span class="blue">{{subGame.betOption}}</span>@<span class="red">{{subGame.odd}}</span>{{ 'General.GameDate' | translate }}:{{subGame.gameTime}}</p>
+                    </li>
+                  </ul>
+                  <ul class="info">
+                    <li>
+                      <span>{{ 'General.AccDate' | translate }}</span>
+                      <span>{{order.betTime}}</span>
+                      <span>{{ 'General.BetEffect' | translate }}</span>
+                      <span>{{order.effective_gold}}</span>
+                    </li>
+                    <li>
+                      <span>{{ 'General.Win' | translate }}</span>
+                      <span class="red">{{order.wouldWin}}</span>
+                      <span>{{ 'General.Result' | translate }}</span>
+                      <span>{{ getResult(order) | translate}}</span>
+                    </li>
+                  </ul>
+                  <div class="footer">
+                    <p>
+                      <span class="blue">{{order.betOption}}</span>
+                      <span class="red">{{order.odd}}</span>
+                    </p>
+                    <p class="total">{{'General.Bet' | translate}}: {{order.gold}}</p>
+                  </div>
+                </li>
+              </ng-template>
+            </ng-container>
+          </ul>
+          <!-- <button class="btn-confirm" (click)="toggleDetail()">{{'Setting.Confirm' | translate}}</button> -->
+        </div>
+      </section>
+  </div>
+</article>

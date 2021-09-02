@@ -1,0 +1,16 @@
+<article class="topInfo">
+  <div>
+    <section class="member">
+      <svg>
+        <use xlink:href="#icon-member" />
+      </svg>
+      <span>{{ (member.memberInfo$ | async)?.alias}}</span>
+    </section>
+    <section>
+      <svg>
+        <use xlink:href="#icon-point" />
+      </svg>
+      <span>{{ (member.memberInfo$ | async)?.maxcredit | formatNumber }}</span>
+    </section>
+  </div>
+</article>

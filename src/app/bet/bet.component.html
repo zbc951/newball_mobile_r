@@ -1,0 +1,312 @@
+
+
+<ng-container *ngIf="!newBerMode">
+    <aside class="bet_window active">
+        <div class="bet_page" *ngIf="!betSuccess">
+            <span class="close" (click)="closePage()"></span>
+            <div class="title">
+                <span class="game_name">
+                    <p><em></em>{{ betStatus.singleBetFile.teamInfo.league }}<em></em></p>
+                </span>
+                <span class="game_tag"></span>
+                <span class="bet_type">{{betStatus.singleBetFile.ball | translateValue: 'ball'}}-{{betStatus.singleBetFile.oddsType | oddsName}}</span>
+                <span class="counter"  *ngIf="betStatus.singleBetFile.teamInfo.name_C; else oneTeam">
+                    <!-- <p>{{betStatus.singleBetFile.teamInfo.name_H}}<span class="head" *ngIf="showHead(betStatus.singleBetFile.oddsType) && betStatus.singleBetFile.strong === 'H'">{{betStatus.singleBetFile.head | headName: ballStatus.ball}}</span></p> -->
+                    <p>{{betStatus.singleBetFile.teamInfo.name_H}}<span class="head" *ngIf="showHead(betStatus.singleBetFile.oddsType)">{{betStatus.singleBetFile.head | headName: ballStatus.ball : betStatus.singleBetFile.strong === 'H' : betStatus.singleBetFile.oddsType}}</span></p>
+                    <span class="vs" *ngIf="isNumber(betStatus.singleBetFile.teamInfo.score_H);else showVS">{{betStatus.singleBetFile.teamInfo.score_H}}-{{betStatus.singleBetFile.teamInfo.score_C}}</span>
+                    <ng-template #showVS>
+                        <span class="vs">VS</span>
+                    </ng-template>
+                    <p>{{betStatus.singleBetFile.teamInfo.name_C}}<span class="head" *ngIf="showHead(betStatus.singleBetFile.oddsType)">{{betStatus.singleBetFile.head | headName: ballStatus.ball : betStatus.singleBetFile.strong === 'C' : betStatus.singleBetFile.oddsType}}</span></p>
+                </span>
+                <ng-template #oneTeam>
+                    <span class="counter">
+                        <p class="one-team">{{betStatus.singleBetFile.teamInfo.name_H}}</p>
+                    </span>
+                </ng-template>
+            </div>
+            <div class="content">
+                <div class="info">
+                    <span class="tie">{{ betStatus.singleBetFile.selectedTitle }}&nbsp;&nbsp;{{showHead(betStatus.singleBetFile.oddsType) ? '' : (betStatus.singleBetFile.head | headName: ballStatus.ball : betStatus.singleBetFile.strong == betStatus.singleBetFile.side : betStatus.singleBetFile.oddsType)}}&nbsp;&nbsp;@<span class="odd_color">{{ betStatus.singleBetFile.odds | OddsHK}}</span></span>
+                    <!-- <div class="circle">8</div> -->
+                </div>
+                <div class="input_group active">
+                    <div class="detail">
+                        <p class="balance">{{ 'General.Balance' | translate }}&nbsp;:&nbsp;<span class="num">{{ (member.memberInfo$ | async)?.maxcredit | formatNumber }}</span></p>
+                    </div>
+                    <div class="input_box">
+                        <input type="number" [(ngModel)]="gold" [formControl]="goldControl" placeholder="{{ 'Credit.Limit' | translate }} {{ MIN_BET }}">
+                    </div>
+                    <div class="kb_wrap" *ngIf="!isCN;else cnMoney">
+                        <div class="kb_top">
+                            <div class="box_s" (click)="addGold(100)">+100</div>
+                            <div class="box_s" (click)="addGold(500)">+500</div>
+                            <div class="box_s" (click)="addGold(1000)">+1,000</div>
+                            <div class="box_s" (click)="addGold(5000)">+5,000</div>
+                        </div>
+                        <div class="kb_bot">
+                            <div class="box_s" (click)="addGold(10000)">+1{{ 'Bet.Million' | translate }}</div>
+                            <div class="box_s" (click)="addGold(50000)">+5{{ 'Bet.Million' | translate }}</div>
+                            <div class="box_b" (click)="gold = undefined">{{ 'General.Clear' | translate }}</div>
+                        </div>
+                    </div>
+                    <ng-template #cnMoney>
+                        <div class="kb_wrap" *ngIf="!isCN;else cnMoney">
+                            <div class="kb_top">
+                                <div class="box_s" (click)="addGold(10)">+10</div>
+                                <div class="box_s" (click)="addGold(50)">+50</div>
+                                <div class="box_s" (click)="addGold(100)">+100</div>
+                                <div class="box_s" (click)="addGold(500)">+500</div>
+                            </div>
+                            <div class="kb_bot">
+                                <div class="box_s" (click)="addGold(1000)">+1,000</div>
+                                <div class="box_s" (click)="addGold(5000)">+5,000</div>
+                                <div class="box_b" (click)="gold = undefined">{{ 'General.Clear' | translate }}</div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+                <div class="result_wrap">
+                    <div class="box">
+                        <p>{{ 'General.Win' | translate }}</p>
+                        <p>{{ estGold | formatNumber }}</p>
+                    </div>
+                    <div class="box">
+                        <p>{{ 'Credit.Limit_Bet' | translate }}</p>
+                        <ng-container *ngIf="betStatus.singleBetFile.play == 'RE'">
+                            <p>{{ credit?.RESO | formatNumber }}</p>
+                        </ng-container>
+                        <ng-container *ngIf="betStatus.singleBetFile.play !== 'RE'">
+                            <p>{{ credit?.SO | formatNumber }}</p>
+                        </ng-container>
+
+                    </div>
+                    <div class="box">
+                        <p>{{ 'Credit.Limit_Game' | translate }}</p>
+                        <ng-container *ngIf="betStatus.singleBetFile.play == 'RE'">
+                            <p>{{ credit?.RESC | formatNumber }}</p>
+                        </ng-container>
+                        <ng-container *ngIf="betStatus.singleBetFile.play !== 'RE'">
+                            <p>{{ credit?.SC | formatNumber }}</p>
+                        </ng-container>
+
+                    </div>
+                </div>
+                <div class="check" *ngIf="betStatus.singleBetFile.play  == 'RE'&& (ballStatus.ball == 'BK'|| ballStatus.ball == 'FT') ">
+                    <input type="checkbox"[(ngModel)]="autocheck" style="
+                    width: 30px;
+                    height: 20px;
+                    vertical-align: bottom;
+                    background: #fff;
+                    border-radius: 5px;
+                    border: 2px solid #000;
+                    margin-right: 20px;
+                "> 
+                    <span style="color: firebrick;" style="color: firebrick;">{{ 'Bet.auto' | translate }}</span>
+                </div>
+            </div>
+            <div class="footer" (click)="bet()">{{ 'Bet.Confirm' | translate }}</div>
+        </div>
+    
+        <div class="bet_page" *ngIf="betSuccess">
+            <span class="close"  (click)="closePage()"></span>
+            <div class="title">
+                <span class="game_name">
+                    <p><em></em>{{ betSuccessFile.gameDetail[0].gameName }}<em></em></p>
+                </span>
+                <span class="game_tag active">{{ betSuccessFile.gameDetail[0].bid }}</span>
+                <span class="bet_type">{{ betSuccessFile.betType }}</span>
+                <span class="counter">
+                    <p>{{ betSuccessFile.gameDetail[0].team1 }}</p><span class="vs">{{(betSuccessFile.gameDetail[0].head === '') ? 'vs' : (betSuccessFile.gameDetail[0].head | headName: ballStatus.ball) }}</span> 
+                    <p>{{ betSuccessFile.gameDetail[0].team2 }}</p>
+                </span>
+            </div>
+            <div class="content">
+                <div class="info">
+                    <span class="tie">{{ betSuccessFile.gameDetail[0].betOption }}&nbsp;&nbsp;{{ betSuccessFile.gameDetail[0].head | headName: ballStatus.ball }}&nbsp;&nbsp;@<span class="odd_color">{{ betSuccessFile.gameDetail[0].odds | OddsHK}}</span></span>
+                    <span class="solo">{{ betSuccessFile.betType }}</span>
+                    <!-- <div class="circle">8</div> -->
+                </div>
+                <div class="finish_group active">
+                    <div class="f_title">
+                        <i></i><p>{{ 'Bet.Success' | translate }}!</p>
+                    </div>
+                    <div class="bill_data">
+                        <ul class="wrap">
+                            <li class="bill_line">
+                                <p>{{ 'General.Time' | translate }}</p>
+                                <p>{{ betSuccessFile.time }}</p>
+                            </li>
+                            <li class="bill_line">
+                                <p>{{ 'General.OrderNumber' | translate }}</p>
+                                <p>{{ betSuccessFile.betId }}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="result_wrap bet_success">
+                    <div class="box">
+                        <p>{{ 'General.Bet' | translate }}</p>
+                        <p>{{ betSuccessFile.gold }}</p>
+                    </div>
+                    <div class="box">
+                        <p>{{ 'General.Win' | translate }}</p>
+                        <p>{{ betSuccessFile.estGold }}</p>
+                    </div>
+                    <!-- <div class="box">
+                        <p>{{ 'Credit.Limit_Game' | translate }}</p>
+                        <p>{{ credit?.SC | formatNumber }}</p>
+                    </div> -->
+                </div>
+                <!-- <div class="check_detail">
+                    <div class="row">
+                        <p class="left">{{ 'General.Bet' | translate }}</p>
+                        <p class="right">{{ betSuccessFile.gold }}</p>
+                    </div>
+                    <div class="row">
+                        <p class="left">{{ 'General.Win' | translate }}</p>
+                        <p class="right">{{ betSuccessFile.estGold }}</p>
+                    </div>
+                    <div class="row">
+                        <p class="left">{{ 'General.OrderNumber' | translate }}</p>
+                        <p class="right">{{ betSuccessFile.betId }}</p>
+                    </div>
+                </div> -->
+            </div>
+            <div class="footer" (click)="closePage()">{{ 'General.Close' | translate }}</div>
+        </div>
+    </aside>
+    
+    
+</ng-container>
+
+<ng-container *ngIf="newBerMode">
+
+    <aside class="bet_window active">
+        <div class="bet_page" *ngIf="!betSuccess">
+            <span class="close" (click)="closePage()"></span>
+            <div class="title">
+                <span class="game_name">
+                    <p><em></em>{{ betStatus.singleBetFile.teamInfo.league }}<em></em></p>
+                </span>
+                <span class="game_tag"></span>
+                <span class="bet_type">{{betStatus.singleBetFile.ball | translateValue: 'ball'}}-{{'special.'+betStatus.singleBetFile.play | translate }}</span>
+                <span class="counter" >
+                 
+                    <p>{{betStatus.singleBetFile.teamInfo.name_H}}[{{'General.TeamHome' | translate }}]</p>
+
+                        <span class="vs">VS</span>
+ 
+                    <p>{{betStatus.singleBetFile.teamInfo.name_C}}</p>
+                </span>
+
+            </div>
+            <div class="content">
+                <div class="info">
+                    <span class="tie">{{betStatus.singleBetFile.nweBet.zh}}@&nbsp;&nbsp;<span class="odd_color">{{betStatus.singleBetFile.nweBet.ioratio | OddsHK}}</span></span>
+                    <!-- <div class="circle">8</div> -->
+                </div>
+                <div class="input_group active">
+                    <div class="detail">
+                        <p class="balance">{{ 'General.Balance' | translate }}&nbsp;:&nbsp;<span class="num">{{ (member.memberInfo$ | async)?.maxcredit | formatNumber }}</span></p>
+                    </div>
+                    <div class="input_box">
+                        <input type="number" [(ngModel)]="gold" [formControl]="goldControl" placeholder="{{ 'Credit.Limit' | translate }} {{ MIN_BET }}">
+                    </div>
+                    <div class="kb_wrap" *ngIf="!isCN;else cnMoney">
+                        <div class="kb_top">
+                            <div class="box_s" (click)="addGold(100)">+100</div>
+                            <div class="box_s" (click)="addGold(500)">+500</div>
+                            <div class="box_s" (click)="addGold(1000)">+1,000</div>
+                            <div class="box_s" (click)="addGold(5000)">+5,000</div>
+                        </div>
+                        <div class="kb_bot">
+                            <div class="box_s" (click)="addGold(10000)">+1{{ 'Bet.Million' | translate }}</div>
+                            <div class="box_s" (click)="addGold(50000)">+5{{ 'Bet.Million' | translate }}</div>
+                            <div class="box_b" (click)="gold = undefined">{{ 'General.Clear' | translate }}</div>
+                        </div>
+                    </div>
+                    <ng-template #cnMoney>
+                        <div class="kb_wrap" *ngIf="!isCN;else cnMoney">
+                            <div class="kb_top">
+                                <div class="box_s" (click)="addGold(10)">+10</div>
+                                <div class="box_s" (click)="addGold(50)">+50</div>
+                                <div class="box_s" (click)="addGold(100)">+100</div>
+                                <div class="box_s" (click)="addGold(500)">+500</div>
+                            </div>
+                            <div class="kb_bot">
+                                <div class="box_s" (click)="addGold(1000)">+1,000</div>
+                                <div class="box_s" (click)="addGold(5000)">+5,000</div>
+                                <div class="box_b" (click)="gold = undefined">{{ 'General.Clear' | translate }}</div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+                <div class="result_wrap">
+                    <div class="box">
+                        <p>{{ 'General.Win' | translate }}</p>
+                        <p>{{ estGold | formatNumber }}</p>
+                    </div>
+                </div>
+                <!-- <div class="auto_wrap">
+                    <input id="box1" type="checkbox" />
+                    <label for="box1">自動接收最新盤口</label>
+                </div> -->
+            </div>
+            <div class="footer" (click)="newbBet()">{{ 'Bet.Confirm' | translate }}</div>
+        </div>
+    
+        <div class="bet_page" *ngIf="betSuccess">
+            <span class="close"  (click)="closePage()"></span>
+            <div class="title">
+                <span class="game_name">
+                    <p><em></em>{{ retdate[7] }}<em></em></p>
+                </span>
+                <span class="game_tag active">{{ retdate[3] }}{{ retdate[4] }}</span>
+                <span class="bet_type">{{ retdate[3] | translateValue: 'ball'}}-{{ retdate[10] }}</span>
+                <span class="counter">
+                    <p>{{ retdate[8] }}[{{'General.TeamHome' | translate }}]</p><span class="vs">vs</span> 
+                    <p>{{ retdate[9] }}</p>
+                </span>
+            </div>
+            <div class="content">
+                <div class="info">
+                    <span class="tie">{{retdate[11]}}&nbsp;&nbsp;@<span class="odd_color">{{retdate[12] | OddsHK}}</span></span>
+                    <span class="solo"></span>
+                    <!-- <div class="circle">8</div> -->
+                </div>
+                <div class="finish_group active">
+                    <div class="f_title">
+                        <i></i><p>{{ 'Bet.Success' | translate }}!</p>
+                    </div>
+                    <div class="bill_data">
+                        <ul class="wrap">
+                            <li class="bill_line">
+                                <p>{{ 'General.Time' | translate }}</p>
+                                <p>{{ retdate[6] }}</p>
+                            </li>
+                            <li class="bill_line">
+                                <p>{{ 'General.OrderNumber' | translate }}</p>
+                                <p>{{ retdate[5] }}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="result_wrap bet_success">
+                    <div class="box">
+                        <p>{{ 'General.Bet' | translate }}</p>
+                        <p>{{ retdate[1]  }}</p>
+                    </div>
+                    <div class="box">
+                        <p>{{ 'General.Win' | translate }}</p>
+                        <p>{{  retdate[2] }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer" (click)="closePage()">{{ 'General.Close' | translate }}</div>
+        </div>
+    </aside>
+
+
+
+</ng-container>

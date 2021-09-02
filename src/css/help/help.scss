@@ -1,0 +1,129 @@
+aside{
+    &.help{
+        height: calc(100vh - 3.5rem);
+        position: relative;
+        .blue_title
+        {
+            width: 100%;
+            height: 7.5rem;
+            background: linear-gradient(to right ,#8f9cdc 0% , #4e61c2 100%);
+            border-radius: 0 0 1.875rem 0;
+            .title{
+                text-align: right;
+                position: relative;
+                padding: .625rem .9375rem 0 0;
+                p{
+                    display: inline-block;
+                    color: #fff;
+                    font-size: 1.125rem;
+                    position: relative;
+                    &:first-child{
+                     position: absolute;
+                     left: 50%;
+                     transform: translateX(-50%);
+                    }
+                }
+            }
+        }
+        .hellocard{
+            background: #fff;
+            margin: 0 auto 0 auto;
+            width: 92%;
+            padding: 1.25rem 0 1.25rem 1.25rem;
+            border-radius: .5rem;
+            position: absolute;
+            top: 3.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            .avater{
+                background: url(../images/my/avatar.png)no-repeat;
+                background-size: 100%;
+                background-position: center;
+                width: 3.125rem;
+                height: 3.125rem;
+                display: inline-block;
+                vertical-align: bottom;
+            }
+            .hello{
+                margin: 0 0 0 .5rem;
+                width: auto;
+                display: inline-block;
+                p{
+                    
+                    &:first-child{
+                        font-size: 1.25rem;
+                        color: #1b255c;
+                    }
+                    &:last-child{
+                        font-size: .9375rem;
+                        color: #838ba0;
+                    }
+                }
+            }
+        }
+        .help_content{
+            margin: 3rem 0 0 0;
+            padding: 1.125rem 0 0 0;
+            background: #fff;
+            height: calc(100vh - (3.125rem + 7.5rem));
+            .card1{
+                background: linear-gradient(to right , #3046b7 0% , #bbc4f2 100%);
+                color: #fff;
+                width: 92%;
+                margin: 0 auto 1.125rem auto;
+                padding: 1.25rem 0 .625rem 1.25rem;
+                border-radius: .5rem;
+                overflow: hidden;
+                position: relative;
+                box-shadow: 0px .25rem .3125rem 0 #c1c5db;
+                &.type2{
+                    background: #aec8eb;
+                    .server_color{
+                        color: #dce7f6;
+                    }
+                }
+                .top_wrap{
+                    line-height: 1.875rem;
+                    span{
+                        background: url(../images/help/help_icons.png)no-repeat;
+                        background-size: 200%;
+                        width: 1.875rem;
+                        height: 1.875rem;
+                        display: inline-block;
+                        line-height: 1;
+                        margin: 0 .1875rem 0 0;
+                        vertical-align: bottom;
+                    }
+                    .icon1{
+                        background-position: 0 0;
+                        
+                    }
+                    .icon2{
+                        background-position: -1.875rem 0;
+                    }
+                    h1{
+                        line-height: 1;
+                        display: inline-block;
+                        vertical-align: bottom;
+                        font-weight: normal;
+                        font-size: 1.625rem;
+                    }
+                }
+                .server_color{
+                    color: #c6cae9;
+                }
+                &:before{
+                    content:'';
+                    position: absolute;
+                    background: url(../images/help/36588_logo.png)no-repeat;
+                    background-size: 100%;
+                    background-position: center;
+                    right: 0;
+                    top: .9375rem;
+                    width: 10.8125rem;
+                    height: 4.875rem;
+                }
+            }
+        }
+    }
+}

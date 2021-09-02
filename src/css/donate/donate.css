@@ -1,0 +1,71 @@
+aside.donate {
+  padding: 0 0 100px 0;
+  width: 100vw;
+  height: calc(100vh - 2.5rem - .625rem);
+  background: #f7f7f7;
+  z-index: 0;
+  display: inline-block;
+  position: fixed;
+  overflow-y: scroll;
+}
+
+aside.donate .content {
+  background: #fff;
+  overflow-y: scroll;
+}
+
+aside.donate .content .card {
+  width: 94%;
+  margin: .9375rem auto 0 auto;
+  overflow-y: hidden;
+  position: relative;
+  border-radius: 8px;
+}
+
+aside.donate .content .card .wrap {
+  position: absolute;
+  width: 6.375rem;
+  right: .8125rem;
+  top: 50%;
+  text-align: center;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+aside.donate .content .card .wrap .icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: url(../images/donate/donates.png) no-repeat;
+  background-size: 300%;
+  background-position: 0 0;
+  display: inline-block;
+}
+
+aside.donate .content .card .wrap .icon.d2 {
+  background-position: -2.5rem 0;
+}
+
+aside.donate .content .card .wrap .icon.d3 {
+  background-position: -5rem 0;
+}
+
+aside.donate .content .card .wrap h1 {
+  color: #4d515d;
+  letter-spacing: 0.5px;
+  font-size: .875rem;
+}
+
+aside.donate .content .card .wrap .donate_type {
+  color: #838ba0;
+  letter-spacing: 0.5px;
+  font-size: .875rem;
+}
+
+aside.donate .content .card .wrap button {
+  border: 1px solid #599bcf;
+  background: #fff;
+  border-radius: 1.125rem;
+  color: #599bcf;
+  padding: .1875rem .9375rem .1875rem .9375rem;
+}
+/*# sourceMappingURL=donate.css.map */

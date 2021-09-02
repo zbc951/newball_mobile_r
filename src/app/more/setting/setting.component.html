@@ -1,0 +1,89 @@
+
+<header>
+    <ul>
+        <li class="back" [routerLink]="RouterPath.user"></li>
+        <li class="title">{{ 'Setting.PWD_Modify' | translate }}</li> 
+    </ul>
+</header>
+<aside class = "set_pw">
+    <ul>
+         <li class = "double">
+            <div class = "wrap">
+             <p>{{ 'Setting.PWD_New' | translate }}</p>
+                <input type = "password" [(ngModel)]="pwd" placeholder="{{ 'Setting.PWD_New' | translate }}">
+            </div>
+            <div class = "wrap2">
+            <p class = "subtitle">{{ 'Setting.Input_condition' | translate }}</p>
+            </div>
+        </li>
+         <li class = "double">
+            <div class = "wrap">
+             <p>{{ 'Setting.PWD_Confirm' | translate }}</p>
+                <input type = "password" [(ngModel)]="confirmPwd"  placeholder="{{ 'Setting.PWD_Confirm' | translate }}"> 
+            </div>
+            <div class = "wrap2">
+            <p class = "subtitle">{{ 'Setting.Enter_new_password' | translate }}</p>
+            </div>
+        </li>
+    </ul>
+    <button (click)="changePwd()">{{ 'Setting.Confirm' | translate }}</button>
+</aside>
+<main style="display: none">
+  <article>
+    <div class="box">
+      <ul>
+        <li>
+          <h4>{{ 'Setting.Preferences' | translate}}</h4>
+          <ol>
+            <li>{{ 'Setting.DefaultBall' | translate}}</li>
+            <li class="btn-content">
+              <button class="btn" [class.pick] = "ballPicker.active" (click)="toggleChooseBall()">{{ballPicker.selectedItem.value | translateValue: 'ball'}}</button>
+              <article class="picker" *ngIf="ballPicker.active">
+                <p class="h5">{{'Setting.DefaultBall' | translate}}
+                  <button class="btn-x" (click) = "toggleChooseBall()">&#9587;</button>
+                </p>
+                <div class="picks">
+                  <ng-container *ngFor="let ball of appBalls">
+                    <button *ngIf="ball.setDefault" [class.active] = "ballPicker.selectedItem === ball"  (click) = "setBall(ball)">{{ball.value | translateValue: 'ball'}}</button>
+                  </ng-container>
+                </div>
+              </article>
+            </li>
+          </ol>
+          <!-- <ol *ngIf = "!isCN">
+            <li>{{ 'Setting.Language' | translate}}</li>
+            <li class="btn-content">
+              <button class="btn" [class.pick] = "langPicker.active" (click)="toggleChooseLang()">{{langPicker.selectedItem.name}}</button>
+              <article class="picker" *ngIf="langPicker.active">
+                <p class="h5">{{'Setting.Language' | translate}}
+                  <button class="btn-x" (click) = "toggleChooseLang()">&#9587;</button>
+                </p>
+                <div class="picks">
+                  <button [class.active] = "langPicker.selectedItem === lang" *ngFor="let lang of langList" (click) = "setLang(lang)">{{lang.name}}</button>
+                </div>
+              </article>
+            </li>
+          </ol> -->
+          <div>
+            <p class="alert">{{ 'Setting.Precautions' | translate}}</p>
+            <button class="btn-confirm" (click)="confirmSet()">{{ 'Setting.Confirm' | translate }}</button>
+          </div>
+        </li>
+        <li *ngIf = "!isCashVer">
+            <h4>{{ 'Setting.PWD_Modify' | translate }}</h4>
+            <ol>
+              <li>{{ 'Setting.PWD_New' | translate }}</li>
+              <li class="graybg"><input type="password"  ></li>
+            </ol>
+            <ol>
+              <li>{{ 'Setting.PWD_Confirm' | translate }}</li>
+              <li class="graybg"><input type="password" ></li>
+            </ol>
+            <div>
+              <button class="btn-confirm" ></button>
+            </div>
+          </li>
+      </ul>
+    </div>
+  </article>
+</main>

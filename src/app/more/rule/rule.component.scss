@@ -1,0 +1,19 @@
+.t_record{
+  .line{
+    padding-bottom: 10px!important;
+    .wrap{
+      width:unset;
+    }
+  }
+  .line:nth-child(even) {
+    background: #efefef;
+  }
+  &.hide{
+    .line{
+      display: none;
+    }
+    .title{
+      border-radius: 8px 8px 8px 8px !important;
+    }
+  }
+}

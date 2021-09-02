@@ -1,0 +1,120 @@
+
+$bet_t_size:0.875rem;
+$bet_t_color:#ec3b28;
+.n_bet_box_3.n_bet_box_3.n_bet_box_3.n_bet_box_3.n_bet_box_3.n_bet_box_3.n_bet_box_3,
+.n_bet_box_2.n_bet_box_2.n_bet_box_2.n_bet_box_2.n_bet_box_2.n_bet_box_2.n_bet_box_2.n_bet_box_2{
+    display: block;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    margin: 0 auto;
+    height: 2.8rem;
+    .wrap{
+        position: relative;
+        margin-right: -0.313rem;
+        height: 100%;
+        padding: 0 1rem;
+    }
+  
+}
+.n_bet_box_3.n_bet_box_3{
+    .box{
+        width: 33.33%;
+        float: left;
+        height: 100%;
+        .in{
+            margin-right: 0.313rem;
+            background-color: #f6f8ff;
+            height: 100%;
+            line-height: 2.8rem;
+            height: 2.8rem;
+            position: relative;
+           &.active{
+                background: #556de7;
+                .t_wrap{
+                    p,span{
+                        color: #fff;
+                    }
+                }
+            }
+            .t_wrap{
+                line-height: 1;
+                vertical-align: middle;
+                display: inline-block;
+                p{
+                    color: #838ba0;
+                
+                }
+                span{
+                    margin-top: .375rem;
+                    color: $bet_t_color;
+                    font-weight: bold;
+                    font-size: .915rem;
+                    line-height: 1;
+                }
+                p{
+                    line-height: 1;
+                    font-size: $bet_t_size;
+                }
+            }
+        }
+    }
+}
+.n_bet_box_2{
+    .box{
+        width: 50%;
+        float: left;
+        height: 100%;
+        .in{
+            margin-right: 0.313rem;
+            background-color: #f6f8ff;
+            height: 100%;
+            line-height: 3rem;
+            height: 3rem;
+            position: relative;
+            &.active.active.active{
+                background: #556de7;
+                .t_wrap{
+                    p,span{
+                        color: #fff;
+                    }
+                }
+            }
+            .t_wrap{
+                line-height: 1;
+                vertical-align: middle;
+                display: inline-block;
+                p{
+                    color: #838ba0;
+                    margin-bottom: .375rem;
+                }
+                span{
+                    
+                    color: $bet_t_color;
+                    font-weight: bold;
+                    font-size: .915rem;
+                    line-height: 1;
+                }
+                p{
+                    line-height: 1;
+                    font-size: $bet_t_size;
+                }
+            }
+            .t_row_size{
+                p,span{
+                    position: absolute;
+                }
+                p{
+                    left: 30%;
+                    top: 50%;
+                    transform: translate(-50%,-50%);
+                }
+                span{
+                    left: 70%;
+                    top: 50%;
+                    transform: translate(-50%,-50%);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,63 @@
+/**
+  整個 APP 都吃得到這支
+  encapsulation: ViewEncapsulation.None
+*/
+
+// @import 'main';
+// @import 'mixin';
+// @import 'media';
+// @import '_button';
+// @import '_datepicker';
+// @import '_bulletin';
+// @import '_spot';
+
+
+// header {
+//   width: 100%;
+//   color: #ffffff;
+//   position: fixed;
+//   z-index: 499;
+//   padding: 10px;
+//   text-align: center;
+//   @include headerBG(top, cover);
+//   .tool-Tab {
+//     position: relative;
+//     margin-bottom: 10px;
+//   }
+//   &.bottom-s {
+//     padding-bottom: 5px;
+//   }
+//   @include pad-pro-width {
+//     width: 75%;
+//     right: 0;
+//     float: right;
+//   }
+// }
+
+// main {
+//   min-height: 100vh;
+//   width: 100%;
+//   // padding-top: 55px;
+//   padding-top: 0.3rem;
+//   padding-bottom: 57px;
+//   background: #f6f6f6;
+//   @include pad-pro-width {
+//     width: 75%;
+//     float: right;
+//   }
+//   &.col-box {
+//     @include pad-width() {
+//       display: flex;
+//       flex-wrap: wrap;
+//       justify-content: center;
+//       align-content: flex-start;
+//     }
+//   }
+// }
+// .col {
+//   @include pad-width() {
+//     width: 48.5% !important;
+//     align-self: flex-start;
+//     flex-shrink: 0;
+//   }
+// }

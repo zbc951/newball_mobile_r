@@ -1,0 +1,138 @@
+<header>
+    <ul class="market">
+        <li class="back"> <a [routerLink]="RouterPath.lobby"></a></li>
+        <li class="title">{{ 'Title.Info' | translate }}</li>
+    </ul>
+</header>
+<aside class="my_window_game_record">
+ 
+ 
+  <div class="hidden_title">
+    <div class="tack type"  [class.active]="chooseBallActive">
+        <p (click) = "toggleChooseBall()">{{useBall | translateValue: 'ball'}}<span></span>
+        </p>
+        <span class="tri"></span>
+        <div class="g_over_g_type">
+          <div class="title">{{'Info.ChooseBall' | translate}}
+            <span class="close" (click)="toggleChooseBall()"></span>
+          </div>
+          <ul>
+            <li class="box_4" *ngFor="let ballSp of appBalls | ArraySplit : 4">
+                <span *ngFor="let ball of ballSp" [class.active] = "ball.value == useBall"  (click) = "switchBall(ball.value)">{{ ball.value | translateValue: 'ball' }}</span>
+            </li>
+          </ul>
+        </div>
+    </div>
+   <div class="tack date" [class.active]="chooseDateActive">
+        <p (click) = "toggleChooseDate()">{{useDay.whole}}<span></span></p>
+        <span class="tri"></span>
+        <div class="g_over_g_date" >
+          <div class="title">{{'Info.ChooseDate' | translate}}
+            <span class="close" (click) = "toggleChooseDate()"></span>
+          </div>
+          <ul>
+            <li class="box_5" *ngFor="let dateSp of dateOptions | ArraySplit : 5">
+                <span *ngFor="let date of dateSp" [class.active] = "selectedOption === 'Other' && date.short == useDay.short"  (click) = "switchDay(date)">{{date.short}}</span>
+            </li>
+        </ul>
+        </div>
+   </div>
+
+
+  </div>
+  <!--"球種"彈窗-->
+  <!-- <div class="g_over_g_type"  [class.active]="chooseBallActive">
+    <div class="title">{{'Info.ChooseBall' | translate}}
+        <span class="close"  (click)="toggleChooseBall()"></span>
+        <span class="tri"></span>
+    </div>
+    <ul>
+        <li class="box_4" *ngFor="let ballSp of appBalls | ArraySplit : 4">
+            <span *ngFor="let ball of ballSp" [class.active] = "ball.value == useBall"  (click) = "switchBall(ball.value)">{{ ball.value | translateValue: 'ball' }}</span>
+        </li>
+    </ul>
+  </div> -->
+  <!--"日期"彈窗-->
+    <!-- <div class="g_over_g_date"  [class.active]="chooseDateActive">
+    <div class="title">{{'Info.ChooseDate' | translate}}
+        <span class="close" (click) = "toggleChooseDate()"></span>
+        <span class="tri"></span>
+    </div>
+      <ul>
+          <li class="box_5" *ngFor="let dateSp of dateOptions | ArraySplit : 5">
+              <span *ngFor="let date of dateSp" [class.active] = "selectedOption === 'Other' && date.short == useDay.short"  (click) = "switchDay(date)">{{date.short}}</span>
+          </li>
+      </ul>
+    </div> -->
+
+
+    <!-- <div class="hidden_title">
+        <div class="tack type">
+            <p (click) = "toggleChooseBall()">{{useBall | translateValue: 'ball'}}<span></span>
+            </p>
+        </div>
+        <div class="tack date" (click) = "toggleChooseDate()">
+            <p>{{useDay.whole}}<span></span></p>
+        </div>
+
+    </div> -->
+
+
+    <div class="content">
+        <ul class="btn_group_box_4">
+            <li [class.active]="selectedOption === 'Today'" (click) = "chooseOption('Today')">
+                <p>{{'General.Today' | translate}}</p>
+            </li>
+            <li [class.active]="selectedOption === 'Tomorrow'" (click) = "chooseOption('Tomorrow')">
+                <p>{{'General.Tomorrow' | translate}}</p>
+            </li>
+        </ul>
+    <ul class="g_over" *ngFor="let item of resultList">
+        <div class="title">{{item.alliance}}</div>
+        <div class="format">
+            <div class="t1">{{'General.Time' | translate}}</div>
+            <div class="t2">{{'General.Team' | translate}}</div>
+            <div class="t3">{{'U' | detailPart}}</div>
+            <div class="t3">{{'F' | detailPart}}</div>
+        </div>
+      <ng-container *ngFor="let game of item.data">
+        <li *ngIf="showGame(game)">
+            <div class="t1">
+              <div class="t_wrap">
+                {{game.date}}<br>
+                {{game.time}}
+              </div>
+            </div>
+            <div class="t2" *ngIf="showSide;else nonSide">
+              <p>[{{'H' | sideName: ''}}]{{game.ht}}</p>
+              <p>[{{'C' | sideName: ''}}]{{game.ct}}</p>
+              <div class="p_wrap">
+              </div>
+            </div>
+            <ng-template #nonSide>
+              <p>{{game.ht}}</p>
+              <p>{{game.ct}}</p>
+              <div class="p_wrap">
+              </div>
+            </ng-template>
+            <div class="t3">
+              <div class="p_wrap">
+                  <p>{{isNumber(game.rh1) ? game.rh1 : '_'}}</p>
+                  <p>{{isNumber(game.rc1) ? game.rc1 : '_'}}</p>
+              </div>
+            </div>
+            <div class="t3">
+              <div class="p_wrap">
+                  <p>{{game.rh}}</p>
+                  <p>{{game.rc}}</p>
+              </div>
+            </div>
+        </li>
+      </ng-container>
+    </ul>
+    <div class="empty_page" *ngIf="resultList && resultList.length == 0">
+        <div class="empty_icon"></div>
+        <p>{{'General.No result' | translate}}</p>
+    </div>
+  </div>
+ </aside>

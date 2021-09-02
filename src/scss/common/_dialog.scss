@@ -1,0 +1,576 @@
+.dialog {
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	overflow: auto;
+	background-color: rgba(#1B202B, .6);
+	@include verticalCenter(dialog-content);
+	.dialog-content {
+		width: 94%;
+		background-color: #EFF4FC;
+	}
+  h2 {
+    position: relative;
+    margin: 0;
+		height: 100px;
+		color: #fff;
+		font-size: 36px;
+		line-height: 100px;
+		font-weight: normal;
+		background-color: #2A3245;
+		&:before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			width: 8px;
+			background-color: #FF0042;
+		}
+  }
+	.btn-x {
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 100px;
+		width: 100px;
+		color: #fff;
+		font-size: 40px;
+		font-weight: 700;
+		background-color: #384259;
+		border: 0;
+  }
+}
+
+
+
+.dialog-betslip {
+  .content {
+    font-size: 32px;
+  }
+
+	.total {
+		line-height: 60px;
+	}
+	.detail-title {
+		position: relative;
+		margin: 0 5%;
+		color: #fff;
+		font-size: 36px;
+		line-height: 60px;
+		background-color: #2A3245;
+		.btn-switch {
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: 0 20px;
+			width: unset;
+			height: 60px;
+			color: #fff;
+			background: none;
+			border: none;
+		}
+	}
+	.single {
+		background-color: #E7E9F1;
+    text-align: left;
+    font-size: 36px;
+    line-height: 50px;
+		.type {
+			padding: 20px 5% 0 5%;
+			color: #9399A9;
+			text-align: center;
+		}
+		.team {
+			padding: 0 5% 20px 5%;
+			position: relative;
+			div {
+				.score{
+					background: #b1fff1;
+					color: #0029ff;
+					padding: 0 10px;
+				}
+				.bet-team{
+					width: 45%;
+					float: left;
+					text-align: center;
+					padding: 20px 0;
+					.head{
+						color: #FF0042;
+						padding: 0 0 0 15px;
+					}
+				}
+				.tmp{
+					width: 10%;
+					float: left;
+					height: 10px;
+				}
+				.vs{
+					width: 10%;
+					float: left;
+					text-align: center;
+					height: 100%;
+					top: 0;
+					bottom: 0;
+					position: absolute;
+					padding: 20px 0 0 0;
+				}
+			}
+		}
+		.bet {
+			padding: 20px 5%;
+			background-color: #fff;
+			text-align: center;
+			clear: both;
+			.selected {
+				color: #004FFF;
+				font-weight: 700;
+			}
+			.at {
+				color: #9399A9;
+			}
+			.odds {
+				color: #FF0042;
+				font-weight: 700;
+			}
+		}
+		+.balance {
+			margin-top: 0;
+		}
+	}
+	.detail {
+		margin: 0 5%;
+    padding: 0 2%;
+    background-color: #E7E9F1;
+    &:not(.active) {
+      max-height: calc(100vh - 1090px);
+      overflow: auto;
+    }
+		>li {
+			position: relative;
+			padding: 15px 0 15px 70px;
+      border-bottom: 1px solid #CACED7;
+      @include afterClearfix;
+			.btn-cancel {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+				width: 70px;
+				color: #585A61;
+        font-size: 36px;
+        text-align: left;
+				background: none;
+				border: 0;
+			}
+			.left,
+			.right {
+				float: left;
+				width: 50%;
+				font-size: 32px;
+				font-weight: 700;
+        text-align: left;
+        line-height: 45px;
+				.type {
+					color: #9399A9;
+					font-size: 30px;
+				}
+			}
+			.left {
+				color: #000000;
+				.red{
+					color: #FF0042
+				}
+			}
+			.right {
+        // .type,
+        // .head {
+        //   text-overflow : ellipsis;
+				// 	white-space : nowrap;
+				// 	overflow : hidden;
+        // }
+				.head {
+					color: #004FFF;
+				}
+				.odds {
+					color: #FF0042;
+					span {
+						color: #9399A9;
+						font-weight: 400;
+					}
+				}
+			}
+		}
+	}
+
+	.balance {
+    margin-top: 35px;
+		padding: 30px 5%;
+		background-color: #E7EBF1;
+		@include afterClearfix;
+		input {
+			box-sizing: border-box;
+			width: 100%;
+      		height: 100px;
+			font-size: 64px;
+      		line-height: 100px;
+			text-align: center;
+			border: 1px solid #FF0042;
+			border-radius: 10px;
+		}
+		.btn-balance {
+			display: block;
+			float: left;
+			margin-top: 20px;
+			margin-left: calc(8% / 3);
+			width: 23%;
+			height: 80px;
+			font-size: 32px;
+			background-color: #FFFFFF;
+			border: 0;
+			border-radius: 10px;
+			box-shadow: 0 2px 4px rgba(#062966, .3);
+			&:nth-of-type(4n+1) {
+				margin-left: 0;
+			}
+			&.x2 {
+				width: calc(23% * 2 + 8% / 3);
+			}
+		}
+	}
+
+	.credit {
+		padding: 20px 0;
+		line-height: 40px;
+		background-color: #DEE3EC;
+		@include afterClearfix;
+		p {
+			float: left;
+			box-sizing: border-box;
+			width: calc(100% / 3);
+			font-size: 32px;
+			border-left: 1px solid #BCC0C8;
+			&:first-of-type {
+				border-left: 0;
+			}
+			.bold {
+				font-weight: 700;
+			}
+		}
+	}
+
+	.check {
+		padding: 30px 5%;
+		font-size: 0;
+		.btn {
+			height: 80px;
+			color: #fff;
+			font-size: 32px;
+			background: none;
+			border: 0;
+			border-radius: 10px;
+			box-shadow: 0 2px 6px rgba(#212638, .4);
+			&-back {
+				margin-right: 3%;
+				width: 32%;
+				background-color: #004FFF;
+			}
+			&-confirm {
+				width: 65%;
+				background-color: #FF0042;
+			}
+		}
+	}
+}
+
+
+.dialog-success {
+
+	.table {
+		margin: 20px 5% 0;
+		font-size: 32px;
+		line-height: 50px;
+		border: solid #8C9199;
+		border-width: 1px 1px 0 1px;
+		@include afterClearfix;
+		>li {
+			float: left;
+			box-sizing: border-box;
+			width: 100%;
+			border-bottom: 1px solid #8C9199;
+			background-color: #fff;
+			@include afterClearfix;
+			&.half {
+				width: 50%;
+				+.half {
+					border-left: 1px solid #8C9199;
+				}
+			}
+			&.thead {
+				background: linear-gradient(to right, #F0F1F5 150px, #C4CCD6 150px, #C4CCD6 151px, #fff 151px);
+				>p {
+					&:first-of-type {
+						width: 150px;
+						color: #3C4863;
+						text-align: center;
+					}
+				}
+			}
+			p {
+				float: left;
+				box-sizing: border-box;
+				padding: 20px 10px;
+				font-weight: 700;
+				width: calc(100% - 150px);
+				color: #000000;
+				text-align: left;
+				.gray {
+					padding: 0 10px;
+					color: #9399A9;
+				}
+				.red {
+					color: #FF0042;
+				}
+				.blue {
+					padding-right: 26px;
+					color: #004FFF;
+				}
+			}
+
+			&.detail {
+				ol {
+					max-height: 420px;
+					overflow-y: auto;
+					box-shadow: 0 0 10px rgba(#000, .3) inset;
+					counter-reset: detail;
+					>li {
+						position: relative;
+						margin-left: 40px;
+						width: calc(100% - 80px);
+						border-bottom: 1px solid #C4CCD6;
+						@include afterClearfix;
+						&:before {
+							counter-increment: detail;
+							content: counter(detail);
+							display: block;
+							position: absolute;
+							left: 0;
+							top: 50%;
+							transform: translate(-45px, -50%);
+						}
+						>p {
+							padding-left: 0;
+							padding-right: 0;
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+	}
+	.please-check {
+		font-size: 50px;
+		margin: 80px 0;
+	}
+	.check {//同dialog-betslip
+		padding: 20px 5%;
+		font-size: 0;
+		.btn {
+			height: 80px;
+			color: #fff;
+			font-size: 32px;
+			background: none;
+			border: 0;
+			border-radius: 10px;
+			box-shadow: 0 2px 6px rgba(#212638, .4);
+			&-confirm {
+				width: 65%;
+				background-color: #FF0042;
+			}
+		}
+	}
+}
+
+
+.dialog-search {
+	.league-title{
+		height: 85px;
+		line-height: 70px;
+		font-size: 35px;
+		position: relative;
+		// background-color: #E7EBF1;
+		border-top: 2px solid;
+		padding: 20px 0 0 0;
+		div{
+			position: absolute;
+			&.title{
+				left: 100px;
+			}
+			&.check-text{
+				right: 180px;
+			}
+			&.check-box{
+				background: #ffffff;
+				height: 60px;
+				width: 60px;
+				border-radius: 5px;
+				border: 2px solid black;
+				right: 100px;
+				top: 24px;
+				&.active::after{
+					content: '✔';
+					font-size: 56px;
+					color: red;
+					bottom: -2px;
+					position: absolute;
+					left: 10px;
+				}
+			}
+		}
+		
+
+	}
+	.fast {
+    	padding: 20px 0;
+		font-size: 0;
+    	// background-color: #E7EBF1;
+    &-date {
+      button {
+        margin: 10px 0 10px 1.6%;
+        padding: 10px 0;
+        width: 18%;
+        &:nth-of-type(5n+1) {
+          margin-left: 0;
+        }
+      }
+    }
+
+    &-league {
+		padding-left: 5%;
+		padding-right: 5%;
+		margin: 0 5%;
+		height: 40vh;
+		overflow: auto;
+		text-align: left;
+		border: 1px solid;
+		background: #ececec;
+		border-radius: 12px;
+		font-weight: bold;
+      button {
+        margin: 10px 0 10px 1.6%;
+		padding: 10px 22px;
+		width: 100%;
+      }
+    }
+
+		.title {
+			padding: 20px 0;
+			color: #696F78;
+			font-size: 26px;
+			background-color: #fff;
+		}
+		button {
+      height: 72px;
+			font-size: 32px;
+			background-color: #fff;
+			border-radius: 10px;
+			border: 0;
+      box-shadow: 0 3px 6px rgba(#062966, .3);
+      &.active {
+        color: #fff;
+        background-color: #ff0042;
+      }
+		}
+	}
+
+
+  // picker內選項的高度
+  $picker-height: 80px;
+
+	.picker {
+		>ul {
+			background: linear-gradient(to bottom, rgba(#E7EBF1, 0) 36%, #E7EBF1 36%, #E7EBF1 64%, rgba(#E7EBF1, 0) 64%);
+			border-bottom: 1px solid #D9DDE3;
+			>li {
+				position: relative;
+				perspective: 1000;
+				&:before {
+					content: '';
+					position: absolute;
+					z-index: 1;
+					top: 1px;
+					right: 1px;
+					bottom: 1px;
+					left: 1px;
+					background: linear-gradient(to bottom, #fff 0, rgba(#fff, .6) 36%, rgba(#000, 0) 36%), linear-gradient(to top, #fff 0, rgba(#fff, .6) 36%, rgba(#000, 0) 36%);
+				}
+			}
+		}
+		.title {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			padding-left: 3%;
+			color: #696F78;
+			font-size: 28px;
+			font-weight: 700;
+			text-align: left;
+			transform: translateY(-50%);
+		}
+		ol {
+			padding: #{$picker-height * 2} 0;
+			height: $picker-height;
+			transform-style: preserve-3d;
+			transition: transform .3s;
+			&:active {
+				transition: all 0s;
+			}
+			>li {
+				position: absolute;
+				top: 50%;
+				margin-top: #{$picker-height * -0.5};
+				width: 100%;
+				height: $picker-height;
+				color: #2A3245;
+				font-size: 32px;
+				font-weight: 700;
+				line-height: $picker-height;
+				backface-visibility:hidden;
+				-webkit-backface-visibility:hidden;
+				-moz-backface-visibility:hidden;
+				-ms-backface-visibility:hidden;
+				transition: transform .3s;
+				@for $i from 1 through 12 {
+					&:nth-of-type(#{$i}) {
+						transform: rotateX(#{$i * -30}deg) translateZ(#{$picker-height * 2});
+					}
+				}
+
+			}
+		}
+	}
+
+
+	.check {//同dialog-betslip
+		padding: 20px 5%;
+		font-size: 0;
+		.btn {
+			height: 80px;
+			color: #fff;
+			font-size: 32px;
+			background: none;
+			border: 0;
+			border-radius: 10px;
+			box-shadow: 0 2px 6px rgba(#212638, .4);
+			&-confirm {
+				width: 65%;
+				background-color: #FF0042;
+			}
+		}
+	}
+}

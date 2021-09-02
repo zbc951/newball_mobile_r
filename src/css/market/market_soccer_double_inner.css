@@ -1,0 +1,807 @@
+header.double_inner {
+  display: none;
+  background: url(../images/double_inner/header_bg.png) no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+header.double_inner.active {
+  display: block;
+  padding-bottom: 0;
+}
+
+header.double_inner.esp {
+  background: url(../images/double_inner/header_bg_esp.png) no-repeat;
+  background-size: cover;
+}
+
+header.double_inner.nba {
+  background: url(../images/double_inner/header_bg_basketball.png) no-repeat;
+  background-size: cover;
+}
+
+header.double_inner.tb {
+  background: url(../images/double_inner/header_bg_tb.png) no-repeat;
+  background-size: cover;
+}
+
+header.double_inner.ice {
+  background: url(../images/double_inner/header_bg_ice.png) no-repeat;
+  background-size: cover;
+}
+
+header.double_inner.bad {
+  background: url(../images/double_inner/header_bg_bad.png) no-repeat;
+  background-size: cover;
+}
+
+header.double_inner.bea {
+  background: url(../images/double_inner/header_bg_bea.png) no-repeat;
+  background-size: cover;
+}
+
+header.double_inner.sto {
+  background: url(../images/double_inner/header_bg_sto.png) no-repeat;
+  background-size: cover;
+}
+
+header.double_inner.foo {
+  background: url(../images/double_inner/header_bg_foo.png) no-repeat;
+  background-size: cover;
+}
+
+header.double_inner.lot {
+  background: url(../images/double_inner/header_bg_lot.png) no-repeat;
+  background-size: cover;
+}
+
+header.double_inner.vol {
+  background: url(../images/double_inner/header_bg_vol.png) no-repeat;
+  background-size: cover;
+}
+
+header.double_inner.sno {
+  background: url(../images/double_inner/header_bg_sno.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+header.double_inner.bas {
+  background: url(../images/double_inner/header_bg_bas.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+header.double_inner.ten {
+  background: url(../images/double_inner/header_bg_ten.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+header.double_inner.mot {
+  background: url(../images/double_inner/header_bg_mot.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+header.double_inner.hor {
+  background: url(../images/double_inner/header_bg_hor.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+header.double_inner ul {
+  background: none;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+header.double_inner ul.market {
+  position: relative;
+  white-space: nowrap;
+}
+
+header.double_inner ul.market li.back:before, header.double_inner ul.market li.back:after {
+  background-color: #fff;
+}
+
+header.double_inner ul.market li.title {
+  color: #fff;
+  font-size: 1.0625rem;
+  width: 70%;
+  text-align: center;
+  white-space: normal;
+}
+
+header.double_inner ul.market li.title span {
+  border-color: #fff transparent transparent transparent;
+}
+
+header.double_inner section {
+  position: relative;
+}
+
+header.double_inner section article.game_time {
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  left: 50%;
+  top: calc(50% - 50px);
+  text-align: center;
+}
+
+header.double_inner section article.game_time span,
+header.double_inner section article.game_time p {
+  color: #fff;
+}
+
+header.double_inner section article.game_time span {
+  font-size: .875rem;
+}
+
+header.double_inner section article.game_time p {
+  font-size: 1.625rem;
+  font-weight: bold;
+}
+
+header.double_inner section article.game_data {
+  width: 100%;
+  height: 6.625rem;
+  line-height: 6.625rem;
+  padding: 0 .6875rem;
+}
+
+header.double_inner section article.game_data div {
+  width: 40%;
+  display: inline-block;
+  height: 100%;
+  text-align: center;
+  height: 6.625rem;
+}
+
+header.double_inner section article.game_data div:first-child {
+  float: left;
+}
+
+header.double_inner section article.game_data div:last-child {
+  float: right;
+}
+
+header.double_inner section article.game_data div span {
+  display: inline-block;
+}
+
+header.double_inner section article.game_data div span.wrap {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1;
+  width: 80%;
+  position: relative;
+}
+
+header.double_inner section article.game_data div span.wrap p {
+  display: inline-block;
+  text-align: center;
+  color: #fff;
+  font-size: 1.0625rem;
+  width: 100%;
+  line-height: 1.2;
+  position: relative;
+}
+
+header.double_inner section article.game_data div span.wrap span.empty {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+header.double_inner section article.game_data div span.wrap span.soccer {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: url(../images/market/cs.png) no-repeat;
+  background-size: 800%;
+}
+
+header.double_inner section article.game_data div span.wrap span.country1 {
+  background-position: -5rem 0;
+}
+
+header.double_inner section article.game_data div span.wrap span.country2 {
+  background-position: -7.5rem 0;
+}
+
+header.double_inner section article.game_data div span.wrap span.esp {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: url(../images/double_inner/esp_t.png) no-repeat;
+  background-size: 200%;
+}
+
+header.double_inner section article.game_data div span.wrap span.t1 {
+  background-position: 0 0;
+}
+
+header.double_inner section article.game_data div span.wrap span.t2 {
+  background-position: -2.5rem 0;
+}
+
+header.double_inner section article.game_data div span.wrap span.nba {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: url(../images/double_inner/nba_t.png) no-repeat;
+  background-size: 200%;
+}
+
+header.double_inner section article.game_data div span.wrap span.t1 {
+  background-position: 0 0;
+}
+
+header.double_inner section article.game_data div span.wrap span.t2 {
+  background-position: -2.5rem 0;
+}
+
+header.double_inner section article.game_data div span.wrap span.bad {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: url(../images/double_inner/bad_t.png) no-repeat;
+  background-size: 200%;
+}
+
+header.double_inner section article.game_data div span.wrap span.t1 {
+  background-position: 0 0;
+}
+
+header.double_inner section article.game_data div span.wrap span.t2 {
+  background-position: -2.5rem 0;
+}
+
+header.double_inner section article.game_data div span.wrap span.bea {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: url(../images/double_inner/bea_t.png) no-repeat;
+  background-size: 200%;
+}
+
+header.double_inner section article.game_data div span.wrap span.t1 {
+  background-position: 0 0;
+}
+
+header.double_inner section article.game_data div span.wrap span.t2 {
+  background-position: -2.5rem 0;
+}
+
+header.double_inner section article.game_data div span.wrap span.vol {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: url(../images/double_inner/vol_t.png) no-repeat;
+  background-size: 200%;
+}
+
+header.double_inner section article.game_data div span.wrap span.t1 {
+  background-position: 0 0;
+}
+
+header.double_inner section article.game_data div span.wrap span.t2 {
+  background-position: -2.5rem 0;
+}
+
+header.double_inner section article.game_data div span.wrap span.bas {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: url(../images/double_inner/bas_t.png) no-repeat;
+  background-size: 200%;
+}
+
+header.double_inner section article.game_data div span.wrap span.t1 {
+  background-position: 0 0;
+}
+
+header.double_inner section article.game_data div span.wrap span.t2 {
+  background-position: -2.5rem 0;
+}
+
+header.double_inner section article.game_live {
+  height: 4.0625rem;
+  line-height: 4.0625rem;
+  text-align: center;
+}
+
+header.double_inner section article.game_live div.wrap {
+  line-height: 2rem;
+  vertical-align: middle;
+  width: auto;
+  height: 2rem;
+  display: inline-block;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 1.875rem;
+  white-space: nowrap;
+}
+
+header.double_inner section article.game_live div.wrap div {
+  display: inline-block;
+  width: auto;
+  height: 100%;
+  position: relative;
+  padding: 0 1.125rem;
+}
+
+header.double_inner section article.game_live div.wrap div p,
+header.double_inner section article.game_live div.wrap div span {
+  display: inline-block;
+}
+
+header.double_inner section article.game_live div.wrap div p {
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+header.double_inner section article.game_live div.wrap div span {
+  width: .9375rem;
+  height: .8125rem;
+  margin: 0 .3125rem 0 0;
+}
+
+header.double_inner section article.game_live div.wrap div span.live_tv {
+  background: url(../images/double_inner/live_tv.png) no-repeat;
+  background-position: center center;
+  background-size: cover;
+  vertical-align: middle;
+}
+
+header.double_inner section article.game_live div.wrap div span.live_game {
+  width: 1.125rem;
+  background: url(../images/double_inner/live_game.png) no-repeat;
+  background-position: center center;
+  background-size: cover;
+  vertical-align: middle;
+}
+
+header.double_inner section article.game_live div.wrap div:first-child {
+  text-align: left;
+}
+
+header.double_inner section article.game_live div.wrap div:last-child {
+  text-align: right;
+}
+
+header.double_inner section article.game_type {
+  height: 2.5rem;
+  line-height: 2.5rem;
+  background: #fff;
+  padding: 0 1.875rem 0 1.125rem;
+  -webkit-box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1);
+}
+
+header.double_inner section article.game_type .all_wrap {
+  position: relative;
+  overflow: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+
+header.double_inner section article.game_type.no_use {
+  background: transparent;
+}
+
+header.double_inner section article.game_type.no_use .wrap {
+  display: none;
+}
+
+header.double_inner section article.game_type .wrap {
+  padding: 0 2vw;
+  text-align: center;
+  display: inline-block;
+}
+
+header.double_inner section article.game_type .wrap:hover, header.double_inner section article.game_type .wrap.active, header.double_inner section article.game_type .wrap:active {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  background: #fff;
+}
+
+header.double_inner section article.game_type .wrap:hover span, header.double_inner section article.game_type .wrap.active span, header.double_inner section article.game_type .wrap:active span {
+  border-bottom: .125rem solid #1b255c;
+  color: #1b255c;
+  color: #1b255c;
+}
+
+header.double_inner section article.game_type span {
+  color: #838ba0;
+  display: inline-block;
+  height: 100%;
+  font-weight: bold;
+  pointer-events: all;
+  line-height: 2.25rem;
+}
+
+header.double_inner section article.game_refresh {
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  top: 75%;
+  left: 92%;
+  line-height: 0.875rem;
+  pointer-events: all;
+  white-space: nowrap;
+  -webkit-transition: .5s all ease-in-out;
+  transition: .5s all ease-in-out;
+}
+
+header.double_inner section article.game_refresh:hover, header.double_inner section article.game_refresh:active, header.double_inner section article.game_refresh.active {
+  -webkit-transition: .5s all ease-in-out;
+  transition: .5s all ease-in-out;
+}
+
+header.double_inner section article.game_refresh:hover p, header.double_inner section article.game_refresh:active p, header.double_inner section article.game_refresh.active p {
+  border-radius: 5px;
+  padding-top: .025rem;
+  border: 1px solid #fff;
+}
+
+header.double_inner section article.game_refresh:hover span, header.double_inner section article.game_refresh:active span, header.double_inner section article.game_refresh.active span {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+  -webkit-transition: .5s all ease-in-out;
+  transition: .5s all ease-in-out;
+}
+
+header.double_inner section article.game_refresh p,
+header.double_inner section article.game_refresh span {
+  display: inline-block;
+}
+
+header.double_inner section article.game_refresh span {
+  background: url(../images/icon/refresh_w.png) no-repeat;
+  background-position: center center;
+  background-size: cover;
+  width: 1.125rem;
+  height: 1.125rem;
+  line-height: 1;
+  vertical-align: middle;
+  margin: 0 .1875rem 0 0;
+}
+
+header.double_inner section article.game_refresh p {
+  font-size: 0.875rem;
+  font-weight: normal;
+  color: #fff;
+  line-height: 1.125rem;
+  vertical-align: middle;
+}
+
+main.double_inner_page {
+  height: 100vh;
+  overflow-y: scroll;
+  margin-top: .625rem;
+  position: relative;
+}
+
+main.double_inner_page ul {
+  padding: 0 .5rem;
+}
+
+main.double_inner_page ul li {
+  background: #fff;
+  width: 100%;
+  margin: 0 0 .625rem 0;
+}
+
+main.double_inner_page ul li div {
+  height: 2.375rem;
+  margin: 0 .5rem 0 .5rem;
+}
+
+main.double_inner_page ul li div.title {
+  position: relative;
+  height: 2.375rem;
+  line-height: 1.5625rem;
+  border-bottom: 1px solid #e0e3f3;
+  margin: 0 .5rem .3125rem .5rem;
+  padding: .75rem 0 0 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #fff;
+}
+
+main.double_inner_page ul li div.title p {
+  margin: 0 0 0 .625rem;
+  line-height: 1;
+  font-weight: bold;
+  color: #1b255c;
+  display: inline-block;
+  vertical-align: top;
+}
+
+@-webkit-keyframes blue_cicycle {
+  0% {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+    border-color: #1b255c;
+  }
+  50% {
+    -webkit-transform: translate(-50%, -50%) scale(1.3);
+            transform: translate(-50%, -50%) scale(1.3);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) scale(1.4);
+            transform: translate(-50%, -50%) scale(1.4);
+    border-color: transparent;
+  }
+}
+
+@keyframes blue_cicycle {
+  0% {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+    border-color: #1b255c;
+  }
+  50% {
+    -webkit-transform: translate(-50%, -50%) scale(1.3);
+            transform: translate(-50%, -50%) scale(1.3);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) scale(1.4);
+            transform: translate(-50%, -50%) scale(1.4);
+    border-color: transparent;
+  }
+}
+
+main.double_inner_page ul li div.title span {
+  display: inline-block;
+  width: .9375rem;
+  height: .9375rem;
+  background: url(../images/double_inner/pushpin.png) no-repeat;
+  background-position: 0;
+  background-size: 200%;
+  float: right;
+  position: relative;
+}
+
+main.double_inner_page ul li div.title span:before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-radius: 100%;
+  width: 100%;
+  height: 100%;
+  border: 1px solid transparent;
+}
+
+main.double_inner_page ul li div.title span:hover, main.double_inner_page ul li div.title span:active, main.double_inner_page ul li div.title span.active {
+  background-position-x: -.9375rem;
+}
+
+main.double_inner_page ul li div.title span:hover:before, main.double_inner_page ul li div.title span:active:before, main.double_inner_page ul li div.title span.active:before {
+  -webkit-animation: blue_cicycle .3s 1 ease-in-out;
+          animation: blue_cicycle .3s 1 ease-in-out;
+}
+
+main.double_inner_page ul li div.title:before {
+  content: "";
+  position: absolute;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  top: 50%;
+  left: 0;
+  width: .25rem;
+  height: 1rem;
+  border-radius: 1.875rem;
+  background-color: #b5c1ff;
+}
+
+main.double_inner_page ul li div.type_choice {
+  height: auto;
+  overflow: hidden;
+  border-bottom: 1px solid #e0e3f3;
+  padding: .125rem 0 .25rem;
+  margin: 0 .5rem .3125rem;
+}
+
+main.double_inner_page ul li div.type_choice .col_3 {
+  margin: 0;
+  width: 33.33%;
+  float: left;
+  text-align: center;
+  height: auto;
+  color: #4c525d;
+  font-size: .9375rem;
+  font-weight: bold;
+  height: 1.875rem;
+  position: relative;
+}
+
+main.double_inner_page ul li div.type_choice .col_3 p {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  line-height: 1.0625rem;
+  text-align: center;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+main.double_inner_page ul li div.content {
+  padding: 0 0 .3125rem 0;
+  height: 2.8125rem;
+  text-align: left;
+}
+
+main.double_inner_page ul li div.content .left {
+  float: left;
+}
+
+main.double_inner_page ul li div.content .right.right {
+  float: right;
+  margin: 0;
+}
+
+main.double_inner_page ul li div.content.form_1 {
+  margin: 0 .5rem 0;
+  padding: 0;
+  height: auto;
+}
+
+main.double_inner_page ul li div.content.form_1 span {
+  width: 100%;
+  height: 2.8125rem;
+  margin: 0;
+}
+
+main.double_inner_page ul li div.content.form_2 span {
+  width: calc(100% / 2 - .1875rem);
+  margin: 0 .1875rem 0 0;
+}
+
+main.double_inner_page ul li div.content.form_2 span:first-child {
+  float: left;
+}
+
+main.double_inner_page ul li div.content.form_2 span:last-child {
+  margin: 0;
+  float: right;
+}
+
+main.double_inner_page ul li div.content.form_3 span {
+  width: calc(100% / 3 - .1875rem);
+  margin: 0 .28125rem 0 0;
+}
+
+main.double_inner_page ul li div.content.form_3 span:first-child {
+  float: left;
+}
+
+main.double_inner_page ul li div.content.form_3 span:last-child {
+  margin: 0;
+  float: right;
+}
+
+main.double_inner_page ul li div.content.form_4 span {
+  width: calc(100% / 4 - .25rem);
+  margin: 0 .25rem 0 0;
+}
+
+main.double_inner_page ul li div.content.form_4 span:first-child {
+  float: left;
+}
+
+main.double_inner_page ul li div.content.form_4 span:last-child {
+  margin: 0;
+  float: right;
+}
+
+main.double_inner_page ul li div.content span {
+  display: inline-block;
+  height: 100%;
+  background: #f6f8ff;
+  line-height: 2.5rem;
+  position: relative;
+}
+
+main.double_inner_page ul li div.content span:hover:hover:hover, main.double_inner_page ul li div.content span.active.active.active {
+  background: #556de7;
+}
+
+main.double_inner_page ul li div.content span:hover:hover:hover p, main.double_inner_page ul li div.content span.active.active.active p {
+  color: #fff;
+}
+
+main.double_inner_page ul li div.content span.box_1 p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+main.double_inner_page ul li div.content span.box_2_more {
+  white-space: normal;
+}
+
+main.double_inner_page ul li div.content span.box_2_more p {
+  position: absolute;
+  top: 50%;
+}
+
+main.double_inner_page ul li div.content span.box_2_more p:first-child {
+  left: 32%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 60%;
+  text-align: center;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+main.double_inner_page ul li div.content span.box_2_more p:last-child {
+  right: 20%;
+  -webkit-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
+  color: #ec3b28;
+  font-weight: 600;
+}
+
+main.double_inner_page ul li div.content span.box_2_normal p {
+  position: absolute;
+  top: 50%;
+  width: 50%;
+  text-align: center;
+}
+
+main.double_inner_page ul li div.content span.box_2_normal p:first-child {
+  left: 32%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 50%;
+  text-align: center;
+}
+
+main.double_inner_page ul li div.content span.box_2_normal p:last-child {
+  right: 22%;
+  -webkit-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
+  color: #ec3b28;
+  font-weight: 600;
+}
+
+main.double_inner_page ul li div.content span p {
+  font-size: .875rem;
+  line-height: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+  color: #4d515d;
+}
+
+main.double_inner_page ul li div.content span p.gray {
+  color: #838ba0;
+}
+/*# sourceMappingURL=market_soccer_double_inner.css.map */

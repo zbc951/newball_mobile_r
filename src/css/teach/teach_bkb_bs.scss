@@ -1,0 +1,52 @@
+aside {
+    &.teach {
+        .content {
+            .card {
+                // new_create
+                .t_info {
+                    .lt {
+                        .tn {
+                            &.bkbsl {
+                                margin-top: 0.6rem;
+                                margin-left: 1rem;
+                            }
+                        }
+                    }
+                    .rt {
+                        .tnr {
+                            &.bkbsr {
+                                margin-top: -0.5rem;
+                                margin-left: -1rem;
+                            }
+                        }
+                    }
+                }
+                .pi {
+                    margin-top: -2rem;
+                }
+                .cra {
+                    .rtl {
+                        .tn {
+                            &.bkbs {
+                                margin-left: 2rem;
+                                // margin-left: -1rem;
+                                // margin-top: 1rem;
+                            }
+                            .p_bkbs {
+                                margin-left: -3rem;
+                            }
+                        }
+                    }
+                    .rtr {
+                        .tn ,.rml{
+                            &.bkbs {
+                                margin-right: -1rem;
+                            }
+                        }
+                    }
+                }
+                // new create end
+            }
+        }
+    }
+}

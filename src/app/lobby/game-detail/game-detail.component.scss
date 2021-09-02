@@ -1,0 +1,58 @@
+.bkg{
+    height: 100vh;
+    width: 100vw;
+    background: white;
+    position: fixed;
+    top: 0;
+    z-index: 301;
+    // .double_inner_page{
+    //     &.no_mixing{
+    //         margin-bottom: unset!important;
+    //         height: calc(100vh - 32.5vh - 10px);
+    //     }
+    //     position: fixed;
+    //     top:0;
+    //     ul{
+    //         li{
+    //             .content{
+    //                 .active{
+    //                     background: #b5c1ff;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+}
+
+.box_2_more{
+    .odd_color{
+        font-weight: bold;
+        font-size: .95rem;
+    }
+}
+main.double_inner_page ul li div.content span.not_hpvet:not(.nohover):hover {  
+    background: #f6f8ff;
+ 
+}
+main.double_inner_page ul li div.content span p.not_hpvet:not(.nohover):hover {  
+
+    color: #4d515d;
+}
+
+header.double_inner section article.game_data div span.wrap p.pitcher{
+    color: lightblue;
+}
+
+
+.table_top{
+    position: sticky !important;
+    left: 0px;
+    right: 0px;
+    z-index: 10;
+    top: 0;
+    opacity: 1;
+    background: #fff;
+}
+video{
+    width: 100%;
+}

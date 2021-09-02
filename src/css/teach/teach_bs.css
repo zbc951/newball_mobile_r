@@ -1,0 +1,369 @@
+aside.teach .content.teach_bs {
+  height: calc(100vh - (6.625rem + 2.625rem));
+  overflow-y: scroll;
+  padding: 0 0 6.25rem 0;
+}
+
+aside.teach .content.teach_bs .card .vs_area .wrap {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+aside.teach .content.teach_bs .card .question_wrap {
+  padding: 0 .9375rem 0 .9375rem;
+  margin: 1.25rem 0 0 0;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .question {
+  color: #4d515d;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .question div {
+  display: inline-block;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .question div.blue {
+  color: #4d61c6;
+  font-size: 1.25rem;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .question i {
+  background: url(../images/teach/cs.png) no-repeat;
+  display: inline-block;
+  background-size: 400%;
+  width: .9375rem;
+  height: .9375rem;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .question i.icon_1 {
+  background-position: 0 0;
+  margin: 0 .3125rem 0 .3125rem;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .question i.icon_2 {
+  background-position: -.9375rem 0;
+  margin: 0 .3125rem 0 .3125rem;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .question i.icon_3 {
+  background-position: -1.875rem 0;
+  margin: 0 .3125rem 0 .3125rem;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .question i.icon_4 {
+  background-position: -45x 0;
+  margin: 0 .3125rem 0 .3125rem;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .question span.type {
+  font-size: .75rem;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: text-bottom;
+  background: #7b8bd7;
+  color: #fff;
+  padding: .125rem .1875rem .125rem .1875rem;
+  border-radius: .1875rem;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap {
+  margin: 1.25rem 0 0 0;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice {
+  line-height: 3.4375rem;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice:first-child {
+  margin: 0 0 .625rem 0;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div {
+  line-height: 1;
+  display: inline-block;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.option {
+  vertical-align: middle;
+  margin: 0 .625rem 0 0;
+  color: #838ba0;
+  width: 1rem;
+  height: 1rem;
+  position: relative;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.option.a:before {
+  content: "A.";
+  color: #838ba0;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.option.b:before {
+  content: "B.";
+  color: #838ba0;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.option.fail {
+  background: #f30d0d;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 6.25rem;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.option.fail:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
+  height: .9375rem;
+  width: .125rem;
+  background: #fff;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.option.fail:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+          transform: translate(-50%, -50%) rotate(-45deg);
+  height: .9375rem;
+  width: .125rem;
+  background: #fff;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.option.success {
+  background: #429cff;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 6.25rem;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.option.success:before {
+  content: "";
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
+  border-right: .125rem solid #fff;
+  border-bottom: .125rem solid #fff;
+  height: .75rem;
+  width: .375rem;
+  background: transparent;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.c_content {
+  vertical-align: middle;
+  background: #ebf4fe;
+  padding: .625rem 2.5rem .625rem 2.5rem;
+  border-radius: .3125rem;
+  text-align: center;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.c_content:hover, aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.c_content:active, aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.c_content.active {
+  background: #d9e0ff;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.c_content p {
+  position: relative;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.c_content p:first-child {
+  color: #838ba0;
+  margin: 0 0 .1875rem 0;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.c_content p.red_up {
+  color: #f30d0d;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.c_content p.red_up:before {
+  content: "";
+  position: relative;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 .3125rem .3125rem .3125rem;
+  border-color: transparent transparent #f30d0d transparent;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 .3125rem 0 -.3125rem;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.c_content p.green_down {
+  color: #04d052;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .choice_wrap .choice div.c_content p.green_down:before {
+  content: "";
+  position: relative;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: .3125rem .3125rem 0 .3125rem;
+  border-color: #04d052 transparent transparent transparent;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 .3125rem 0 -.3125rem;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .result_wrap {
+  margin: 1.875rem 0 0 0;
+  padding: .9375rem 0 0 0;
+  position: relative;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .result_wrap:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 94vw;
+  background: #e0e3f3;
+  height: 1px;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .result_wrap span {
+  display: inline-block;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .result_wrap .fail {
+  color: #f30d0d;
+  line-height: 1.25rem;
+  display: none;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .result_wrap .fail.active {
+  display: block;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .result_wrap .fail .icon {
+  background: url(../images/teach/results.png) no-repeat;
+  background-size: 200%;
+  background-position: -1.25rem 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  line-height: 1;
+  vertical-align: middle;
+  margin: 0 .3125rem 0 0;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .result_wrap .success {
+  color: #429cff;
+  display: none;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .result_wrap .success.active {
+  display: block;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .result_wrap .success .icon {
+  background: url(../images/teach/results.png) no-repeat;
+  background-size: 200%;
+  background-position: 0 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  line-height: 1;
+  vertical-align: middle;
+  margin: 0 .3125rem 0 0;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .result_wrap .answer {
+  color: #4d515d;
+  margin: 1.25rem 0 0 0;
+  display: none;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .result_wrap .answer.active {
+  display: block;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .result_wrap .answer div {
+  display: inline-block;
+}
+
+aside.teach .content.teach_bs .card .question_wrap .result_wrap .answer div.blue {
+  color: #4d61c6;
+}
+
+aside.teach .content.teach_bs .card .button_wrap {
+  margin: 1.875rem 0 0 0;
+  display: none;
+}
+
+aside.teach .content.teach_bs .card .button_wrap.active {
+  display: block;
+}
+
+aside.teach .content.teach_bs .card .button_wrap button {
+  width: 100%;
+  border-radius: .5rem;
+  line-height: 1;
+  padding: .9375rem 0 .9375rem 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+  position: relative;
+  margin: 0 0 1.25rem 0;
+}
+
+aside.teach .content.teach_bs .card .button_wrap button.deep_blue {
+  color: #fff;
+  background: -webkit-gradient(linear, left top, right top, from(#9ba8e4), to(#495dc4));
+  background: linear-gradient(to right, #9ba8e4 0%, #495dc4 100%);
+  border: none;
+  -webkit-transition: .2s ease-in-out all;
+  transition: .2s ease-in-out all;
+}
+
+aside.teach .content.teach_bs .card .button_wrap button.deep_blue:hover, aside.teach .content.teach_bs .card .button_wrap button.deep_blue:active {
+  background: #EF6B5D;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  -webkit-transition: .2s ease-in-out all;
+  transition: .2s ease-in-out all;
+}
+
+aside.teach .content.teach_bs .card .button_wrap button.white_blue {
+  color: #4a5ec5;
+  border: 1px solid #4a5ec5;
+  background: #fff;
+  -webkit-transition: .2s ease-in-out all;
+  transition: .2s ease-in-out all;
+}
+
+aside.teach .content.teach_bs .card .button_wrap button.white_blue:hover, aside.teach .content.teach_bs .card .button_wrap button.white_blue:active {
+  background: #556de7;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  color: #fff;
+  border-color: transparent;
+  -webkit-transition: .2s ease-in-out all;
+  transition: .2s ease-in-out all;
+}
+
+aside.teach .content.teach_bs .card .button_wrap button.blue_arrow {
+  border: none;
+  background: #fff;
+  color: #4a5ec5;
+  display: inline-block;
+}
+
+aside.teach .content.teach_bs .card .button_wrap button.blue_arrow:after {
+  position: relative;
+  content: "";
+  width: .9375rem;
+  height: .9375rem;
+  display: inline-block;
+  line-height: .9375rem;
+  vertical-align: baseline;
+  background: url(../images/icon/arrow_double_blue.png) no-repeat;
+  background-size: 100%;
+  background-position: center;
+  margin: 0 -.5rem 0 .5rem;
+}
+/*# sourceMappingURL=teach_bs.css.map */

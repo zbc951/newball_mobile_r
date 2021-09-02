@@ -1,0 +1,178 @@
+// top
+header {
+//	background: #fff;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	z-index: 999;
+	article {
+		width: 100%;
+		&.topInfo {
+      padding: 10px 0;
+			height: 60px;
+			background: linear-gradient(to right, #b8becc 0%, #fff 100%);
+			@include afterClearfix;
+			div {
+				@include afterClearfix;
+				float: right;
+				.member{
+					span{
+						color: #004cff;
+					}
+					svg{
+						fill: #004cff;
+					}
+				}
+        section {
+          position: relative;
+          float: left;
+          padding: 0 25px;
+          &:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: rgba(#2A3245, .6);
+          }
+          &:last-of-type {
+            &:after {
+              content: none;
+            }
+          }
+        }
+        svg {
+          width: 36px;
+          height: 60px;
+          vertical-align: bottom;
+        }
+				span {
+					padding-left: 15px;
+					color: #2A3245;
+          font-size: 36px;
+          font-weight: 700;
+					line-height: 60px;
+				}
+      }
+      .btn-back {
+        float: left;
+        display: block;
+        width: 160px;
+        height: 60px;
+        font-size: 32px;
+        text-indent: 1em;
+        background: none;
+        border: none;
+        &:before {
+          content: '';
+          width: 22px;
+          height: 22px;
+          border-right: 8px solid #FF0042;
+          border-bottom: 8px solid #FF0042;
+          transform: rotate(135deg);
+          position: absolute;
+          left: 24px;
+          top: 25px;
+        }
+      }
+		}
+		&.topMenu {
+			height: 100px;
+			background: #2A3245;
+			position: relative;
+			@include afterClearfix; // 左邊選單
+			.sidemenu {
+				float: left;
+				width: 50px;
+				padding: 28px;
+				div {
+					height: 8px;
+					margin-bottom: 10px;
+          background: #fff;
+					animation: menuTip 1.5s alternate infinite linear;
+					&:nth-child(2) {
+						background: #FF0042;
+						animation: menuTip2 1.5s alternate infinite linear;
+					}
+					&:last-child {
+						margin: 0;
+					}
+				}
+			} //返回上一頁
+			//右邊玩法選單
+			.playmenu {
+				position: absolute;
+				right: 0;
+				margin: 14px 14px 0 0;
+				border: 1px solid #fff;
+				border-radius: 35px;
+				a {
+					float: left;
+					position: relative;
+					z-index: 1;
+					padding: 12px 50px;
+					color: #97A1AE;
+          font-size: 36px;
+          font-weight: 700;
+          line-height: 46px;
+          background: rgba(#fff, 0);
+          border-radius: inherit;
+          transition: background .2s;
+					&.active {
+						color: #2A3245;
+            background: #fff;
+					}
+				}
+			}
+			h2 {
+				float: left;
+				margin: 0;
+				width: calc(100% - 180px);
+				color: #fff;
+				font-size: 40px;
+				text-align: center;
+				line-height: 100px;
+			}
+		} // 注單
+		&.topMenu-history {
+			position: relative;
+			.back {
+				&::after {
+					content: "";
+					width: 28px;
+					height: 28px;
+					border-right: 8px solid #79808A;
+					border-bottom: 8px solid #79808A;
+					transform: rotate(135deg);
+					position: absolute;
+					left: 50px;
+					top: 25px;
+					animation: back 0.5s alternate infinite linear;
+				}
+			}
+			.playmenu {
+				left: 249px;
+				right: unset;
+				a::after {
+					width: 244px;
+				}
+			}
+		}
+
+		.btn-reload {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 90px;
+			height: 100%;
+			background: none;
+			border: none;
+			.icon {
+				width: 60%;
+				height: 100%;
+				fill: #fff;
+			}
+		}
+	}
+}

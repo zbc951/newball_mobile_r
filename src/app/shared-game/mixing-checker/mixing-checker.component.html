@@ -1,0 +1,247 @@
+<div class="window_double_mode" [class.active] = "checkBetActive">
+  <div class="all_box" [class.single] = "single">
+    <div class="double_mode" (click)="checkBet()">
+        <span class="box">
+            <div class="langth">
+                <span class="num"><span>{{ betStatus.mixingBetFiles.length }}</span></span>
+                <p>{{ 'Bet.CrossBet' | translate }}</p>
+            </div>
+            <div class="balance">
+                <div class="calculate" (click) = "toggleCalc()"></div>
+                <p>{{ 'General.Balance' | translate }}</p>
+                <p class="currency"></p>
+                <p class="cash">{{ (member.memberInfo$ | async)?.maxcredit | formatNumber }}</p>
+                <span class="double_arrow"></span>
+            </div>
+        </span>
+    </div>
+    <div class="hide_area" *ngIf="!betSuccess">
+        <div class="content">
+            <ul>
+              <!--完成注單頁面-->
+              <!--移除left_padding close 整個元素 或者display none-->
+              <li class="the_detail" *ngFor="let betFile of betStatus.mixingBetFiles;let idx = index">
+                <div class="left_padding close" (click)="cancel(betFile)"></div>
+                <div class="data">
+                    <span class="title">{{betFile.selectedTitle}}<span>{{betFile.head | headName: ballStatus.ball : betFile.side == betFile.strong : betFile.oddsType}}</span><div class="b_num">{{idx + 1}}</div></span>
+                    <span class="mid">{{betFile.ball | translateValue: 'ball'}}-{{betFile.oddsType | oddsName}}</span>
+                    <span class="bottom">{{betFile.teamInfo.league}}/{{betFile.teamInfo.name_H}} <span>VS</span> {{betFile.teamInfo.name_C}}</span>
+                    <span class="tag"></span>
+                </div>
+                <div class="right_total">
+                  <span>@</span>{{ betFile.odds | OddsHK }}
+                </div>
+              </li>
+              <!--"the_finish"add active注單完成-->
+              <!--"the_total" active 預設填單-->
+              <li class="the_total active">
+                <div class="top_wrap">
+                  <div class="t_left">
+                      <div class="game_name">{{ betStatus.mixingBetFiles.length }}{{ 'Bet.ConcatBet' | translate }}</div>
+                      <!-- <div class="game_type"><p>更多串關類型</p><i></i></div> -->
+                      <div class="game_type"><p></p></div>
+                  </div>
+                  <div class="t_right">
+                      <input type="number" [(ngModel)]="gold" [formControl]="goldControl" placeholder="{{ 'Credit.Limit' | translate }} {{ MIN_BET }}"/>
+                      <p>$</p>
+                  </div>
+                </div>
+                <div class="kb_wrap" *ngIf="!isCN;else cnMoney">
+                    <div class="kb_top">
+                        <div class="box_s" (click)="addGold(100)">+100</div>
+                        <div class="box_s" (click)="addGold(500)">+500</div>
+                        <div class="box_s" (click)="addGold(1000)">+1,000</div>
+                        <div class="box_s" (click)="addGold(5000)">+5,000</div>
+                    </div>
+                    <div class="kb_bot">
+                        <div class="box_s" (click)="addGold(10000)">+1{{ 'Bet.Million' | translate }}</div>
+                        <div class="box_s" (click)="addGold(50000)">+5{{ 'Bet.Million' | translate }}</div>
+                        <div class="box_b" (click)="gold = undefined">{{ 'General.Clear' | translate }}</div>
+                    </div>
+                </div>
+                <ng-template #cnMoney>
+                    <div class="kb_wrap" *ngIf="!isCN;else cnMoney">
+                        <div class="kb_top">
+                            <div class="box_s" (click)="addGold(10)">+10</div>
+                            <div class="box_s" (click)="addGold(50)">+50</div>
+                            <div class="box_s" (click)="addGold(100)">+100</div>
+                            <div class="box_s" (click)="addGold(500)">+500</div>
+                        </div>
+                        <div class="kb_bot">
+                            <div class="box_s" (click)="addGold(1000)">+1,000</div>
+                            <div class="box_s" (click)="addGold(5000)">+5,000</div>
+                            <div class="box_b" (click)="gold = undefined">{{ 'General.Clear' | translate }}</div>
+                        </div>
+                    </div>
+                </ng-template>
+                <div class="result_wrap">
+                    <div class="box">
+                        <p>{{ 'General.Win' | translate }}</p>
+                        <p>{{ estGold | formatNumber }}</p>
+                    </div>
+                    <div class="box">
+                        <p>{{ 'Credit.Limit_Bet' | translate }}</p>
+                        <p>{{ credit?.SO | formatNumber }}</p>
+                    </div>
+                    <div class="box">
+                        <p>{{ 'Credit.Limit_Game' | translate }}</p>
+                        <p>{{ credit?.SC | formatNumber }}</p>
+                    </div>
+                </div>
+              </li>
+            </ul>
+        </div>
+        <div class="footer">
+            <ul>
+                <!--wrap&check 各有active效果-->
+                <div class="wrap active">
+                    <li (click)="checkBet()"><span class="cross"></span><p>{{ 'Bet.LookMore' | translate }}</p></li>
+                    <li (click)="bet()">
+                        <!-- <div class="t_wrap"> -->
+                            <span class="title">{{ 'Bet.Confirm' | translate }}</span>
+                            <div>
+                                <span>{{ 'Bet.total' | translate }}</span>
+                                <span>${{gold | formatNumber }}</span>
+                            </div>
+                        <!-- </div> -->
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <div class="hide_area" *ngIf="betSuccess">
+      <div class="content">
+          <ul>
+            <!--完成注單頁面-->
+            <!--移除left_padding close 整個元素 或者display none-->
+            <li class="the_detail" *ngFor="let item of betSuccessFile.gameDetail;let idx = index">
+                <div class="data">
+                    <span class="title">{{ item.betOption }}<span>{{ item.head | headName: ballStatus.ball }}</span><div class="b_num">{{idx + 1}}</div></span>
+                    <span class="mid">{{ item.ms }}-{{item.playType | oddsName}}</span>
+                    <span class="bottom">{{item.gameName}} / {{ item.team1 }} <span>VS</span> {{ item.team2 }}</span>
+                    <span class="tag">{{ item.bid }}</span>
+                </div>
+                <div class="right_total">
+                  <span>@</span>{{ item.odds | OddsHK }}
+                </div>
+            </li>
+
+
+            
+            <!--"the_finish"add active注單完成-->
+            <!--"the_total" active 預設填單-->
+            <li class="the_finish active">
+              <div class="f_title">
+                  <i></i><p>{{ 'Bet.Success' | translate }}!</p>
+              </div>
+              <div class="bill_data">
+                  <div class="wrap">
+                      <div class="lef_wrap">
+                          <p>{{ 'General.Time' | translate }}</p>
+                          <p>{{ betSuccessFile.time }}</p>
+                      </div>
+                      <div class="rig_wrap">
+                          <p>{{ 'General.Type' | translate }}</p>
+                          <p>{{ betSuccessFile.betType }}</p>
+                      </div>
+                  </div>
+                  <div class="wrap">
+                      <div class="lef_wrap">
+                          <p>{{ 'General.OrderNumber' | translate }}</p>
+                          <p>{{ betSuccessFile.betId }}</p>
+                      </div>
+                      <div class="rig_wrap">
+                          <!-- <p>方式</p>
+                          <p>足球-綜合過關</p> -->
+                      </div>
+                  </div>
+              </div>
+              <div class="result_wrap">
+                  <div class="box">
+                      <p>{{ 'General.Win' | translate }}</p>
+                      <p>{{ betSuccessFile.estGold }}</p>
+                  </div>
+                  <div class="box">
+                      <p>{{ 'General.Bet' | translate }}</p>
+                      <p>{{ betSuccessFile.gold }}</p>
+                  </div>
+                  <div class="box">
+                      <p>{{ 'General.Balance' | translate }}</p>
+                      <p>{{ (member.memberInfo$ | async)?.maxcredit | formatNumber }}</p>
+                  </div>
+              </div>
+            </li>
+          </ul>
+      </div>
+      <div class="footer">
+          <ul>
+              <!--wrap&check 各有active效果-->
+              <button class="check active" (click)="checkBet()">{{ 'General.Close' | translate }}</button>
+          </ul>
+      </div>
+  </div>
+  </div>
+</div>
+
+
+
+    <!--1119新增黑幕-->
+    <div class="filter display" *ngIf="isCalcActive">
+        <!--離開按鈕-->
+        <button class="leavebtn" (click) = "toggleCalc()"></button>
+    </div>
+    <!--1119新增彈窗-過關計算機-->
+    <div class="jumpcalculate display" *ngIf="isCalcActive">
+        <!--標頭-->
+        <div class="title"><p>{{'Mix.MixCalc' | translate}}</p></div>
+        <!--主區塊-->
+        <div class="box">
+            <!--下注金額-->
+            <div class="betinput">
+                <span>{{'General.BetGold' | translate}}:</span>
+                <input [(ngModel)]="setBet">
+                <button (click) ="resert()" >清除</button>
+            </div>
+            <!--賭盤-->
+            <div class="betbox">
+                <table>
+                    <!--標題-->
+                    <tr>
+                        <th>關數</th>
+                        <th>{{'General.Odds' | translate}}</th>
+                        <th>分盤狀況</th>
+                    </tr>
+                    <!--關數-->
+                    <tr *ngFor="let factor of factors;let idx = index">
+                        <td>{{idx +1 }}</td>
+                        <td><input [(ngModel)]="factor.odds" type="number"></td>
+                        <td>
+                            <span>分盤</span>
+                            <div class="status">
+                                <select [(ngModel)]="factor.result">
+                                    <option *ngFor="let opt of resultOptions" [value]='opt'>{{'Mix.' + opt | translate}}</option>
+                                </select>
+                            </div>
+                            <input [(ngModel)]="factor.head" class="percent" [value]='head_result(factor.result)'>
+                            <span>%</span>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <!--開始計算-->
+            <div class="calbtn">
+                <span>{{'Mix.CanWin' | translate}}:</span>
+                <span>{{floor(resgold)}}</span>
+                <br>
+                <button (click) = "calcResult()">{{'Mix.Calc' | translate}}</button>
+            </div>
+            <!--備註-->
+            <div class="remark">
+                <p>註：中洞需自行輸球球類</p>
+                <p>例：洋基1+80紅襪，比賽結束2:1</p>
+                <p>下注洋基：選擇(&ensp;+&ensp;)，填入80</p>
+                <p>下注紅襪：選擇(&ensp;-&ensp;)，填入80</p>
+            </div>
+        </div>
+    </div>

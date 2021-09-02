@@ -1,0 +1,77 @@
+<ng-container  *ngIf="!isCashVer">
+  <header>
+
+    <ul class="login">
+        <!-- <li class="close"> <a href="../../index.html"></a></li> -->
+        <li class="title">{{ 'Login.LoginIn' | translate }}</li>
+    </ul>
+  </header>
+  <main class="longin">
+    <div class="logo_wrap">
+        <div class="logo"></div>
+    </div>
+    <div class="login_wrap">
+        <div class="clear_wrap">
+          <button  onclick="location.href='/newapp/'" class="btn-confirm back" type="button" >{{ 'Login.Back' | translate }}</button>
+            <button class="clear" (click)="clearAll()">{{ 'Login.ClearRecord' | translate }}</button>
+        </div>
+        <ul class="input_wrap">
+            <li><input type="text" [(ngModel)]="id" placeholder="{{ 'Login.EnterID' | translate }}"><span class="i1"></span></li>
+            <li><input type="password"  [(ngModel)]="pwd" placeholder="{{ 'Login.EnterPWD' | translate }}"><span class="i2"></span></li>
+        </ul>
+        <div class="password_wrap">
+            <p class="re"> <input id = "p1" type="checkbox" [class.checked]="remember" [(ngModel)]="remember" (change)="isRemember()"><label for="p1"></label> {{ 'Login.Remember' | translate }}</p>
+            <!-- <p class="forget">忘記密碼</p> -->
+        </div>
+        <div class="btn_wrap" >
+            <button class="blue" #slideBar (panstart)="onPanStart($event)"  (panmove)="onPan($event)" (panend)="onPanEnd($event)">{{ 'Login.Swipe_right_to_log_in' | translate }}<div class="bar" [ngStyle]="{'width.%': widthExp}"></div></button>
+        </div>
+
+        <!-- <ul class="other_wrap">
+            <li><div class="wrap"><span class="i1"></span> <p>24H客服</p></div></li>
+            <li><div class="wrap"><span class="i2"></span> <p>app下載</p></div></li>
+        </ul> -->
+    </div>
+  </main>
+  <div class="BG"></div>
+</ng-container>
+
+<main *ngIf="!isCashVer" style="display: none;">
+  <section class="logo">
+    <div class="img {{specialIcon}}"></div>
+    <p>Welcome</p>
+  </section>
+  <section class="login">
+    <label>
+      <input type="text" [(ngModel)]="id" placeholder="{{ 'Login.EnterID' | translate }}">
+      <svg class="icon">
+        <use xlink:href="#icon-member" />
+      </svg>
+    </label>
+    <label>
+      <input type="password" [(ngModel)]="pwd" placeholder="{{ 'Login.EnterPWD' | translate }}">
+      <svg class="icon">
+        <use xlink:href="#icon-password" />
+      </svg>
+    </label>
+  </section>
+  <section class="remember">
+    <!-- <span>{{ 'Login.Remember' | translate }}</span> -->
+    <label class="switch">
+      <input type="checkbox" class="checkbox" [class.checked]="remember" [(ngModel)]="remember" (change)="isRemember()">
+      <span class="slider"></span>
+      <label>{{ 'Login.Remember' | translate }}</label>
+  </label>
+  </section>
+  <section>
+    <button class="btn-confirm" type="button" (click)="login()">{{ 'Login.LoginIn' | translate }}</button>
+    <button onclick="location.href='/newapp/'" class="btn-confirm back" type="button" >{{ 'Login.Back' | translate }}</button>
+  </section>
+
+  <!-- <section class="lang">
+    <label (click)="changeLang(Lang.TW)">繁體中文</label>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <label (click)="changeLang(Lang.CN)">简体中文</label>&nbsp;&nbsp;|&nbsp;&nbsp;
+    <label (click)="changeLang(Lang.JP)">日本語</label>
+  </section> -->
+</main>
+<div *ngIf="isCashVer">Sign Out</div>

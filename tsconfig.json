@@ -1,0 +1,77 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": true,
+    "target": "es5",
+    "baseUrl": "src",
+    "paths": {
+      "@env/*": [
+        "environments/*"
+      ],
+      "@app/*": [
+        "app/*"
+      ],
+      "@service/*": [
+        "app/service/*"
+      ],
+      "@common-unit/*": [
+        "app/common-unit/*"
+      ],
+      "@shared-core/*": [
+        "app/shared-core/*"
+      ],
+      "@shared-game/*": [
+        "app/shared-game/*"
+      ],
+      "@shared-chat/*": [
+        "app/shared-chat/*"
+      ],
+      "@lobby/*": [
+        "app/lobby/*"
+      ],
+      "@platform/*": [
+        "app/platform/*"
+      ],
+      "@live/*": [
+        "app/live/*"
+      ],
+      "@bet/*": [
+        "app/bet/*"
+      ],
+      "@menu/*": [
+        "app/menu/*"
+      ],
+      "@report/*": [
+        "app/report/*"
+      ],
+      "@more/*": [
+        "app/more/*"
+      ],
+      "@translate-pipe/*": [
+        "app/translate-pipe/*"
+      ],
+      "ts/*": [
+        "app/ts/*"
+      ],
+      "lib": [
+        "lib/*"
+      ],
+      "i18n": [
+        "i18n/*"
+      ]
+    },
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ]
+  }
+}

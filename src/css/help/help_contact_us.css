@@ -1,0 +1,131 @@
+aside.help_contact_us {
+  padding: 0 0 100px 0;
+  width: 100vw;
+  height: calc(100vh - 2.5rem - .625rem);
+  background: #f7f7f7;
+  z-index: 0;
+  display: inline-block;
+  position: fixed;
+  overflow-y: scroll;
+}
+
+aside.help_contact_us ul.contact_us {
+  background: #fff;
+  padding: .5rem .9375rem 0 .9375rem;
+  margin-top: .5rem;
+}
+
+aside.help_contact_us ul.contact_us:first-child {
+  margin: 0 0 0 0;
+}
+
+aside.help_contact_us ul.contact_us h1 {
+  color: #4d515d;
+  font-weight: normal;
+  padding: 0 0 0 .625rem;
+  position: relative;
+  font-size: 1.125rem;
+}
+
+aside.help_contact_us ul.contact_us h1::before {
+  content: "";
+  position: absolute;
+  top: .125rem;
+  /* transform: translateY(-50%); */
+  left: 0;
+  height: 1rem;
+  width: .1875rem;
+  background: #3348b8;
+  border-radius: 100px;
+}
+
+aside.help_contact_us ul.contact_us li {
+  width: 100%;
+  line-height: 2.375rem;
+  border-bottom: 1px solid #e0e3f3;
+  padding: 1.25rem 0 1.25rem 0;
+  position: relative;
+}
+
+aside.help_contact_us ul.contact_us li:last-child {
+  border-bottom: none;
+}
+
+aside.help_contact_us ul.contact_us li .wrap {
+  padding: 0 1.625rem;
+  border-right: 1px solid #e0e3f3;
+  float: left;
+}
+
+aside.help_contact_us ul.contact_us li .wrap div {
+  background: url(../images/help/contact_us_icons.png) no-repeat;
+  background-size: 400%;
+  width: 2.1875rem;
+  height: 2.375rem;
+}
+
+aside.help_contact_us ul.contact_us li .wrap .icon_mail {
+  background-position: -4.375rem 0;
+}
+
+aside.help_contact_us ul.contact_us li .wrap .icon_qq {
+  background-position: 0 0;
+}
+
+aside.help_contact_us ul.contact_us li .wrap .icon_skype {
+  background-position: -6.5625rem 0;
+}
+
+aside.help_contact_us ul.contact_us li .wrap .icon_s {
+  background-position: -2.1875rem 0;
+}
+
+aside.help_contact_us ul.contact_us li .mid_wrap {
+  padding: 0 0 0 1.625rem;
+  color: #4d515d;
+  line-height: 1;
+  display: inline-block;
+}
+
+aside.help_contact_us ul.contact_us li .mid_wrap p:first-child {
+  margin: 0 0 .3125rem 0;
+}
+
+aside.help_contact_us ul.contact_us li .copy {
+  line-height: 1;
+  position: absolute;
+  font-size: 1rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  right: 0;
+  color: #959dc5;
+  border: 1px solid #959dc5;
+  padding: .5rem 1.375rem .5rem 1.375rem;
+  border-radius: .1875rem;
+}
+
+aside.help_contact_us ul.contact_us li .copy:hover, aside.help_contact_us ul.contact_us li .copy:active {
+  background: #959dc5;
+  border-color: transparent;
+  color: #fff;
+}
+
+aside.help_contact_us button {
+  display: block;
+  border: none;
+  border-radius: .5rem;
+  margin: 1.25rem auto 0 auto;
+  width: 92%;
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: lighter;
+  padding: .75rem 0 .75rem 0;
+  background: -webkit-gradient(linear, left top, right top, from(#9ba8e4), to(#485cc4));
+  background: linear-gradient(to right, #9ba8e4 0%, #485cc4 100%);
+}
+
+aside.help_contact_us button:hover, aside.help_contact_us button:active {
+  background: #EF6B5D;
+}
+/*# sourceMappingURL=help_contact_us.css.map */

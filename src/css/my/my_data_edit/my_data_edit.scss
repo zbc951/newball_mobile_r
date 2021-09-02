@@ -1,0 +1,181 @@
+aside {
+  &.my_data_edit {
+    padding: 0 0 100px 0;
+    width: 100vw;
+    height: calc(100vh - 2.5rem - .625rem);
+    background: #f7f7f7;
+    z-index: 0;
+    display: inline-block;
+    position: fixed;
+    overflow-y: scroll;
+    ul {
+      position: relative;
+      background: #fff;
+      li {
+        padding: .625rem 0 .625rem 0;
+        margin: 0 .9375rem;
+        border-bottom: 1px solid #e0e3f3;
+        position: relative;
+        .year_wrap{
+            margin: .3125rem 0 .3125rem 0;
+            form{
+                display: inline-block;
+            }
+            p{
+                display: inline-block;
+                font-size: .875rem;
+                color: #4d515d;
+                &.black{
+                    color: #4d515d;
+                    margin: 0 .1875rem 0 .1875rem;
+                }
+            }
+        }
+        form{
+            select{
+                border: 1px solid #b9bfdc;
+                border-radius: .1875rem;
+                appearance: none;
+                text-align-last:center;
+                color: #838ba0;
+                option{
+                    &.defualt{
+                        color: #838ba0;
+                    }
+                    &:active{
+                        color: #000;
+                    }
+                    &:first-child{
+                        color: #838ba0;
+                    }
+                }
+              
+            }
+        }
+        input {
+          border: 1px solid #b9bfdc;
+          border-radius: .1875rem;
+          margin: .3125rem 0 .3125rem 0;
+          padding: .1875rem;
+        }
+        p {
+          &:first-child {
+            color: #4d515d;
+          }
+          &:last-child {
+            color: #838ba0;
+          }
+        }
+        &.title {
+          position: relative;
+          .avatar_wrap {
+            line-height: 4.6875rem;
+          }
+          .avatar {
+            background: url(../images/my/avatar.png) no-repeat;
+            background-size: 100%;
+            background-position: center;
+            position: relative;
+            width: 4.6875rem;
+            height: 4.6875rem;
+            display: inline-block;
+            vertical-align: bottom;
+            &:before {
+              content: "";
+              position: absolute;
+              right: 0;
+              bottom: 0;
+              width: 1.25rem;
+              height: 1.25rem;
+              background: url(../images/my/avatar_edit.png) no-repeat;
+              background-size: 100%;
+              background-position: center;
+            }
+          }
+          p {
+            &:first-child {
+              margin: 0 0 .5rem .1875rem;
+            }
+          }
+          .btn_wrap{
+            float: right;
+            line-height: 4.6875rem;
+            button {
+              border-radius: .1875rem;
+              border: none;
+              color: #fff;
+              background: #7b8bd8;
+              padding: .3125rem .625rem;
+              position: relative;
+              vertical-align: middle;
+              &.active {
+                border: 1px solid #e0e3f3;
+                background: #fff;
+                color: #b7c0d9;
+              }
+            }
+          }
+        }
+        &.name {
+          p {
+            &:last-child {
+              color: #4d515d;
+            }
+          }
+        }
+        &.arrow {
+          &:before {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: .625rem;
+            background: url(../images/icon/arrow_lg.png) no-repeat;
+            background-size: 100%;
+            background-position: center;
+            width: .5rem;
+            height: 1rem;
+          }
+        }
+        &.line_close {
+          border-bottom: none;
+        }
+        &.footer {
+          padding: .625rem .9375rem .625rem .9375rem;
+          margin: 0;
+          background: #f7f7f7;
+          text-align: center;
+          p {
+            color: #838ba0;
+            display: inline-block;
+          }
+          span {
+            display: inline-block;
+            position: relative;
+            &.blue {
+              color: #599bcf;
+            }
+          }
+        }
+        &.button_area{
+            padding: 1.25rem .9375rem 1.25rem .9375rem;
+            margin: 0;
+            background: #f7f7f7;
+            text-align: center;
+            button{
+                border: none;
+                color: #fff;
+                background: linear-gradient(to right, #9ba8e4 0%, #485cc4 100%);
+                border-radius: .5rem;
+                padding: .625rem 5rem .625rem 5rem;
+                font-size: 1rem;
+                &:active,&.active,&:hover{
+                  background: #EF6B5D;
+                  transform: scale(.95);
+                  transition: all .2s ease-in-out;
+                }
+            }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+.en_name {
+  font-family: "my_font";
+}
+
+main.market aside ul li section.content span.num_group div.esport_w.esport_w.esport_w {
+  width: calc(50% - 2.375rem);
+  margin: 0;
+}
+
+main.market aside ul li section.content span.num_group div.esport_w.esport_w.esport_w span {
+  margin: 5px 0 5px 0;
+}
+
+main.market aside ul li.senior {
+  position: relative;
+}
+
+main.market aside ul li.senior.e_sport section.content span.point_box span.counter {
+  height: 7.625rem;
+}
+
+main.market aside ul li.senior.e_sport section.content span.point_box span.counter div {
+  line-height: calc(7.625rem / 3);
+}
+
+main.market aside ul li.senior.e_sport section.content span.point_box span.counter div p, main.market aside ul li.senior.e_sport section.content span.point_box span.counter div span {
+  line-height: 1;
+  vertical-align: middle;
+}
+
+main.market aside ul li.senior.e_sport section.content span.point_box span.num_group {
+  height: 7.625rem;
+}
+
+main.market aside ul li.senior.e_sport section.content span.point_box span.num_group span.two_side div {
+  height: calc(7.625rem / 3 - 3px);
+}
+
+main.market aside ul li.senior.e_sport section.content span.point_box span.num_group span.two_side div p {
+  font-size: .625rem;
+  margin: 0 0 .25rem 0;
+}
+/*# sourceMappingURL=market_esport.css.map */

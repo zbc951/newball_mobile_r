@@ -1,0 +1,39 @@
+<header>
+	<ul>
+		<li class="back" [routerLink]="RouterPath.user"></li>
+		<li class="title">{{ 'Title.Credit' | translate }}</li>
+	</ul>
+</header>
+
+<aside class="my_windows_t_record">
+	<div class="content">
+		<ul class="t_record"  [class.hide]="idx !== select" *ngFor="let item of credit; let idx = index">
+			<li class="title"  (click)="selectToggle(idx)">
+				<p>{{ item.gtype | translateValue: 'ball' }}</p>
+				<p></p>
+			</li>
+			<li class="line">
+				<div class="wrap blue">
+					<p>{{ 'General.PlayType' | translate }}</p>
+				</div>
+				<div class="wrap no_limit blue">
+					<p>{{ 'Credit.Limit_Game' | translate }}</p>
+				</div>
+				<div class="wrap  blue">
+					<p>{{ 'Credit.Limit_Bet' | translate }}</p>
+				</div>
+			</li>
+			<li class="line" *ngFor="let playType of playTypeList;let last = last" [class.footer]="last">
+				<div class="wrap">
+					<p>{{ 'OrgPlayType.' + playType | translate }}</p>
+				</div>
+				<div class="wrap no_limit">
+					<p>{{item['SC_' + playType]}}</p>
+				</div>
+				<div class="wrap ">
+					<p>{{item['SO_' + playType]}}</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</aside>

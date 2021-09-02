@@ -1,0 +1,201 @@
+aside.my_data_edit {
+  padding: 0 0 100px 0;
+  width: 100vw;
+  height: calc(100vh - 2.5rem - .625rem);
+  background: #f7f7f7;
+  z-index: 0;
+  display: inline-block;
+  position: fixed;
+  overflow-y: scroll;
+}
+
+aside.my_data_edit ul {
+  position: relative;
+  background: #fff;
+}
+
+aside.my_data_edit ul li {
+  padding: .625rem 0 .625rem 0;
+  margin: 0 .9375rem;
+  border-bottom: 1px solid #e0e3f3;
+  position: relative;
+}
+
+aside.my_data_edit ul li .year_wrap {
+  margin: .3125rem 0 .3125rem 0;
+}
+
+aside.my_data_edit ul li .year_wrap form {
+  display: inline-block;
+}
+
+aside.my_data_edit ul li .year_wrap p {
+  display: inline-block;
+  font-size: .875rem;
+  color: #4d515d;
+}
+
+aside.my_data_edit ul li .year_wrap p.black {
+  color: #4d515d;
+  margin: 0 .1875rem 0 .1875rem;
+}
+
+aside.my_data_edit ul li form select {
+  border: 1px solid #b9bfdc;
+  border-radius: .1875rem;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  text-align-last: center;
+  color: #838ba0;
+}
+
+aside.my_data_edit ul li form select option.defualt {
+  color: #838ba0;
+}
+
+aside.my_data_edit ul li form select option:active {
+  color: #000;
+}
+
+aside.my_data_edit ul li form select option:first-child {
+  color: #838ba0;
+}
+
+aside.my_data_edit ul li input {
+  border: 1px solid #b9bfdc;
+  border-radius: .1875rem;
+  margin: .3125rem 0 .3125rem 0;
+  padding: .1875rem;
+}
+
+aside.my_data_edit ul li p:first-child {
+  color: #4d515d;
+}
+
+aside.my_data_edit ul li p:last-child {
+  color: #838ba0;
+}
+
+aside.my_data_edit ul li.title {
+  position: relative;
+}
+
+aside.my_data_edit ul li.title .avatar_wrap {
+  line-height: 4.6875rem;
+}
+
+aside.my_data_edit ul li.title .avatar {
+  background: url(../images/my/avatar.png) no-repeat;
+  background-size: 100%;
+  background-position: center;
+  position: relative;
+  width: 4.6875rem;
+  height: 4.6875rem;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+aside.my_data_edit ul li.title .avatar:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: url(../images/my/avatar_edit.png) no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+aside.my_data_edit ul li.title p:first-child {
+  margin: 0 0 .5rem .1875rem;
+}
+
+aside.my_data_edit ul li.title .btn_wrap {
+  float: right;
+  line-height: 4.6875rem;
+}
+
+aside.my_data_edit ul li.title .btn_wrap button {
+  border-radius: .1875rem;
+  border: none;
+  color: #fff;
+  background: #7b8bd8;
+  padding: .3125rem .625rem;
+  position: relative;
+  vertical-align: middle;
+}
+
+aside.my_data_edit ul li.title .btn_wrap button.active {
+  border: 1px solid #e0e3f3;
+  background: #fff;
+  color: #b7c0d9;
+}
+
+aside.my_data_edit ul li.name p:last-child {
+  color: #4d515d;
+}
+
+aside.my_data_edit ul li.arrow:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: .625rem;
+  background: url(../images/icon/arrow_lg.png) no-repeat;
+  background-size: 100%;
+  background-position: center;
+  width: .5rem;
+  height: 1rem;
+}
+
+aside.my_data_edit ul li.line_close {
+  border-bottom: none;
+}
+
+aside.my_data_edit ul li.footer {
+  padding: .625rem .9375rem .625rem .9375rem;
+  margin: 0;
+  background: #f7f7f7;
+  text-align: center;
+}
+
+aside.my_data_edit ul li.footer p {
+  color: #838ba0;
+  display: inline-block;
+}
+
+aside.my_data_edit ul li.footer span {
+  display: inline-block;
+  position: relative;
+}
+
+aside.my_data_edit ul li.footer span.blue {
+  color: #599bcf;
+}
+
+aside.my_data_edit ul li.button_area {
+  padding: 1.25rem .9375rem 1.25rem .9375rem;
+  margin: 0;
+  background: #f7f7f7;
+  text-align: center;
+}
+
+aside.my_data_edit ul li.button_area button {
+  border: none;
+  color: #fff;
+  background: -webkit-gradient(linear, left top, right top, from(#9ba8e4), to(#485cc4));
+  background: linear-gradient(to right, #9ba8e4 0%, #485cc4 100%);
+  border-radius: .5rem;
+  padding: .625rem 5rem .625rem 5rem;
+  font-size: 1rem;
+}
+
+aside.my_data_edit ul li.button_area button:active, aside.my_data_edit ul li.button_area button.active, aside.my_data_edit ul li.button_area button:hover {
+  background: #EF6B5D;
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+/*# sourceMappingURL=my_data_edit.css.map */

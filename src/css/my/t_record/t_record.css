@@ -1,0 +1,121 @@
+aside.my_windows_t_record {
+  margin: 0 0 0 0;
+  width: 100vw;
+  background: #f7f7f7;
+  z-index: 0;
+  display: inline-block;
+  position: fixed;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+aside.my_windows_t_record.active {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+}
+
+aside.my_windows_t_record div.title {
+  background: #fff;
+  padding: 0 0 0 0;
+  margin: 0;
+  text-align: center;
+  color: #838ba0;
+}
+
+aside.my_windows_t_record div.title .wrap {
+  display: inline-block;
+  padding: .3125rem 1.875rem .5rem 1.875rem;
+  border-bottom: 2px solid transparent;
+}
+
+aside.my_windows_t_record div.title .wrap:hover, aside.my_windows_t_record div.title .wrap:active, aside.my_windows_t_record div.title .wrap.active {
+  border-bottom: 2px solid #7c87bc;
+  color: #4d515d;
+}
+
+aside.my_windows_t_record div.content {
+  height: calc(100vh - (2.5rem + 2.5rem + .625rem));
+  display: inline-block;
+  overflow-y: scroll;
+  padding: 0 0 100px 0;
+  width: 100%;
+}
+
+aside.my_windows_t_record ul.yet.yet {
+  background: #f5f5f5;
+}
+
+aside.my_windows_t_record ul.yet.yet li.title {
+  background: #bcbec9;
+  border-left: 1px solid #bcbec9;
+  border-right: 1px solid #bcbec9;
+}
+
+aside.my_windows_t_record ul.yet.yet li p {
+  color: #a1a6b2;
+}
+
+aside.my_windows_t_record ul.t_record {
+  margin: .625rem auto 0 auto;
+  width: 92vw;
+  border-radius: 8px;
+  background: #fff;
+}
+
+aside.my_windows_t_record ul.t_record li {
+  font-size: .8125rem;
+  border-left: 1px solid #e0e3f3;
+  border-right: 1px solid #e0e3f3;
+  padding: 0 .625rem 0 .625rem;
+}
+
+aside.my_windows_t_record ul.t_record li.title {
+  border-left: 1px solid #9ba1c5;
+  border-right: 1px solid #9ba1c5;
+  padding: .3125rem .625rem .3125rem .625rem;
+  background: #7b8bd7;
+  border-radius: 8px 8px 0 0;
+}
+
+aside.my_windows_t_record ul.t_record li.title p {
+  color: #fff;
+  display: inline-block;
+}
+
+aside.my_windows_t_record ul.t_record li.title p:last-child {
+  float: right;
+}
+
+aside.my_windows_t_record ul.t_record li .wrap {
+  width: 4.5rem;
+  height: 1.875rem;
+  line-height: 2rem;
+  color: #4d515d;
+  display: inline-block;
+}
+
+aside.my_windows_t_record ul.t_record li .wrap p {
+  display: inline-block;
+}
+
+aside.my_windows_t_record ul.t_record li .wrap.no_limit {
+  width: auto;
+}
+
+aside.my_windows_t_record ul.t_record li .wrap.right {
+  float: right;
+  width: auto;
+}
+
+aside.my_windows_t_record ul.t_record li .wrap.blue {
+  color: #556de7;
+}
+
+aside.my_windows_t_record ul.t_record li.line {
+  border-bottom: 1px solid #e0e3f3;
+}
+
+aside.my_windows_t_record ul.t_record li.footer {
+  border-radius: 0 0 8px 8px;
+}
+/*# sourceMappingURL=t_record.css.map */

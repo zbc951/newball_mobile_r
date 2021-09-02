@@ -1,0 +1,23 @@
+<header>
+    <ul>
+        <li class="back" [routerLink]="RouterPath.user"></li>
+        <li class="title">{{ 'Title.Rule' | translate }}</li>
+    </ul>
+</header>
+
+<aside class="my_windows_t_record">
+    <div class="content">
+        <ul class="t_record" [class.hide]="!ballsActive[ballIndex]" *ngFor="let ball of ballsTilte;let ballIndex = index" >
+            <li class="title" (click)="ballsActive[ballIndex] = !ballsActive[ballIndex]">
+                <p>{{ball | translateValue: 'ballType'}}</p>
+                <p></p>
+            </li>
+            <li class="line" *ngFor="let item of (('Rule.' + ball) | translate);let idx = index;let last = last" [class.footer]="last">
+                <div class="wrap" >
+                    <p [innerHTML]="((idx + 1) + '. ' + item) | safeHtml"></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+   
+</aside>

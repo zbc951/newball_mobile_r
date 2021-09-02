@@ -1,0 +1,84 @@
+aside.help_board_my {
+  padding: .625rem 0 100px 0;
+  width: 100vw;
+  height: calc(100vh - 2.5rem - .625rem);
+  background: #f7f7f7;
+  z-index: 0;
+  display: inline-block;
+  position: fixed;
+  overflow-y: scroll;
+}
+
+aside.help_board_my .content {
+  padding: 0 .9375rem 0 .9375rem;
+}
+
+aside.help_board_my .content ul.card {
+  border-radius: .75rem;
+  border: 1px solid #9ba1c5;
+  overflow: hidden;
+  margin: 0 0 .9375rem 0;
+}
+
+aside.help_board_my .content ul.card li.title {
+  background: #efefef;
+  padding: .625rem .625rem .625rem .625rem;
+  line-height: 1.5625rem;
+  position: relative;
+}
+
+aside.help_board_my .content ul.card li.title h1,
+aside.help_board_my .content ul.card li.title .status,
+aside.help_board_my .content ul.card li.title .time {
+  display: inline-block;
+}
+
+aside.help_board_my .content ul.card li.title h1 {
+  font-weight: normal;
+  font-size: 1.125rem;
+  color: #4d515d;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+aside.help_board_my .content ul.card li.title .status {
+  font-size: .75rem;
+  vertical-align: middle;
+  line-height: 1;
+  border: 1px solid;
+  border-radius: .1875rem;
+  margin: -.1875rem 0 0 .375rem;
+  padding: 0.0625rem .1875rem 0.0625rem .1875rem;
+}
+
+aside.help_board_my .content ul.card li.title .status.yet {
+  color: #838ba0;
+  border: 1px solid #838ba0;
+}
+
+aside.help_board_my .content ul.card li.title .status.reply {
+  color: #5875e0;
+  border: 1px solid #5875e0;
+}
+
+aside.help_board_my .content ul.card li.title .time {
+  line-height: 1.5625rem;
+  float: right;
+  font-size: .9375rem;
+  color: #838ba0;
+}
+
+aside.help_board_my .content ul.card li.qa {
+  background: #fff;
+  padding: .625rem .625rem 0 .625rem;
+}
+
+aside.help_board_my .content ul.card li.qa p:first-child {
+  padding: 0 0 .625rem 0;
+}
+
+aside.help_board_my .content ul.card li.qa .answer {
+  color: #5875e0;
+  padding: 0 0 .625rem 0;
+}
+/*# sourceMappingURL=help_board_my.css.map */

@@ -1,0 +1,257 @@
+<aside class="bkg">
+  <header class="double_inner" [class.active] ="!live_page">
+    <ul class="market">
+      <li class="back" >
+        <a (click)= "onClose()"></a>
+      </li>
+      <li class="title">{{gameData.league}}
+        <!-- <span></span> -->
+      </li>
+    </ul>
+    <section>
+      <article class="game_time">
+        <span *ngIf="!(gameData.teamInfo.score_H >= 0);else isGrounderTime">{{gameData.date}} {{gameData.time}}</span>
+        <ng-template #isGrounderTime>
+          <span style="font-size: 1.625rem;"> {{ gameData.gamePassTime }}</span>
+        </ng-template>
+      
+        <p *ngIf="gameData.teamInfo.score_H >= 0">{{gameData.teamInfo.score_H}} - {{gameData.teamInfo.score_C}}</p>
+        <!-- <p></p> -->
+      </article>
+      <article class="game_data">
+        <div>
+          <span class="wrap">
+            <span class="empty"></span>
+            <p>{{gameData.teamInfo.name_H}}</p>
+
+            <p class="pitcher" *ngIf="gameData.picthers.picther_H">{{gameData.picthers.picther_H.name}}[{{('Game.' + (gameData.picthers.picther_H.mode ||'R') ) | translate}}]</p>
+          </span>
+        </div>
+        <div>
+          <span class="wrap">
+            <span class="empty"></span>
+            <p>{{gameData.teamInfo.name_C}}</p>
+
+            <p class="pitcher" *ngIf="gameData.picthers.picther_C">{{gameData.picthers.picther_C.name}}[{{('Game.' + (gameData.picthers.picther_C.mode ||'R') ) | translate}}]</p>
+          </span>
+        </div>
+      </article>
+      <article class="game_live" >
+        <div class="wrap" *ngIf="liveData.isOpened && type != 'MPR'">
+          <div (click)="SwitchLive()">
+            <span class="live_tv"></span>
+            <p>{{'Title.Live' | translate}}</p>
+          </div>
+          <!-- <div>
+            <span class="live_game"></span>
+            <p>動畫直播</p>
+          </div> -->
+        </div>
+      </article>
+      <article class="game_type" [class.no_use] = "!groupActive && SPdata?.length == 0">
+      <!-- <article class="game_type no_use"> -->
+        <div class="all_wrap">
+          <ng-container *ngFor="let group of playList">
+            <div class="wrap" *ngIf="group.data.length > 0" (click)="gameType(group.type)"  [class.active] = "(group.type == selectedGroup)  && ('GH' != Overfiltration && 'TG' != Overfiltration)">
+              <span>{{'DetailPlay.' + group.type | translate}}</span>
+            </div>
+
+          </ng-container>
+          <div class="wrap" (click)="gameType('ALL');Overfiltration = 'GH'" *ngIf="SPdata?.length != 0 && type != 'MPR'" [class.active] = "'GH' == Overfiltration">
+            <span >{{'R' | oddsName}}</span>
+          </div>
+          <div class="wrap" (click)="gameType('ALL');Overfiltration = 'TG'" *ngIf="SPdata?.length != 0 && type != 'MPR'" [class.active] = "'TG' == Overfiltration">
+            <span >{{'OU' | oddsName}}</span>
+          </div>
+          <div class="wrap" (click)="gameType('SP')" *ngIf="SPdata?.length != 0 && type != 'MPR'" [class.active] = "'SP' == selectedGroup">
+            <span >{{ 'DetailPlay.SP' | translate}}</span>
+          </div>
+        </div>
+      </article>
+      <article class="game_refresh" (click)="onUpdate();SpecialPlay.nowUPdata()">
+        <span></span>
+        <p>{{ 'Lobby.Refresh' | translate}}</p>
+      </article>
+    </section>
+  </header>
+
+
+
+  <header class="live_page bas_mode"  [class.active] ="live_page">
+    <ul class="market">
+      <li class="back"  (click)= "onClose()"></li>
+      <li class="title">{{gameData.league}}<span></span></li>
+      <li class="live_back active" (click)="SwitchLive()"><p>{{'Title.BackGame' | translate}}</p></li>
+    </ul>
+    <article class="live_main" *ngIf="liveData.id">
+      <video id="LiveVideo" class="video-style" controls playsinline webkit-playsinline autoplay >
+        <source *ngIf="!liveData.rtmp"  [src]="VIDEO_PATH + liveData.videoID + '/1.m3u8'" type="application/x-mpegURL"> 
+         <source *ngIf="liveData.rtmp && liveData.time_hh%2 == 0"  [src]="VIDEO_PATH_leisu_2 + liveData.videoID + '.m3u8'" type="application/x-mpegURL">
+         <source *ngIf="liveData.rtmp && liveData.time_hh%2 == 1"  [src]="VIDEO_PATH_leisu_1 + liveData.videoID + '.m3u8'" type="application/x-mpegURL">
+     </video>
+    </article>
+    <article class="live_data_box" >
+      <!-- [style.bottom]="(!groupActive && SPdata?.length == 0)?'0rem':'2.5rem'" -->
+      <div class="b24"><div class="mid_wrap">
+        <p>{{ gameData.gamePassTime }}</p>
+      </div></div>
+      <div class="b76"><div class="mid_wrap">
+        <div class="left_wrap">
+          <p class="tn">{{gameData.teamInfo.name_H}}<span *ngIf="gameData.picthers.picther_H">{{gameData.picthers.picther_H.name}}[{{('Game.' + (gameData.picthers.picther_H.mode ||'R') ) | translate}}]</span></p>
+          <p class="point" *ngIf="gameData.teamInfo.score_H >= 0">{{gameData.teamInfo.score_H}}</p>
+        </div>
+        <div class="right_wrap">
+          <p class="point" *ngIf="gameData.teamInfo.score_H >= 0">{{gameData.teamInfo.score_C}}</p>
+          <p class="tn">{{gameData.teamInfo.name_C}}<span *ngIf="gameData.picthers.picther_C">{{gameData.picthers.picther_C.name}}[{{('Game.' + (gameData.picthers.picther_C.mode ||'R') ) | translate}}]</span></p>
+        </div>
+        <div class="vs_mid">vs</div>
+      </div></div>
+    </article>
+    <article class="game_type" >
+      <!-- [class.no_use] = "!groupActive && SPdata?.length == 0" -->
+      <!-- <article class="game_type no_use"> -->
+        <div class="all_wrap">
+          <ng-container *ngFor="let group of playList">
+            <div class="wrap" *ngIf="group.data.length > 0" (click)="gameType(group.type)" [class.active] = "(group.type == selectedGroup) && ('GH' != Overfiltration && 'TG' != Overfiltration)">
+              <span >{{'DetailPlay.' + group.type | translate}}</span>
+            </div>
+
+          </ng-container>
+          <div class="wrap" (click)="gameType('ALL');Overfiltration = 'GH'" *ngIf="SPdata?.length != 0 && type != 'MPR'" [class.active] = "'GH' == Overfiltration">
+            <span >{{'R' | oddsName}}</span>
+          </div>
+          <div class="wrap" (click)="gameType('ALL');Overfiltration = 'TG'" *ngIf="SPdata?.length != 0 && type != 'MPR'" [class.active] = "'TG' == Overfiltration">
+            <span >{{'OU' | oddsName}}</span>
+          </div>
+          <div class="wrap" (click)="gameType('SP')" *ngIf="SPdata?.length != 0 && type != 'MPR'" [class.active] = "'SP' == selectedGroup">
+            <span >{{ 'DetailPlay.SP' | translate}}</span>
+          </div>
+        </div>
+      </article>
+  </header>
+
+
+
+  <main class="double_inner_page" [class.no_mixing]="playStatus.play !== Play.mixing">
+    <ul>
+      <li *ngFor="let play of nowGoup()">
+        <ng-container *ngIf="Psieve(play.type)">
+          <div class="title table_top">
+            <p>{{play.type | oddsName}}</p>
+            <!-- <span></span> -->
+          </div>
+          <ng-container *ngIf="play.type !== 'PD' && play.hasHead">
+          <div class="form_2 content">
+            <span class="box_1 left not_hpvet">
+              <p class="not_hpvet">{{play.side_H | betOption : play : gameData.teamInfo}}</p>
+            </span>
+            <span class="box_2_more right" (click)="setBet(play.bet_H, play.type)" [class.active]="isActive(play.type, play.side_H)">
+              <!-- <p class="mr gray">{{play.strong == 'H' ? (play.head | headName: gameData.ball) : ' '}}</p> -->
+              <p class="mr gray">{{play.head | headName: gameData.ball : play.strong == 'H' : play.type}}</p>
+              <p class="odd_color">{{play.odds_H | OddsHK}}</p>
+            </span>
+          </div>
+          <div class="form_2 content">
+            <span class="box_1 left not_hpvet">
+              <p class="not_hpvet">{{play.side_C | betOption : play : gameData.teamInfo}}</p>
+            </span>
+            <span class="box_2_more right" (click)="setBet(play.bet_C, play.type)" [class.active]="isActive(play.type, play.side_C)">
+              <!-- <p class="mr gray">{{play.strong == 'C' ? (play.head | headName : gameData.ball) : ' '}}</p> -->
+              <p class="mr gray">{{ play.head | headName : gameData.ball : play.strong == 'C': play.type}}</p>
+              <p class="odd_color">{{play.odds_C | OddsHK}}</p>
+            </span>
+          </div>
+          </ng-container>
+          <ng-container *ngIf="play.type !== 'PD' && !play.hasHead">
+          <ng-container *ngIf="play.side_N">
+            <li>
+              <div class="form_3 content">
+                <span class="box_2_more" (click)="setBet(play.bet_H, play.type)" [class.active]="isActive(play.type, play.side_H)">
+                  <p>{{play.side_H | betOption : play : gameData.teamInfo}}</p>
+                  <p class="fr odd_color">{{play.odds_H | OddsHK}}</p>
+                </span>
+                <span class="box_2_more" (click)="setBet(play.bet_N, play.type)" [class.active]="isActive(play.type, play.side_N)">
+                  <p>{{play.side_N | betOption : play : gameData.teamInfo}}</p>
+                  <p class="fr odd_color">{{play.odds_N | OddsHK}}</p>
+                </span>
+                <span class="box_2_more" (click)="setBet(play.bet_C, play.type)" [class.active]="isActive(play.type, play.side_C)">
+                  <p>{{play.side_C | betOption : play : gameData.teamInfo}}</p>
+                  <p class="fr odd_color">{{play.odds_C | OddsHK}}</p>
+                </span>
+              </div>
+            </li>
+          </ng-container>
+          <ng-container *ngIf="!play.side_N">
+            <div class="form_2 content">
+              <span class="box_2_normal" (click)="setBet(play.bet_H, play.type)" [class.active]="isActive(play.type, play.side_H)">
+                <p class="t_c">{{play.side_H | betOption : play : gameData.teamInfo}}</p>
+                <p class="fr odd_color">{{play.odds_H | OddsHK}}</p>
+              </span>
+              <span class="box_2_normal" (click)="setBet(play.bet_C, play.type)" [class.active]="isActive(play.type, play.side_C)">
+                <p class="t_c">{{play.side_C | betOption : play : gameData.teamInfo}}</p>
+                <p class="fr odd_color">{{play.odds_C | OddsHK}}</p>
+              </span>
+            </div>
+          </ng-container>
+          </ng-container>
+          <ng-container *ngIf="play.type == 'PD'">
+          <div class="type_choice">
+            <div class="col_3">
+              <p>{{ gameData.teamInfo.name_H }}</p>
+            </div>
+            <div class="col_3">
+              <p>{{ 'N' | sideName: ''}}</p>
+            </div>
+            <div class="col_3">
+              <p>{{ gameData.teamInfo.name_C }}</p>
+            </div>
+          </div>
+          <div class="form_3 content" *ngFor="let row of getBetPDAry()">
+            <ng-container *ngFor = "let point of row">
+              <span class="box_2_more" (click)="setBetPD(gameData.teamInfo, point)">
+                <ng-container *ngIf="point.rioratio && point.rioratio >= 0">
+                  <p class="mr gray">{{ point.point }}</p>
+                  <p class="odd_color">{{ point.rioratio | OddsHK}}</p>
+                </ng-container>
+              </span>
+            </ng-container>
+          </div>
+          </ng-container>
+        </ng-container>
+      </li>
+      <li  *ngIf="SPdata?.length == 0" style=" height: 50px;"></li>
+      <ng-container *ngIf=" type != 'MPR'">
+        <li  *ngFor="let play of SPdata | keyvalue">
+          <ng-container *ngIf="OpenPlay( 'special.'+play.key | translate ) && SPsieve(play.key)">
+            <div class="title table_top">
+              <p>{{  'special.'+play.key | translate }}</p>
+              <!-- <span></span> -->
+            </div>
+            <ng-container *ngFor="let list of play.value">
+              <div *ngIf="list?.length" class="form_{{(list?.length>4)?1:list?.length }} content" >
+                <span class="box_2_more" *ngFor="let odd of list" (click)="newBet(odd,play.key)">
+                  <ng-container *ngIf="odd.zh || odd.ioratio">
+                    <p>{{odd.zh}}</p>
+                    <p class="odd_color">{{odd.ioratio | OddsHK}}</p>
+                  </ng-container>
+  
+                </span>
+              </div>
+            </ng-container>
+          </ng-container>
+
+        </li>
+        <li style=" height: 50px;"></li>
+
+      </ng-container>  
+    </ul>
+
+    <div class="no_game" *ngIf="nowGoup().length == 0 && SPdata?.length == 0">
+      <div class="no_game_wrap">
+        <i class="no_game_i"></i>
+        <p>{{  'Orders.NoHandicap' | translate }}</p>
+      </div>
+    </div>
+  </main>
+  <game-mixing-checker *ngIf="playStatus.play === Play.mixing" [single] = "true"></game-mixing-checker>
+</aside>

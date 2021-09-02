@@ -1,0 +1,163 @@
+<section class="blank" *ngIf="chatService.msgOpen" (click)="hideMessages()"></section>
+<section class="chat {{chatService.msgOpen ? (isLobby ? 'short' : 'tall') : ''}}"><!-- 直播時 +.short / 在大廳時 +.tall -->
+  <div class="chat-room">
+    <div class="buttons">
+      <button class="btn btn-lobby " [class.active] = "!isPrivateChat" (click) = "changePublicOrPrivate(false)">{{ isLobby ? ('Live.Hall' | translate) : ('Live.LiveChat' | translate) }}</button>
+      <button class="btn btn-hot" [class.active] = "isPrivateChat" (click)="changePublicOrPrivate(true)">{{'Live.Private' | translate}}</button>
+      <button class="btn btn-close" [class.focusing] = "inputFocusing" (click)="hideMessages()">{{'Live.Hide' | translate}}</button>
+    </div>
+    <!-- <ul *ngIf="!isPrivateChat" class="chat-billboard" id="chatBillboard{{isLobby ? '' : '2'}}" #chatBillboard>
+      <li *ngFor="let message of chatService.messages">
+        <div class="mugshot mugshot-{{getUserIconNumber(message.name)}}" (click)="toggleBanList(message.name)" [class.ban] = "isBan(message?.name)"></div>
+        <p class="user" [style.color] = "message?.mid === chid ? 'red' : ''">{{ message?.name }}</p>
+        <p class="msg" [innerHTML] = "message?.msg"></p>
+        <p class="time">{{ message?.time }}</p>
+        <div class="operates bottom" *ngIf="false">
+          <button class="btn">{{'Live.Ban' | translate}}</button>
+        </div>
+      </li>
+    </ul>
+    <div *ngIf="isPrivateChat" id="chatBillboard{{isLobby ? '' : '2'}}" class="private_chat" #chatBillboard>
+      <div class = "rooms_area"></div>
+      <ul  class="chat-billboard chat_area" >
+        <li *ngFor="let message of chatService.messages">
+          <div class="mugshot mugshot-{{getUserIconNumber(message.name)}}" (click)="toggleBanList(message.name)" [class.ban] = "isBan(message?.name)"></div>
+          <p class="user" [style.color] = "message?.mid === chid ? 'red' : ''">{{ message?.name }}</p>
+          <p class="msg" [innerHTML] = "message?.msg"></p>
+          <p class="time">{{ message?.time }}</p>
+          <div class="operates bottom" *ngIf="false">
+            <button class="btn">{{'Live.Ban' | translate}}</button> 
+          </div>
+        </li>
+      </ul>
+    </div> -->
+
+    <div class="chat_window" id="chatBillboard{{isLobby ? '' : '2'}}" >
+      <ng-container *ngIf="!isPrivateChat">
+        <ul class="chat-billboard" #chatBillboard>
+          <li *ngFor="let message of chatService.messages">
+            <div class="mugshot mugshot-{{getUserIconNumber(message.name)}}" (click)="addToBanList(chatService.key, message)" [class.ban] = "isBan(chatService.key, message?.ac)"></div>
+            <p class="user" [style.color] = "message?.mid === chid ? 'red' : ''">{{ message?.name }}</p>
+            <p class="msg" [innerHTML] = "message?.msg"></p>
+            <p class="time">{{ message?.time }}</p>
+            <div class="operates bottom" *ngIf="false">
+              <button class="btn">{{'Live.Ban' | translate}}</button>
+            </div>
+          </li>
+        </ul>
+      </ng-container>
+      <ng-container *ngIf="isPrivateChat">
+        <div class = "rooms_area">
+          <div class="rooms_option">
+            <button (click)="toggleRoomOption()">{{'Live.Join' | translate}}</button>
+          </div>
+          <div class="rooms">
+            <div *ngFor="let room of chatService.privateRoomList" [ngClass]="isRoomSelectedClass(room)" [class.has_new_msg] = "room.hasNewMsg" (click)="selectPrivateRoom(room)">{{room.name}}</div>
+          </div>
+        </div>
+        <ul  class="chat_area chat-billboard" #chatBillboard>
+          <li *ngFor="let message of chatService.nowPrivateRoom.messages">
+            <div class="mugshot mugshot-{{getUserIconNumber(message.name)}}" (click)="addToBanList(chatService.nowPrivateRoom.key, message)" [class.ban] = "isBan(chatService.nowPrivateRoom.key, message?.ac)"></div>
+            <p class="user" [style.color] = "message?.mid === chid ? 'red' : ''">{{ message?.name }}</p>
+            <p class="msg" [innerHTML] = "message?.msg" (click)= "isDeleteMsg(message)"></p>
+            <p class="time">{{ message?.time }}</p>
+            <div class="operates bottom" *ngIf="false">
+              <button class="btn">{{'Live.Ban' | translate}}</button> 
+            </div>
+          </li>
+        </ul>
+        <div class="room_option" (click)="isRoomOptionActive = true" *ngIf="chatService.nowPrivateRoom.key">+</div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <ul class="msg"><!-- 新進訊息，僅聊天室收合時才會出現 -->
+      <li *ngFor="let msg of _newMsg"><span class="user">{{ msg?.name }}</span><span [innerHTML] = "msg?.msg"></span></li>
+    </ul>
+    <button class="btn-more" (click) = "checkNewMsg()" *ngIf="_newMsg.length > 0">{{_newMsg.length}}+</button>
+    <div class="chat-count">
+      <svg class="icon-member">
+        <use xlink:href="#icon-member" />
+      </svg>
+      <span>{{ isPrivateChat ? (chatService.nowPrivateRoom.key ? chatService.nowPrivateRoom.online : 0) : chatService.online }}</span>
+    </div>
+    <textarea id="chatInput" #chatInput (focus)="focusInput()" (blur)="blur()" placeholder="{{ 'Chat.EnterMsg' | translate }}"></textarea>
+    <button class="btn" tabindex="0" (click)="sendMessage(chatInput.value)">
+      <svg class="icon">
+        <use xlink:href="#icon-send" />
+      </svg>
+    </button>
+  </div>
+</section>
+
+
+<article class="dialog" *ngIf="isRoomOpenActive">
+  <div class="dialog-content">
+    <section class="dialog-room">
+      <h2>{{'Live.Search' | translate}}</h2>
+      <button class="btn-x" (click)="isRoomOpenActive = false">&#9587;</button>
+      <div class="content">
+      <h5>{{'Chat.EnterRoomID' | translate}}</h5>
+      <input type="text" [(ngModel)]="searchKey" >
+        <div class="btns">
+          <button class="btn btn-create" (click)="createRoom()">{{'Live.CreateRoom' | translate}}</button>
+          <button class="btn btn-join" (click)="joinRoom()">{{'Live.JoinRoom' | translate}}</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</article>
+
+
+
+<article class="dialog" *ngIf="isRoomOptionActive">
+  <div class="dialog-content">
+    <section class="dialog-room">
+      <h2>{{'Live.RoomOption' | translate}}</h2>
+      <button class="btn-x" (click)="isRoomOptionActive = false">&#9587;</button>
+      <div class="content">
+        <ng-container *ngIf="chatService.isHost()">
+          <div class="room-info">
+            <span>{{'Live.CurrentID' | translate}}</span>
+            <button class="btn-current-room" (click)="textCopy(chatService.nowPrivateRoom.key)">{{chatService.nowPrivateRoom.key}}
+              <svg class="icon">
+                <use xlink:href="#icon-copy" />
+              </svg>
+            </button>
+          </div>
+          <div class="member_title">{{'Live.MemberList' | translate}}</div>
+          <div class="member_list host">
+            <div class="member" *ngFor="let member of chatService.nowPrivateRoom.members">
+              <div class="name">{{member.name}}</div>
+              <div class="kick" *ngIf="!chatService.isHost(member.ac)" (click) = "kickMember(member)">X</div>
+            </div>
+
+          </div>
+          <div class="btns">
+            <button class="btn btn-join" (click)="ExitRoom()">{{'Live.CloseRoom' | translate}}</button>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="!chatService.isHost()">
+          <div class="room-info">
+            <span>{{'Live.CurrentID' | translate}}</span>
+            <button class="btn-current-room" (click)="textCopy(chatService.nowPrivateRoom.key)">{{chatService.nowPrivateRoom.key}}
+              <svg class="icon">
+                <use xlink:href="#icon-copy" />
+              </svg>
+            </button>
+          </div>
+          <div class="member_title">{{'Live.MemberList' | translate}}</div>
+          <div class="member_list">
+            <div class="member" *ngFor="let member of chatService.nowPrivateRoom.members">
+              <div class="name">{{member.name}}</div>
+            </div>
+          </div>
+          <div class="btns">
+            <button class="btn btn-join" (click)="ExitRoom()">{{'Live.ExitRoom' | translate}}</button>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+  </div>
+</article>

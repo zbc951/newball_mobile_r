@@ -1,0 +1,115 @@
+<article class="side-nav active" [class.active] = "statusMenu.isOpen$ | async">
+  <div class="blank" (click)="closeMenu()"></div>
+  <nav class="nav-side-links">
+    <ul>
+      <li>
+        <a [routerLink]="RouterPath.more.billboard" (click)="closeMenu()" routerLinkActive="active">
+          <svg class="icon">
+            <use xlink:href="#icon-announce" />
+          </svg>
+          <p>{{ 'Title.Notice' | translate }}</p>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="RouterPath.more.credit" (click)="closeMenu()" routerLinkActive="active">
+          <svg class="icon">
+            <use xlink:href="#icon-credit" />
+          </svg>
+          <p>{{ 'Title.Credit' | translate }}</p>
+        </a>
+      </li>
+      <li *ngIf = "!isCashVer">
+        <a [routerLink]="RouterPath.more.feedback" (click)="closeMenu()" routerLinkActive="active">
+          <svg class="icon">
+            <use xlink:href="#icon-question" />
+          </svg>
+          <p>{{ 'Title.Feedback' | translate }}</p>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="RouterPath.more.setting" (click)="closeMenu()" routerLinkActive="active">
+          <svg class="icon">
+            <use xlink:href="#icon-setting" />
+          </svg>
+          <p>{{ 'Title.Setting' | translate }}</p>
+        </a>
+      </li>
+      <li *ngIf="hasRule">
+        <a [routerLink]="RouterPath.more.rule" (click)="closeMenu()" routerLinkActive="active">
+          <svg class="icon">
+            <use xlink:href="#icon-rule" />
+          </svg>
+          <p>{{ 'Title.Rule' | translate }}</p>
+        </a>
+      </li>
+<!-- 
+      <li>
+        <a (click)="toReal()">
+          <svg class="icon">
+            <use xlink:href="#icon-setting" />
+          </svg>
+          <p>{{ 'Title.Real' | translate }}</p>
+        </a>
+      </li>
+      <li>
+        <a (click)="toTC()" >
+          <svg class="icon">
+            <use xlink:href="#icon-setting" />
+          </svg>
+          <p>{{ 'Title.TC' | translate }}</p>
+        </a>
+      </li>
+ -->
+
+      <li (click)="goMovie()" *ngIf="hasMovie">
+        <a>
+          <svg class="icon">
+            <use xlink:href="#icon-theater" />
+          </svg>
+          <p>{{ 'Title.Movie' | translate }}</p>
+        </a>
+      </li>
+      <li *ngIf="!isCashVer" (click)="logout()">
+        <a>
+          <svg class="icon">
+            <use xlink:href="#icon-logout" />
+          </svg>
+          <p>{{ 'Title.Logout' | translate }}</p>
+        </a>
+      </li>
+      <li *ngIf="isCashVer" (click)="goPCweb()">
+        <a>
+          <svg class="icon">
+            <use xlink:href="#icon-logout" />
+          </svg>
+          <p>{{ 'Title.goPC' | translate }}</p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <nav class="nav-side-game">
+    <ul>
+      <li class="title">
+        <ol>
+          <li>{{ 'Title.LobbyQuick' | translate }}</li>
+          <li>{{ Play.single | translateValue: 'play' }}</li>
+          <li>{{ Play.grounder | translateValue: 'play' }}</li>
+          <li>{{ Play.mixing | translateValue: 'play' }}</li>
+        </ol>
+      </li>
+      <ng-container *ngFor="let ball of ballList">
+        <li class="item" *ngIf="ball.menuShow">
+          <ol>
+            <li>
+              <div class="icon-game icon-game-{{ball.icon2}}" ></div>
+              <span class="game-name">{{ ball.value | translateValue: 'ball' }}</span>
+            </li>
+            <li (click)="goLobby(ball.value, Play.single, ball.R_count)"><span>{{ ball.R_count | CountFilter }}</span></li>
+            <li (click)="goLobby(ball.value, Play.grounder, ball.RE_count)"><span>{{ ball.RE_count | CountFilter }}</span></li>
+            <li (click)="goLobby(ball.value, Play.mixing, ball.MPR_count)"><span>{{ ball.MPR_count | CountFilter }}</span></li>
+          </ol>
+        </li>
+      </ng-container>
+    </ul>
+  </nav>
+</article>

@@ -1,0 +1,260 @@
+
+<section *ngIf="beginner"  [ngStyle]="{display: (beginner)?'block':'none'}"  >
+    <span class="time_more" (click)= "showGameDetail()">
+        <span class="icon_roll_ball" *ngIf="type =='RE'"></span>
+        <span class="time" *ngIf="!(game.teamInfo.score_C >=0 && game.teamInfo.score_H >=0);else isGrounderTime">{{ getShortDate(game.date) }}<p></p>&nbsp;&nbsp;{{game.time}}</span>
+        <ng-template #isGrounderTime>
+          <div class="timing">{{ game.gamePassTime }}</div>
+        </ng-template>
+        <div class="more">
+            <p></p>
+            <!-- ({{(game.handicaps.length * 2) + ((game.PD)?25:0 ) }}) -->
+            <span class="num">({{ 'Lobby.More' | translate }})</span>
+            <span class="right_arrow"></span>
+        </div>
+
+    </span>
+
+
+    <ng-container *ngIf="isPage(game.ball)" >
+        <span class="horse_race_type" *ngIf="!orderLeague" (click)= "showGameDetail()">
+            <p>{{game.league}}</p>
+        </span>
+        <span class="counter" (click)= "showGameDetail()">
+            <div class="country">
+                <p class="name">{{game.teamInfo.name_H}}[{{((game.location == 'H') ? 'General.TeamHome' : 'General.TeamNeutral')|translate}}]</p>
+                <p class="score" *ngIf="game.teamInfo.score_H >=0">{{game.teamInfo.score_H}}</p>
+            </div>
+            <p class="mid">vs</p>
+            <div class="country">
+                <p class="score" *ngIf="game.teamInfo.score_C >=0">{{game.teamInfo.score_C}}</p>
+                <p class="name">{{game.teamInfo.name_C}}</p>
+               
+            </div>
+        </span>
+        <span class="n_bet_box_3" [ngClass]="{two_mode: isWinOrLose(game.ball)}" *ngIf=" (moreDataList |OddsM:'H') != '-' ">
+            <div class="wrap">
+
+                <div class="box">
+                    <div class="in" [class.active]="isActive('M','H')"  (click)="setBetAll('M','H')">
+                        <div class="t_wrap">
+                            <p *ngIf="!isWinOrLose(game.ball)">{{ 'General.MainWin' | translate }}</p>
+                            <span  >{{ moreDataList |OddsM:'H'}}</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="box">
+                    <div class="in"  [class.active]="isActive('M','N')"  (click)="setBetAll('M','N')">
+                        <div class="t_wrap" >
+                            <p *ngIf="!isWinOrLose(game.ball)">{{ 'General.with' | translate }}</p>
+                            <span >{{ moreDataList |OddsM:'N'}}</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="box">
+                    <div class="in" [class.active]="isActive('M','C')" (click)="setBetAll('M','C')">
+                        <div class="t_wrap"   >
+                            <p *ngIf="!isWinOrLose(game.ball)">{{ 'General.GuestWin' | translate }}</p>
+                            <span >{{ moreDataList |OddsM:'C'}}</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </span>
+        <span class="n_bet_box_2"  *ngIf=" (moreDataList |OddsM:'H') == '-' ">
+            <div class="wrap">
+
+                <div class="box" *ngIf=" (game |OddsField:'R':'odds_H') != '-' " id='1'>
+                    <div class="in"  [class.active]="isActive('R','H')" (click)= "setBetAll('R','H')">
+                        <div class="t_wrap" >
+                            <p>{{ game |OddsStrong:'R':'H' | headName: useBall : toStrong('R','H'): 'R'}}</p>
+                            <span >{{ (game |OddsField:'R':'odds_H')  |OddsHK:HKod}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box"  *ngIf=" (game |OddsField:'R':'odds_H') == '-' " id='b'>
+                    <div class="in" [class.active]="isActive('OU','H')"  (click)= "setBetAll('OU','H')">
+                        <div class="t_wrap" >
+                            <p>{{ 'General.Big' | translate }}{{game |OddsField:'OU':'head'  | headName: useBall}}</p>
+                            <span >{{ (game |OddsField:'OU':'odds_H') |OddsHK:HKod}}</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="box" *ngIf=" (game |OddsField:'R':'odds_H')  != '-'" id='2'>
+                    <div class="in" [class.active]="isActive('R','C')"  (click)= "setBetAll('R','C')">
+                        <div class="t_wrap"  >
+                            <p>{{ game |OddsStrong:'R':'C' | headName: useBall : toStrong('R','C'): 'R'}}</p>
+                            <span >{{ (game |OddsField:'R':'odds_C')  |OddsHK:HKod}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box" *ngIf=" (game |OddsField:'R':'odds_H') == '-' " id='s'>
+                    <div class="in" [class.active]="isActive('OU','C')"  (click)= "setBetAll('OU','C')" >
+                        <div class="t_wrap"  >
+                            <p>{{ 'General.small' | translate }}{{game |OddsField:'OU':'head'  | headName: useBall}}</p>
+                            <span >{{ (game |OddsField:'OU':'odds_C') |OddsHK:HKod}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </span>
+    </ng-container>
+    <!-- 簡單版畫面分割 上唯獨贏 下大小單雙 -->
+    <ng-container *ngIf="!isPage(game.ball)">
+
+            <span class="time_more" *ngIf="!orderLeague" (click)= "showGameDetail()">
+                <p>{{game.league}}</p>
+            </span>
+            <span class="counter" (click)= "showGameDetail()">
+                <p class="mid">{{game.teamInfo.name_H}}[{{((game.location == 'H') ? 'General.TeamHome' : 'General.TeamNeutral')|translate}}]</p>
+            </span>
+            <span class="n_bet_box_2">
+                <div class="wrap">
+                    <div class="box">
+                        <div class="in" [class.active]="isActive('OU','H')" (click)= "setBetAll('OU','H')">
+                            <div class="t_wrap t_row_size"  >
+                                <p >{{ 'General.Big' | translate }}{{game |OddsField:'OU':'head'  | headName: useBall}}</p>
+                                <span>{{ (game |OddsField:'OU':'odds_H') |OddsHK:HKod}}</span>
+                            </div>
+                        </div>
+                    </div>
+                
+
+                
+                    <div class="box">
+                        <div class="in" [class.active]="isActive('OU','C')" (click)= "setBetAll('OU','C')">
+                            <div class="t_wrap t_row_size" >
+                                <p>{{ 'General.small' | translate }}{{game |OddsField:'OU':'head'  | headName: useBall}}</p>
+                                <span>{{ (game |OddsField:'OU':'odds_C') |OddsHK:HKod}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </span>
+            <span class="horse_race_line"></span>
+            <span class="n_bet_box_2">
+                <div class="wrap">
+                    <div class="box">
+                        <div class="in" [class.active]="isActive('EO','H')" (click)= "setBetAll('EO','H')">
+                            <div class="t_wrap t_row_size">
+                                <p>{{ 'General.single' | translate }}</p>
+                                <span>{{(game |OddsField:'EO':'odds_H') |OddsHK:HKod}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="box">
+                        <div class="in" [class.active]="isActive('EO','C')" (click)= "setBetAll('EO','C')">
+                            <div class="t_wrap t_row_size" >
+                                <p>{{ 'General.double' | translate }}</p>
+                                <span>{{(game |OddsField:'EO':'odds_C') |OddsHK:HKod}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </span>
+
+    </ng-container>
+</section>
+
+
+
+
+  <!-- -----------------------------------專業版 -->
+
+<section *ngIf="!beginner"  [ngStyle]="{display: (!beginner)?'block':'none'}" >
+    <div class="senior_mode" (click)= "showGameDetail()">
+        <p  *ngIf="!orderLeague">{{game.league}}</p>
+        <span>
+            <p *ngIf="isPage(game.ball)">{{ 'PlayType.M' | translate }}</p>
+            <p>{{ 'PlayType.R' | translate }}</p>
+            <p>{{ 'PlayType.OU' | translate }}</p>
+        </span>
+    </div>
+    <span class="time_more" (click)= "showGameDetail()">
+        <span class="icon_roll_ball" *ngIf="type =='RE'"></span>
+        <span class="time" *ngIf="!(game.teamInfo.score_C >=0 && game.teamInfo.score_H >=0);else isGrounderTime">{{ getShortDate(game.date) }}<p></p>&nbsp;&nbsp;{{game.time}}</span>
+        <ng-template #isGrounderTime>
+          <div class="timing">{{ game.gamePassTime }}</div>
+        </ng-template>
+        <div class="more">
+            <!-- ({{(game.handicaps.length * 2) + ((game.PD)?25:0 ) }}) -->
+            <p>({{ 'Lobby.More' | translate }})</p>
+            <span class="num"></span>
+            <span class="right_arrow"></span>
+        </div>
+    </span>
+    <span class="point_box" >
+        <span class="counter" (click)= "showGameDetail()">
+
+            <div class="country">
+                <p class="name">{{game.teamInfo.name_H}}[{{((game.location == 'H') ? 'General.TeamHome' : 'General.TeamNeutral')|translate}}]</p>
+                <p class="score" *ngIf="game.teamInfo.score_H >=0">{{game.teamInfo.score_H}}</p>
+            </div>
+
+            <div class="country">
+                <p class="name">{{game.teamInfo.name_C}}</p>
+                <p class="score" *ngIf="game.teamInfo.score_C >=0">{{game.teamInfo.score_C}}</p>
+            </div>
+            <!-- <div class="country">
+                <span class="sen_icon sen_icon_game"></span>
+                <span class="sen_icon sen_icon_live"></span>
+                <span class="icon_roll_ball bottom"></span>
+            </div> -->
+        </span>
+        <span class="num_group" [ngClass]="{text_right: !isPage(game.ball)}">
+            <span class=" left" *ngIf="isPage(game.ball)" [ngClass]="{two_side: isWinOrLose(game.ball),three_side:!isWinOrLose(game.ball)}">
+                <div  [ngClass]="{solo_line: isWinOrLose(game.ball),m_win:!isWinOrLose(game.ball)}" [class.active]="isActive('M','H')"  (click)="setBetAll('M','H')">
+                    <p *ngIf="!isWinOrLose(game.ball)">{{ 'General.MainWin' | translate }}</p>
+                    <span>{{ moreDataList |OddsM:'H'}}</span>
+                </div>
+                <div [ngClass]="{solo_line: isWinOrLose(game.ball),tie:!isWinOrLose(game.ball)}" *ngIf="!isWinOrLose(game.ball)" [class.active]="isActive('M','N')" (click)="setBetAll('M','N')">
+                    <p >{{ 'General.with' | translate }}</p>
+                    <span >{{ moreDataList |OddsM:'N'}}</span>
+                </div>
+                <div [ngClass]="{solo_line: isWinOrLose(game.ball),a_win:!isWinOrLose(game.ball)}" [class.active]="isActive('M','C')"  (click)="setBetAll('M','C')">
+                    <p *ngIf="!isWinOrLose(game.ball)">{{ 'General.GuestWin' | translate }}</p>
+                    <span>{{ moreDataList |OddsM:'C'}}</span>
+                </div>
+            </span>
+            <span class="two_side">
+                <div class="m_win" [class.active]="isActive('R','H')" (click)= "setBetAll('R','H')">
+                    <p>{{ game |OddsStrong:'R':'H' | headName: useBall : toStrong('R','H'): 'R'}}</p>
+                    <span >{{ (game |OddsField:'R':'odds_H')  |OddsHK:HKod}}</span>
+                </div>
+                <div class="a_win" [class.active]="isActive('R','C')" (click)= "setBetAll('R','C')">
+                    <p>{{ game |OddsStrong:'R':'C' | headName: useBall : toStrong('R','C'): 'R'}}</p>
+                    <span >{{ (game |OddsField:'R':'odds_C')  |OddsHK:HKod}}</span>
+                </div>
+            </span>
+            <span class="two_side right">
+                <div class="m_win" [class.active]="isActive('OU','H')" (click)= "setBetAll('OU','H')">
+                    <p>{{ 'General.Big' | translate }}{{game |OddsField:'OU':'head'  | headName: useBall}}</p>
+                    <span >{{ (game |OddsField:'OU':'odds_H') |OddsHK:HKod}}</span>
+                </div>
+                <div class="a_win" [class.active]="isActive('OU','C')" (click)= "setBetAll('OU','C')">
+                    <p>{{ 'General.small' | translate }}{{game |OddsField:'OU':'head'  | headName: useBall}}</p>
+                    <span >{{ (game |OddsField:'OU':'odds_C') |OddsHK:HKod}}</span>
+                </div>
+            </span>
+        </span>
+    </span>
+</section>
+

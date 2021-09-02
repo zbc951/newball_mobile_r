@@ -1,0 +1,136 @@
+// 順序會影響組圖
+$game-type: (
+	FT: 1, // 足球
+	BK: 2, // 籃球
+	BS: 3, // 棒球
+	AF: 4, // 美式足球
+	TN: 5, // 網球
+	GD: 6, // 賽馬賽狗
+	EB: 7, // 電競
+	ST: 8, // 指數
+	LO: 9, // 彩球
+	BL: 10,// 撞球
+  EK: 11,// 高爾夫
+  BB: 12,// 板球 代號隨便取
+	VB: 13,// 排球
+	PO: 14,// 拳擊
+	IB: 15,// 冰球
+  HB: 16,// 手球
+  EF: 17,// 世界盃
+  );
+
+$game-league: CPBL, MLB, NBA, NPB;
+
+$game-color: (
+	FT: #00FF92,
+	BK: #FF6600,
+	BS: #0096FF,
+	AF: #444,
+	TN: #444,
+	GD: #444,
+	EB: #444,
+	ST: #444,
+	LO: #444,
+	BL: #444,
+	EF: #444,
+	PO: #444,
+	VB: #444,
+	EK: #444,
+	IB: #444,
+	HB: #444,
+);
+
+// :after 清除浮動
+@mixin afterClearfix {
+	&:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+}
+
+// 垂直置中(放外層) 用法: @include verticalCenter(內層class name);
+@mixin verticalCenter($class) {
+	text-align: center;
+	overflow: auto;
+	&:before {
+		content: '';
+		display: inline-block;
+		height: 100%;
+		vertical-align: middle;
+	}
+	.#{$class} {
+		max-width: calc(100% - 6px);
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
+
+@mixin btnList {
+	.btnList {
+		background: #E7EBF1;
+		text-align: center;
+		button {
+			height: 73px;
+			background: #fff;
+			margin: 0 10px 0 10px;
+			border-radius: 15px;
+			box-shadow: 0px 5px 10px #95a2b5;
+			border: none;
+			font-size: 35px;
+			color: #2A3245;
+			font-family: "微軟正黑體", Arial, Helvetica, sans-serif;
+			outline: none;
+			// &:hover,
+			&.active {
+				background: #FF0042;
+				color: #fff;
+				box-shadow: none;
+			}
+		}
+	}
+}
+
+@mixin tableTitle {
+	.title {
+		background: #2A3245;
+		line-height: 70px;
+		position: fixed;
+    z-index: 99;
+    width: 100%;
+    @include afterClearfix;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 30px;
+      background: linear-gradient(to bottom, rgba(#2B3346, .4), rgba(#2B3346, 0));
+    }
+		span {
+			float: left;
+			position: relative;
+			display: block;
+			color: #fff;
+			font-size: 30px;
+			text-align: center;
+			&:after {
+				content: '';
+				position: absolute;
+				right: 0;
+        top: 20px;
+        bottom: 20px;
+				width: 3px;
+				background: #798085;
+				border-radius: 30px;
+			}
+			&:last-of-type {
+				&:after {
+					content: none;
+				}
+			}
+		}
+	}
+}

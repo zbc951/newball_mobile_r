@@ -1,0 +1,17 @@
+.icon_roll_ball.icon_roll_ball.icon_roll_ball.icon_roll_ball {
+  display: inline-block;
+  background: url(../images/market/roll_ball.gif) no-repeat;
+  background-size: 100%;
+  width: 1rem;
+  height: 1rem;
+  line-height: 1rem;
+  position: relative;
+  vertical-align: middle;
+  margin-bottom: 3px;
+}
+
+.icon_roll_ball.icon_roll_ball.icon_roll_ball.icon_roll_ball.bottom {
+  vertical-align: bottom;
+  margin-bottom: 0;
+}
+/*# sourceMappingURL=roll_ball.css.map */

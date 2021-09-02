@@ -1,0 +1,134 @@
+<aside class="help">
+    <div class="blue_title">
+       <div class="title">
+        <p>{{ 'Title.Customer_Service' | translate }}</p>
+        <p></p>
+       </div>
+    </div>
+    <div class="hellocard">
+        <div class="avater"></div>
+        <div class="hello">
+            <p>Hi,{{ (member.memberInfo$ | async)?.alias}}</p>
+            <p>{{ 'Title.Welcome_to' | translate }}{{ 'Title.Customer_Service' | translate }}</p>
+        </div>    
+    </div>
+    <div class="help_content">
+        <div class="card1">
+            <div class="top_wrap">
+                <span class="icon1"></span>
+                <h1>{{ 'Title.Feedback' | translate }}</h1>
+            </div>
+            <p class="server_color">Feedback</p>
+            <p class="server_color"></p>
+            <a (click)="feedbackEnable = true"></a>
+        </div>
+        <!-- <div class="card1">
+            <div class="top_wrap">
+                <span class="icon2"></span>
+                <h1>主線客服</h1>
+            </div>
+            <p class="server_color">Reserve Customer Support</p>
+            <p class="server_color">7*24小時專線服務 貼心至上</p>
+            <a></a>
+        </div> -->
+    </div>
+</aside>
+
+<aside class="my_windows_set" [class.active]="feedbackEnable">
+    <header>
+        <ul>
+            <li class="back"><a (click)="feedbackEnable = false"></a></li>
+            <li class="title">{{ 'Feedback.Contact' | translate }}</li>
+            <li class="right_text" (click)="myFeedbackActive = true">{{ 'Feedback.feedback' | translate }}</li>
+        </ul>
+    </header>
+    <aside class="help_board">
+           
+        <div class="board_content">
+            <div class="title">{{ 'Feedback.Contact' | translate }}</div>
+            <input type="text"  [(ngModel)]="contact" placeholder="{{ 'Feedback.Placeholder' | translate }}"/>
+            <div class="title">{{ 'Feedback.Content' | translate }}</div>
+            <textarea [(ngModel)]="content"></textarea>
+            <!-- <div class="import_image">
+                <div class="top_wrap">
+                    <div class="icon"></div>
+                    <p>0/3</p>
+                </div>
+                <p>* 文件格式為png﹅jpg﹅jpeg，且大小不超過15MB</p>
+            </div> -->
+        </div>
+        <button (click)="sendMessage(contact, content)">{{ 'General.Submit' | translate }}</button>
+    </aside>
+</aside>
+
+<aside class="my_windows_set my_feed_back" [class.active]="myFeedbackActive">
+    <header>
+        <ul>
+            <li class="back" (click)="myFeedbackActive = false"></li>
+            <li class="title">{{ 'Title.MyFeedback' | translate }}</li>
+        </ul>
+    </header>
+    <aside class="help_board_my">
+        <div class="content">
+            <ul class="card" *ngFor="let item of response">
+                <li class="title">
+                    <!-- <h1>轉點問題</h1> -->
+                    <div class="status yet" *ngIf="!item?.reply">{{ 'Title.Not_yet_replied' | translate }}</div>
+                    <div class="status reply" *ngIf="item?.reply">{{ 'Title.replied' | translate }}</div>
+                    <div class="time">{{ item?.adddate }}</div>
+                </li>
+                <li class="qa">
+                    <p>Q.{{ item?.problem }}</p>
+                    <p class="answer" *ngIf="item?.reply">A.{{ item?.reply }}</p>
+                </li>
+            </ul>
+        </div>
+    </aside>
+</aside>
+
+
+<header style="display: none;">
+  <!-- Info -->
+  <app-surplus></app-surplus>
+  <!-- Menu -->
+  <article class="topMenu">
+    <app-menu-ctrl></app-menu-ctrl>
+
+    <h2>{{ 'Title.Feedback' | translate }}</h2>
+    <!-- <button class="btn-reload">
+      <svg class="icon">
+        <use xlink:href="#icon-reload" />
+      </svg>
+    </button> -->
+  </article>
+</header>
+
+<main class="page-qa" style="display: none;">
+  <article class="mainContent">
+    <div class="box">
+      <section class="qabox qabox-contact">
+        <label>
+          <p>{{ 'Feedback.Contact' | translate }}</p>
+          <input type="text"  [(ngModel)]="contact" placeholder="{{ 'Feedback.Placeholder' | translate }}">
+        </label>
+      </section>
+      <section class="qabox qabox-what">
+        <label>
+          <p>{{ 'Feedback.Content' | translate }}</p>
+          <textarea [(ngModel)]="content"></textarea>
+        </label>
+        <button class="btn-confirm" (click)="sendMessage(contact, content)">{{ 'General.Submit' | translate }}</button>
+      </section>
+
+      <ul *ngFor="let item of response">
+        <li>
+          <h4>{{ item?.adddate }}</h4>
+          <ol>
+            <li>{{ item?.problem }}</li>
+            <li>{{ item?.reply }}</li>
+          </ol>
+        </li>
+      </ul>
+    </div>
+  </article>
+</main>

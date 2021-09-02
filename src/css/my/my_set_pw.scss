@@ -1,0 +1,83 @@
+aside{
+    &.set_pw{
+            width: 100%;
+            top: 0;
+        ul{
+            display:block;
+            padding: 0 .9375rem 0 .9375rem;
+             background: #fff;
+            li{
+                    white-space: nowrap;
+                    display: block;
+                    border-bottom: 1px solid #e0e3f3;
+                    padding: .625rem .625rem .625rem .625rem;
+                    line-height: 1.8125rem;
+                    height: 3.125rem;
+                    &:last-child{
+                        border-bottom:none;
+                    }
+                    p{
+                        display: inline-block;
+                        line-height: 1;
+                        vertical-align: middle;
+                        color:#4d515d;
+                    }
+                    input{
+                            display: inline-block;
+                            float: right;
+                            width: 65%;
+                            height:100%;
+                            border-radius: .25rem;
+                            border:1px solid #b9bfdc;
+                            padding: .625rem;
+
+                    }
+                    &.double{
+                            white-space: normal;
+                            height:auto;
+                            line-height:1;
+                            padding: .625rem .625rem .3125rem .625rem;
+                        .wrap{
+                            display: inline-block;
+                            width: 100%;
+                            line-height: 1.8125rem;
+                            height: 2.5rem;
+                            p{
+                                display: inline-block;
+                                line-height: 1;
+                                vertical-align: middle;
+                                color: #4d515d;
+                            }
+                            input{
+                                height: 1.8125rem;
+                                width: 65%;
+                            }
+                        }
+                        .wrap2{
+                                display: inline-block;
+                                width: 100%;
+                            p{
+                                color:#838ba0;
+                                width: 65%;
+                                float: right;
+                                    font-size: .875rem;
+                            }
+                        }
+                    }
+                   
+            }
+        }
+        button{
+            display: block;
+            width: 70vw;
+            margin: .9375rem auto 0 auto;
+            background: linear-gradient(to right, #9ba8e4 0% , #485cc4 100%);
+            border: none;
+            border-radius: .25rem;
+            padding: .9375rem 0 .9375rem 0;
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+    }
+}

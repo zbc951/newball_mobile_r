@@ -1,0 +1,294 @@
+@import "../css_reset.scss";
+.tip {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    .bg {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background: url(../images/tip/index/index_tip.png) no-repeat;
+        background-size: 400vw 100%;
+        background-position: 0 0;
+    }
+    @for $mt from 2 through 4 {
+        .mt#{$mt} {
+            background-position: (($mt - 1) * (-100vw)) 0;
+        }
+    }
+    .okb {
+        position: fixed;
+        bottom: 40%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        width: 10.125rem * 2;
+        height: 2.813rem * 2;
+        background: url(../images/tip/button/okb.png) no-repeat;
+        background-size: 100%;
+        background-position: 0 0;
+        &:active,
+        &:hover {
+            background-position: 0 -5.626rem;
+        }
+    }
+    .t3 {
+        bottom: 74%;
+    }
+    .t4 {
+        bottom: 20%;
+    }
+    .sbg {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background: url(../images/tip/single/single_tip.png) no-repeat;
+        background-size: 800vw 100%;
+        background-position: 0 0;
+    }
+    @for $smt from 2 through 8 {
+        .smt#{$smt} {
+            background-position: (($smt - 1) * (-100vw)) 0;
+        }
+    }
+    .nxb {
+        position: fixed;
+        bottom: 24%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        width: 10.125rem * 2;
+        height: 2.813rem * 2;
+        background: url(../images/tip/button/nextb.png) no-repeat;
+        background-size: 100%;
+        background-position: 0 0;
+        &:active,
+        &:hover {
+            background-position: 0 -5.626rem;
+        }
+    }
+    .nt1 {
+        bottom: 19%;
+    }
+    .nt2 {
+        bottom: 31%;
+    }
+    .nt3 {
+        bottom: 22%;
+    }
+    .nt4 {
+        bottom: 3%;
+    }
+    .nt5 {
+        bottom: 3%;
+    }
+    .nt6 {
+        bottom: 25%;
+    }
+    .nt7 {
+        bottom: 27%;
+    }
+    .mbg {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background: url(../images/tip/multiple/multiple_tip.png) no-repeat;
+        background-size: 1000vw 100%;
+        background-position: 0 0;
+    }
+    @for $mmt from 2 through 10 {
+        .mmt#{$mmt} {
+            background-position: (($mmt - 1) * (-100vw)) 0;
+        }
+    }
+    .mnxb {
+        position: fixed;
+        left: 20%;
+        bottom: 28%;
+        z-index: 1;
+        width: 10.125rem * 2;
+        height: 2.813rem * 2;
+        background: url(../images/tip/button/nextb.png) no-repeat;
+        background-size: 100%;
+        background-position: 0 0;
+        &:active,
+        &:hover {
+            background-position: 0 -2.813rem * 2;
+        }
+    }
+    .mbt2 {
+        left: 32%;
+        bottom: 18%;
+    }
+    .mbt3 {
+        left: 34%;
+        bottom: 10%;
+    }
+    .mbt4 {
+        left: 33%;
+        bottom: 21%;
+    }
+    .mbt5 {
+        left: 24%;
+        bottom: 46%;
+    }
+    .mbt6 {
+        left: 30%;
+        bottom: 14%;
+    }
+    .mbt7 {
+        left: 34%;
+        bottom: 42%;
+    }
+    .mbt8 {
+        left: 33%;
+        bottom: 25%;
+    }
+    .mbt9 {
+        left: 34%;
+        bottom: 12%;
+    }
+    .nhbg {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background: url(../images/tip/now&history/now&history_tip.png) no-repeat;
+        background-size: 100vw 100%;
+        background-position: 0 0;
+    }
+    .nhbg2 {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background: url(../images/tip/now&history/now&history_tip_2.png) no-repeat;
+        background-size: 200vw 100%;
+        background-position: 0 0;
+    }
+    .nhmt3 {
+        background-position: -100vw 0;
+    }
+    .nht1 {
+        bottom: 22%;
+        left: 51.5%;
+    }
+    .nht2 {
+        bottom: 35%;
+    }
+    .nht3 {
+        bottom: 21%;
+    }
+    .realb,
+    .backb,
+    .againb {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        width: 20.25rem * 2;
+        height: 2.813rem * 2;
+    }
+    .realb {
+        bottom: 38%;
+        background: url(../images/tip/button/realb.png) no-repeat;
+        background-size: 100%;
+        background-position: 0 0;
+    }
+    .backb {
+        bottom: 30%;
+        background: url(../images/tip/button/backb.png) no-repeat;
+        background-size: 100%;
+        background-position: 0 0;
+        &:active,
+        &:hover {
+            background-position: 0 -5.626rem;
+        }
+    }
+    .againb {
+        bottom: 20%;
+        width: 6.18rem * 2;
+        height: 1.25rem * 2;
+        background: url(../images/tip/button/againb.png) no-repeat;
+        background-size: 100%;
+        background-position: 0 0;
+    }
+    .off {
+        color: #fff;
+        width: 3.438rem;
+        height: 3.438rem;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 2%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        font-size: 2.5rem;
+        font-weight: 300;
+        text-align: center;
+        line-height: 0;
+        span {
+            display: block;
+            margin-top: 1.4rem;
+        }
+        &:active,
+        &:hover {
+            color: #4c4c4c;
+            background-color: #fff;
+        }
+    }
+    .soff {
+        color: #fff;
+        width: 3.438rem;
+        height: 3.438rem;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 2%;
+        right: 3%;
+        // left: 50%;
+        // transform: translateX(-50%);
+        z-index: 1;
+        font-size: 2.5rem;
+        font-weight: 300;
+        text-align: center;
+        line-height: 0;
+        span {
+            display: block;
+            margin-top: 1.4rem;
+        }
+        &:active,
+        &:hover {
+            color: #4c4c4c;
+            background-color: #fff;
+        }
+    }
+}
+
+.tip a {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: all;
+    z-index: 100;
+}
+
+.tip .none {
+    display: none;
+}

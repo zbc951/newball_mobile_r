@@ -1,0 +1,541 @@
+@charset "UTF-8";
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "my_font";
+  src: local("Heiti TC"), local("微軟正黑體"), local("Microsoft JhengHei");
+  unicode-range: U+4E00-9FFF, U+2E80-2EFF, U+0020-007F;
+}
+@font-face {
+  font-family: "my_font";
+  src: url(../font/Bahnschrift.TTF);
+  unicode-range: U+0020-007F;
+}
+@font-face {
+  font-family: "my_font";
+  src: url(../font/Bahnschrift.TTF);
+  unicode-range: U+0040;
+}
+@font-face {
+  font-family: "my_font";
+  src: url(../font/Bahnschrift.TTF);
+  unicode-range: U+0024;
+}
+p,
+button,
+input,
+a,
+div,
+span {
+  -ms-font-family: "my_font";
+  -moz-font-family: "my_font";
+  -webkit-font-family: "my_font";
+  font-family: "my_font";
+}
+
+span {
+  -ms-font-family: "my_font";
+  -moz-font-family: "my_font";
+  -webkit-font-family: "my_font";
+  font-family: "my_font";
+}
+
+* {
+  -ms-font-family: "my_font";
+  -moz-font-family: "my_font";
+  -webkit-font-family: "my_font";
+  font-family: "my_font";
+}
+
+a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+}
+
+ul,
+li {
+  list-style-type: none;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background: #f7f7f7;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+* {
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media screen and (min-width: 200px) and (max-width: 320px) {
+  html {
+    font-size: 14px;
+  }
+
+  main article.menu.menu.menu.menu.menu {
+    height: 43vh;
+  }
+}
+main {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+main .bg {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: url(../../images/tip/index/index_tip.png) no-repeat;
+  background-size: 400vw 100%;
+  background-position: 0 0;
+}
+main .mt2 {
+  background-position: -100vw 0;
+}
+main .mt3 {
+  background-position: -200vw 0;
+}
+main .mt4 {
+  background-position: -300vw 0;
+}
+main .okb {
+  position: fixed;
+  bottom: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  width: 20.25rem;
+  height: 5.626rem;
+  background: url(../../images/tip/button/okb.png) no-repeat;
+  background-size: 100%;
+  background-position: 0 0;
+}
+main .okb:active, main .okb:hover {
+  background-position: 0 -5.626rem;
+}
+main .t3 {
+  bottom: 74%;
+}
+main .t4 {
+  bottom: 20%;
+}
+main .sbg {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: url(../../images/tip/single/single_tip.png) no-repeat;
+  background-size: 800vw 100%;
+  background-position: 0 0;
+}
+main .smt2 {
+  background-position: -100vw 0;
+}
+main .smt3 {
+  background-position: -200vw 0;
+}
+main .smt4 {
+  background-position: -300vw 0;
+}
+main .smt5 {
+  background-position: -400vw 0;
+}
+main .smt6 {
+  background-position: -500vw 0;
+}
+main .smt7 {
+  background-position: -600vw 0;
+}
+main .smt8 {
+  background-position: -700vw 0;
+}
+main .nxb {
+  position: fixed;
+  bottom: 24%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  width: 20.25rem;
+  height: 5.626rem;
+  background: url(../../images/tip/button/nextb.png) no-repeat;
+  background-size: 100%;
+  background-position: 0 0;
+}
+main .nxb:active, main .nxb:hover {
+  background-position: 0 -5.626rem;
+}
+main .nt1 {
+  bottom: 19%;
+}
+main .nt2 {
+  bottom: 31%;
+}
+main .nt3 {
+  bottom: 22%;
+}
+main .nt4 {
+  bottom: 3%;
+}
+main .nt5 {
+  bottom: 3%;
+}
+main .nt6 {
+  bottom: 25%;
+}
+main .nt7 {
+  bottom: 27%;
+}
+main .mbg {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: url(../../images/tip/multiple/multiple_tip.png) no-repeat;
+  background-size: 1000vw 100%;
+  background-position: 0 0;
+}
+main .mmt2 {
+  background-position: -100vw 0;
+}
+main .mmt3 {
+  background-position: -200vw 0;
+}
+main .mmt4 {
+  background-position: -300vw 0;
+}
+main .mmt5 {
+  background-position: -400vw 0;
+}
+main .mmt6 {
+  background-position: -500vw 0;
+}
+main .mmt7 {
+  background-position: -600vw 0;
+}
+main .mmt8 {
+  background-position: -700vw 0;
+}
+main .mmt9 {
+  background-position: -800vw 0;
+}
+main .mmt10 {
+  background-position: -900vw 0;
+}
+main .mnxb {
+  position: fixed;
+  left: 20%;
+  bottom: 28%;
+  z-index: 1;
+  width: 20.25rem;
+  height: 5.626rem;
+  background: url(../../images/tip/button/nextb.png) no-repeat;
+  background-size: 100%;
+  background-position: 0 0;
+}
+main .mnxb:active, main .mnxb:hover {
+  background-position: 0 -5.626rem;
+}
+main .mbt2 {
+  left: 32%;
+  bottom: 18%;
+}
+main .mbt3 {
+  left: 34%;
+  bottom: 10%;
+}
+main .mbt4 {
+  left: 33%;
+  bottom: 21%;
+}
+main .mbt5 {
+  left: 24%;
+  bottom: 46%;
+}
+main .mbt6 {
+  left: 30%;
+  bottom: 14%;
+}
+main .mbt7 {
+  left: 34%;
+  bottom: 42%;
+}
+main .mbt8 {
+  left: 33%;
+  bottom: 25%;
+}
+main .mbt9 {
+  left: 34%;
+  bottom: 12%;
+}
+main .nhbg {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: url(../../images/tip/now&history/now&history_tip.png) no-repeat;
+  background-size: 100vw 100%;
+  background-position: 0 0;
+}
+main .nhbg2 {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: url(../../images/tip/now&history/now&history_tip_2.png) no-repeat;
+  background-size: 200vw 100%;
+  background-position: 0 0;
+}
+main .nhmt3 {
+  background-position: -100vw 0;
+}
+main .nht1 {
+  bottom: 22%;
+  left: 51.5%;
+}
+main .nht2 {
+  bottom: 35%;
+}
+main .nht3 {
+  bottom: 21%;
+}
+main .realb,
+main .backb,
+main .againb {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  width: 40.5rem;
+  height: 5.626rem;
+}
+main .realb {
+  bottom: 38%;
+  background: url(../../images/tip/button/realb.png) no-repeat;
+  background-size: 100%;
+  background-position: 0 0;
+}
+main .backb {
+  bottom: 30%;
+  background: url(../../images/tip/button/backb.png) no-repeat;
+  background-size: 100%;
+  background-position: 0 0;
+}
+main .backb:active, main .backb:hover {
+  background-position: 0 -5.626rem;
+}
+main .againb {
+  bottom: 20%;
+  width: 12.36rem;
+  height: 2.5rem;
+  background: url(../../images/tip/button/againb.png) no-repeat;
+  background-size: 100%;
+  background-position: 0 0;
+}
+main .off {
+  color: #fff;
+  width: 3.438rem;
+  height: 3.438rem;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-align: center;
+  line-height: 0;
+}
+main .off span {
+  display: block;
+  margin-top: 1.4rem;
+}
+main .off:active, main .off:hover {
+  color: #4c4c4c;
+  background-color: #fff;
+}
+main .soff {
+  color: #fff;
+  width: 3.438rem;
+  height: 3.438rem;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2%;
+  right: 3%;
+  z-index: 1;
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-align: center;
+  line-height: 0;
+}
+main .soff span {
+  display: block;
+  margin-top: 1.4rem;
+}
+main .soff:active, main .soff:hover {
+  color: #4c4c4c;
+  background-color: #fff;
+}
+
+a {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: all;
+  z-index: 100;
+}
+
+.none {
+  display: none;
+}

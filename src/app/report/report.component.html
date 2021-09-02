@@ -1,0 +1,316 @@
+<header>
+    <ul class="market">
+        <li class="back" [routerLink]="RouterPath.lobby"></li>
+        <li class="title">{{ 'Title.Betting_record' | translate }}</li>
+        <!-- <li class="search"> </li>
+        <li class="wallet"><div class="balance"><p>可投注餘額</p><p>NT$0.00</p></div></li> -->
+
+    </ul>
+</header>
+
+<aside class="my_windows_bet_record">
+    <div class="hidden_title">
+        <!-- <div class="tack">
+            <p>XXXX體育<span></span></p>
+        </div> -->
+
+            <div class="tack" [ngClass] = "{active:tabSelected == 0}"  (click)="selectTab(0)">
+                <p>{{ 'Report.Order' | translate}}</p>
+            </div>
+            <div class="tack" [ngClass] = "{active:tabSelected == 1}"  (click)="selectTab(1)">
+                <p>{{ 'Report.History' | translate}}</p>
+            </div>
+<!--             
+            <p (click)="ShowTab=!ShowTab">{{(tabSelected == 0 ? 'Report.Order' : 'Report.History') | translate}}<span></span></p>
+            <ul class="bet_record">
+                <li (click)="selectTab(0)">{{ 'Report.Order' | translate }}</li>
+                <li (click)="selectTab(1)">{{ 'Report.History' | translate }}</li>
+            </ul> -->
+ 
+    </div>
+    <ng-container *ngIf="tabSelected == 0">
+        <div class="content low_height">
+            <div class="fast_record" *ngFor="let order of orders;let idx = index" [class.active]="idx == orderSelected"c>
+                <div class="title" (click)="selectOrder(idx)">
+                    <p class="g_name" *ngIf="order.sp == 1">{{order.gtype_c}}-{{order.partInfo}}-{{order.wtype_c}}</p>
+                    <p class="g_name" *ngIf="order.sp == 2">{{order.gtype_c}}-{{ 'DetailPlay.SP' | translate }}</p>
+                    <p class="g_type">{{getResult(order, true) | translate}}</p>
+                    <div class="r_wrap">
+                        <p>{{ (order.sp == 1)?order.wtype:'S'}}{{order.id}}</p>
+                        <i></i>
+                    </div>
+                </div>
+                <div class="sample">
+                    <p class="blue">
+                        <span *ngIf="order.sp == 2">{{ 'special.'+order.wtype | translate }}</span>
+                      
+                        <span class="red">{{order.betOption}}</span>
+                        <span  *ngIf="order.sp == 2" class="black">@</span>
+                    </p>
+                    <p class="red">{{order.odd | OddsHK}}</p>
+                    <div class="r_wrap">
+                        <p>{{ 'General.Bet' | translate }}</p>
+                        <p>{{order.gold | formatNumber}}</p>
+                    </div>
+                </div>
+                <div class="detail">
+                    <ul *ngIf="order.wtype !== 'CPR'">
+                        <li class="box_1_normal" *ngIf="order.sp == 1">
+                            <p>{{order.gameName}} {{order.partInfo}} {{order.orderCont[2]}}</p>
+                            <p>{{order.team1}} <span class="red">{{(order.head === 'Vs.') ? order.head : (order.head | headName: order.gtype)}}</span> {{order.team2}}</p>
+                        </li>
+                        <li class="box_1_normal" *ngIf="order.sp == 2">
+                            <p>{{ order.gameName }} {{order.orderCont[4]}}</p>
+                            <p>
+                                <span class="blue">{{ order.team1 }}[{{'General.TeamHome' | translate }}]</span>
+                                Vs.
+                                <span class="blue">{{ order.team2 }} </span>
+                            </p>
+                         
+                        </li>
+                        <li class="box_4_normal">
+                            <p>{{ 'General.AccDate' | translate }}</p>
+                            <p>{{order.betTime}}</p>
+                            <p>{{ 'General.GameDate' | translate }}</p>
+                            <p>{{order.gameTime}}</p>
+                        </li>
+                        <li class="box_4_normal">
+                            <p>{{ 'General.BetEffect' | translate }}</p>
+                            <p>{{order.effective_gold | formatNumber}}</p>
+                            <p>{{ 'General.Odds' | translate }}</p>
+                            <p class="red">{{order.odd | OddsHK}}</p>
+                        </li>
+                        <li class="box_2_normal">
+                            <p>{{ 'General.BetOption' | translate }}</p>
+                            <p class="blue">
+                                <span *ngIf="order.sp == 2">{{ 'special.'+order.wtype | translate}}</span>
+                                &nbsp;&nbsp;
+                                <span class="red">{{order.betOption}} </span>
+                            </p>
+                        </li>
+                        <li class="box_2_normal">
+                            <p>{{ 'General.Result' | translate }}</p>
+                            <p>{{ getResult(order) | translate }}</p>
+                        </li>
+                        <li class="box_4_footer">
+                            <p>{{ 'General.Bet' | translate }}</p>
+                            <p>{{order.gold | formatNumber}}</p>
+                            <p>{{ 'General.Win' | translate }}</p>
+                            <p class="red">{{order.wouldWin | formatNumber}}</p>
+                        </li>
+                    </ul>
+                    <ul *ngIf="order.wtype === 'CPR'">
+                        <li class="box_1_num" *ngFor="let subGame of order.betAry;let idx = index">
+                            <div class="n1">{{ idx+1 }}</div>
+                            <div class="n2">
+                                <p>{{subGame.subWtype | oddsName}} [ {{subGame.gameName}} {{subGame.partInfo}}]</p>
+                                <p>{{subGame.team1}} <span class="red">{{(subGame.head === 'Vs.') ? subGame.head : (subGame.head | headName: order.gtype)}}</span> {{subGame.team2}}</p>
+                                <p> <span class="blue">{{subGame.betOption}}</span> @ <span class="red">{{subGame.odd | OddsHK}}</span></p>
+                                <p> {{ 'General.GameDate' | translate }}:{{subGame.gameTime}} </p>
+                            </div>
+                        </li>
+                        <li class="box_4_normal">
+                            <p>{{ 'General.AccDate' | translate }}</p>
+                            <p>{{order.betTime}}</p>
+                            <p>{{ 'General.BetEffect' | translate }}</p>
+                            <p>{{order.effective_gold | formatNumber}}</p>
+                        </li>
+                        <li class="box_2_normal">
+                            <p>{{ 'General.BetOption' | translate }}</p>
+                            <p class="blue">{{order.betOption}}</p>
+                        </li>
+                        <li class="box_4_normal">
+                            <p>{{ 'General.Result' | translate }}</p>
+                            <p>{{ getResult(order) | translate }}</p>
+                            <p>{{ 'General.Odds' | translate }}</p>
+                            <p>{{order.odd | OddsHK}}</p>
+                        </li>
+                        <li class="box_4_footer">
+                            <p>{{ 'General.Bet' | translate }}</p>
+                            <p>{{order.gold | formatNumber}}</p>
+                            <p>{{ 'General.Win' | translate }}</p>
+                            <p class="red">{{order.wouldWin | formatNumber}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="empty_page" *ngIf="orders && orders.length == 0">
+                <div class="empty_icon"></div>
+                <p>{{'Report.NoBet' | translate}}</p>
+                <button [routerLink]="RouterPath.lobby">{{'Report.GoBet' | translate}}</button>
+            </div>
+        </div>
+
+        
+    </ng-container>
+
+    <ng-container *ngIf="tabSelected == 1">
+        <div class="content">
+            <ul class="btn_group_box_6">
+                <li *ngFor="let option of historyOptions;let idx = index"  [class.active]="idx == optionSelected" (click)="selectOption(idx)"><p>{{'General.' + option | translate}}</p></li>
+            </ul>
+            <!--"fast_record" 有"active" 展開 收合-->
+            <!--預設"sample"-->
+            <!--展開"detail"-->
+            <!--"detail" li有Class排版-->
+
+
+            <!--"list"狀態的li 有".had" = 擁有 &"active" = 展開-->
+            <ul class="history_record">
+                <li class="title box_4">
+                    <div class="box"></div>
+                    <div class="box">{{'General.Time' | translate}}</div>
+                    <div class="box">{{'General.BetGold' | translate}} / {{'General.BetEffect' | translate}}</div>
+                    <div class="box">{{'General.Result' | translate}}</div>
+                </li>
+                <li class="list box_4" *ngFor="let day of historyList;let idx = index" [class.active]="idx == historySelected" [class.had]="day.wc > 0">
+                    <div class="box"><span class="ball">{{day.count}}</span></div>
+                    <div class="box">{{day.date}}</div>
+                    <div class="box"><span class="red">{{day.gold | formatNumber}}</span>/{{day.effective_gold | formatNumber}}</div>
+                    <div class="box" [ngClass]="getResultClass(day.win + day.water)">{{day.showWin | formatNumber}}</div>
+                    <div class="page">
+                        <div class="fast_record" *ngFor="let detail of day.details;let idx = index" [class.active]="detail.active">
+                            <div class="title" (click)="detail.active = !detail.active">
+                                <p class="g_name" *ngIf="detail.sp == 1">{{detail.gtype_c}}-{{detail.partInfo}}-{{detail.wtype_c}}</p>
+                                <p class="g_name" *ngIf="detail.sp == 2">{{detail.gtype_c}}-{{ 'DetailPlay.SP' | translate }}</p>
+                                <p class="g_type">{{getResult(detail, true) | translate}}</p>
+                                <div class="r_wrap">
+                                    <p>{{ (detail.sp == 1)?detail.wtype:'S'}}{{detail.id}}</p>
+                                    <i></i>
+                                </div>
+                            </div>
+                            <div class="sample">
+                                <p class="blue">
+                                    <span *ngIf="detail.sp == 2">{{ 'special.'+detail.wtype | translate }}</span>
+                                  
+                                    <span class="red">{{detail.betOption}}</span>
+                                    <span  *ngIf="detail.sp == 2" class="black">@</span>
+                                </p>
+                                <p class="red">{{detail.odd | OddsHK}}</p>
+                                <div class="r_wrap">
+                                    <p>{{ 'General.Result' | translate }}</p>
+                                    <p [ngClass]="getResultClass(detail.wingold)">{{ getResults(detail) | translate }}</p>
+                                </div>
+                            </div>
+                            <div class="detail">
+                                <ul *ngIf="detail.wtype !== 'CPR'">
+                                    <li class="box_1_normal" *ngIf="detail.sp == 1">
+                                        <p>{{detail.gameName}} {{detail.partInfo}} {{detail.orderCont[2]}}</p>
+                                        <p>
+                                            <span class="bluebg">{{detail.team1Score}}</span>
+                                            {{detail.team1}} 
+                                            <span class="red">{{(detail.head === 'Vs.') ? detail.head : (detail.head | headName: detail.gtype)}}</span> 
+                                            {{detail.team2}}
+                                            <span class="bluebg">{{detail.team2Score}}</span>
+                                        </p>
+                                    </li>
+                                    <li class="box_1_normal" *ngIf="detail.sp == 2">
+                                        <p>{{ detail.gameName }} {{detail.orderCont[4]}}</p>
+                                        <p>
+                                            <span class="blue">{{ detail.team1 }}[{{'General.TeamHome' | translate }}]</span>
+                                            Vs.
+                                            <span class="blue">{{ detail.team2 }} </span>
+                                        </p>
+                                    </li>
+                                    <li class="box_4_normal">
+                                        <p>{{ 'General.AccDate' | translate }}</p>
+                                        <p>{{detail.betTime}}</p>
+                                        <p>{{ 'General.GameDate' | translate }}</p>
+                                        <p>{{detail.gameTime}}</p>
+                                    </li>
+                                    <li class="box_4_normal">
+                                        <p>{{ 'General.BetEffect' | translate }}</p>
+                                        <p>{{detail.effective_gold | formatNumber}}</p>
+                                        <p>{{ 'General.Odds' | translate }}</p>
+                                        <p class="red">{{detail.odd | OddsHK}}</p>
+                                    </li>
+                                    <li class="box_2_normal">
+                                        <p>{{ 'General.Memo' | translate }}</p>
+                                        <p>{{detail.gamememo ? detail.gamememo : ''}}</p>
+                                    </li>
+                                    <li class="box_2_normal">
+                                        <p>{{ 'General.BetOption' | translate }}</p>
+                                       
+
+                                        <p class="blue">
+                                            <span *ngIf="detail.sp == 2">{{ 'special.'+detail.wtype | translate}}</span>
+                                            &nbsp;&nbsp;
+                                            <span class="red">{{detail.betOption}} </span>
+                                        </p>
+                                    </li>
+                                    <li class="box_4_footer">
+                                        <p>{{ 'General.Bet' | translate }}</p>
+                                        <p>{{detail.gold | formatNumber}}</p>
+                                        <p>{{ 'General.Result' | translate }}</p>
+                                        <p [ngClass]="getResultClass(detail.wingold)">{{ getResults(detail) | translate }}</p>
+                                    </li>
+                                </ul>
+                                <ul *ngIf="detail.wtype === 'CPR'">
+                                    <li class="box_1_num" *ngFor="let subGame of detail.betAry;let idx = index">
+                                        <div class="n1">{{ idx+1 }}</div>
+                                        <div class="n2">
+                                            <p>{{subGame.subWtype | oddsName}} [ {{subGame.gameName}} {{subGame.partInfo}}]</p>
+                                            <p>
+                                                <span class="bluebg">{{subGame.team1Score}}</span>
+                                                {{subGame.team1}} 
+                                                <span class="red">{{(subGame.head === 'Vs.') ? subGame.head : (subGame.head | headName: subGame.gtype)}}</span> 
+                                                {{subGame.team2}}
+                                                <span class="bluebg">{{subGame.team2Score}}</span>
+                                            </p>
+                                            <p> <span class="blue">{{subGame.betOption}}</span> @ <span class="red">{{subGame.odd | OddsHK}}</span></p>
+                                            <p> {{ 'General.GameDate' | translate }}:{{subGame.gameTime}} </p>
+                                        </div>
+                                    </li>
+                                    <li class="box_4_normal">
+                                        <p>{{ 'General.AccDate' | translate }}</p>
+                                        <p>{{detail.betTime}}</p>
+                                        <p>{{ 'General.BetEffect' | translate }}</p>
+                                        <p>{{detail.effective_gold | formatNumber}}</p>
+                                    </li>
+                                    
+                                    <li class="box_4_normal">
+                                        <p>{{ 'General.BetOption' | translate }}</p>
+                                        <p class="blue">{{detail.betOption}}</p>
+                                        <p>{{ 'General.Odds' | translate }}</p>
+                                        <p>{{detail.odd | OddsHK}}</p>
+                                    </li>
+                                    <li class="box_2_normal">
+                                        <p>{{ 'General.Memo' | translate }}</p>
+                                        <p class="blue">{{detail.gamememo ? detail.gamememo : ''}}</p>
+                                    </li>
+                                    <li class="box_4_footer">
+                                        <p>{{ 'General.Bet' | translate }}</p>
+                                        <p>{{detail.gold | formatNumber}}</p>
+                                        <p>{{ 'General.Result' | translate }}</p>
+                                        <p [ngClass]="getResultClass(detail.wingold)">{{ getResults(detail) | translate }}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="click_box" (click)="selectHistory(idx)"></div>
+                </li>
+            </ul>
+        </div>
+    </ng-container>
+</aside>
+<div class="footer_blue_box_2" *ngIf="tabSelected == 0">
+    <div class="box">
+        <p>{{'Report.BetSum' | translate}}</p>
+        <p>{{totGold | formatNumber}}</p>
+    </div>
+    <div class="box">
+        <p>{{'Report.WinSum' | translate}}</p>
+        <p>{{totWin | formatNumber}}</p>
+    </div>
+</div>
+<div class="footer_blue_box_2" *ngIf="tabSelected == 1">
+    <div class="box">
+        <p>{{'Report.BetSum' | translate}}</p>
+        <p>{{historyTotalGold | formatNumber}}</p>
+    </div>
+    <div class="box">
+        <p>{{'Report.Result' | translate}}</p>
+        <p>{{historyShowWin | formatNumber}}</p>
+    </div>
+</div>

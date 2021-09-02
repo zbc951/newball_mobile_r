@@ -1,0 +1,74 @@
+.en_name{
+    font-family: "my_font";
+}
+main{
+    &.market{
+        aside{
+            ul{
+                li{
+                    section{
+                        &.content{
+                            span{
+                               
+                                &.num_group{
+                                    div{
+                                        &.esport_w.esport_w.esport_w{
+                                            width: calc(50% - 2.375rem);
+                                            margin: 0;
+                                            span{
+                                                margin: 5px 0 5px 0;
+                                            }
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    &.senior{
+                        position: relative;
+                        &.e_sport{
+                           
+                            section{
+                                &.content{
+                                  
+                                    span{
+                                        &.point_box{
+                                            span{
+                                                &.counter{
+                                                    height: 7.625rem;
+                                                    div{ 
+                                                        line-height: calc(7.625rem / 3);
+                                                        p,span{
+                                                            line-height: 1;
+                                                            vertical-align: middle;
+                                                        }
+                                                    }
+                                                }
+                                                &.num_group{
+                                                    height: 7.625rem;
+                                                    span{
+                                                        &.two_side{
+                                                            div{
+                                                                height: calc(7.625rem / 3 - 3px);
+                                                                p{
+                                                                    font-size: .625rem;
+                                                                    margin: 0 0 .25rem 0;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

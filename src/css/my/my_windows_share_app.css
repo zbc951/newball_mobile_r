@@ -1,0 +1,342 @@
+@-webkit-keyframes share_hover {
+  0% {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+    border-color: #576aca;
+  }
+  50% {
+    -webkit-transform: translate(-50%, -50%) scale(1.3);
+            transform: translate(-50%, -50%) scale(1.3);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) scale(1.4);
+            transform: translate(-50%, -50%) scale(1.4);
+    border-color: transparent;
+  }
+}
+
+@keyframes share_hover {
+  0% {
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+    border-color: #576aca;
+  }
+  50% {
+    -webkit-transform: translate(-50%, -50%) scale(1.3);
+            transform: translate(-50%, -50%) scale(1.3);
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) scale(1.4);
+            transform: translate(-50%, -50%) scale(1.4);
+    border-color: transparent;
+  }
+}
+
+aside.my_windows_share_app {
+  display: none;
+  z-index: 600;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  overflow-y: scroll;
+}
+
+aside.my_windows_share_app.active {
+  display: block;
+}
+
+aside.my_windows_share_app .box {
+  width: 18.75rem;
+  margin: 3rem auto 11.25rem auto;
+  border-radius: .25rem;
+  overflow: hidden;
+}
+
+aside.my_windows_share_app .box .box_wrap {
+  background: url(./../images/my/share_app/bg.jpg) no-repeat;
+  background-size: cover;
+}
+
+aside.my_windows_share_app .box .box_wrap .title_wrap {
+  text-align: center;
+  padding: .9375rem 0 0 0;
+  margin: 0 0 .3125rem 0;
+  line-height: 1;
+}
+
+aside.my_windows_share_app .box .box_wrap .title_wrap h1 {
+  display: inline-block;
+  background: url(../images/logo.png) no-repeat;
+  background-size: 100%;
+  width: 5rem;
+  height: 1.5625rem;
+}
+
+aside.my_windows_share_app .box .box_wrap .donate_wrap {
+  width: 90%;
+  background: #dbe3f8;
+  margin: 0 auto;
+  border-radius: 50px;
+  padding: .375rem 3% .4375rem 3%;
+  line-height: 1.6875rem;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+aside.my_windows_share_app .box .box_wrap .donate_wrap div {
+  background: url(../images/my/share_app/donates.png) no-repeat;
+  background-size: 700%;
+  width: 1.5625rem;
+  height: 1.6875rem;
+  display: inline-block;
+  line-height: 1.6875rem;
+  vertical-align: middle;
+  margin: 0 calc(((18.75rem * 0.84) - 10.9375rem) / 6) 0 0;
+}
+
+aside.my_windows_share_app .box .box_wrap .donate_wrap .i1 {
+  background-position: 0 0;
+}
+
+aside.my_windows_share_app .box .box_wrap .donate_wrap .i2 {
+  background-position: -1.5625rem 0;
+}
+
+aside.my_windows_share_app .box .box_wrap .donate_wrap .i3 {
+  background-position: -3.125rem 0;
+}
+
+aside.my_windows_share_app .box .box_wrap .donate_wrap .i4 {
+  background-position: -4.6875rem 0;
+}
+
+aside.my_windows_share_app .box .box_wrap .donate_wrap .i5 {
+  background-position: -6.25rem 0;
+}
+
+aside.my_windows_share_app .box .box_wrap .donate_wrap .i6 {
+  background-position: -7.8125rem 0;
+}
+
+aside.my_windows_share_app .box .box_wrap .donate_wrap .i7 {
+  background-position: -9.375rem 0;
+}
+
+aside.my_windows_share_app .box .box_wrap .donate_text_wrap {
+  line-height: 1;
+  text-align: center;
+  padding: .3125rem 0 .3125rem 0;
+}
+
+aside.my_windows_share_app .box .box_wrap .donate_text_wrap p {
+  color: #838ba0;
+  display: inline-block;
+  position: relative;
+  font-size: .9375rem;
+}
+
+aside.my_windows_share_app .box .box_wrap .donate_text_wrap p:before {
+  content: "";
+  position: absolute;
+  width: 110%;
+  height: 0.09375rem;
+  left: calc(100% + .25rem);
+  top: 50%;
+  background: -webkit-gradient(linear, left top, right top, from(#838ba0), color-stop(50%, #838ba0), to(transparent));
+  background: linear-gradient(to right, #838ba0 0%, #838ba0 50%, transparent 100%);
+  display: inline-block;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+aside.my_windows_share_app .box .box_wrap .donate_text_wrap p:after {
+  content: "";
+  position: absolute;
+  width: 110%;
+  height: 0.09375rem;
+  right: calc(100% + .25rem);
+  top: 50%;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), to(#838ba0));
+  background: linear-gradient(to right, transparent 0%, #838ba0 100%);
+  display: inline-block;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+aside.my_windows_share_app .box .box_wrap .search_wrap {
+  background: #fff;
+  border: 1px solid #4d515d;
+  border-radius: 50px;
+  width: 80%;
+  margin: 0 auto;
+  line-height: 1;
+  padding: .3125rem 0 .3125rem 1.375rem;
+  line-height: .9375rem;
+}
+
+aside.my_windows_share_app .box .box_wrap .search_wrap .search_icon {
+  background: url(../images/my/share_app/share_app_search.png) no-repeat;
+  background-size: 100%;
+  width: .9375rem;
+  height: .9375rem;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: bottom;
+  margin: 0 .75rem 0 0;
+}
+
+aside.my_windows_share_app .box .box_wrap .search_wrap p {
+  display: inline-block;
+  vertical-align: bottom;
+  line-height: .9375rem;
+}
+
+aside.my_windows_share_app .box .box_wrap .img_wrap {
+  text-align: center;
+  margin: .25rem 0 0 0;
+  padding: 0 0 .25rem 0;
+}
+
+aside.my_windows_share_app .box .box_wrap .img_wrap .phone_img {
+  background: url(../images/my/share_app/phone.png) no-repeat;
+  background-size: 100%;
+  width: 10rem;
+  height: 11.25rem;
+  margin: 0 auto;
+}
+
+aside.my_windows_share_app .box .box_wrap .img_wrap .code_img {
+  background: url(../images/my/share_app/qrcode.png) no-repeat;
+  background-size: 100%;
+  width: 6.25rem;
+  height: 6.25rem;
+  margin: 0 auto;
+}
+
+aside.my_windows_share_app .box .footer_wrap {
+  background: #fff;
+  text-align: center;
+}
+
+aside.my_windows_share_app .box .footer_wrap .footer_pack {
+  line-height: 1rem;
+  padding: .25rem 0 .25rem 0;
+}
+
+aside.my_windows_share_app .box .footer_wrap .check_icon {
+  background: url(../images/my/share_app/check.png) no-repeat;
+  background-size: 100%;
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+aside.my_windows_share_app .box .footer_wrap p {
+  color: #7685d5;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: .75rem;
+}
+
+aside.my_windows_share_app .box_footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+aside.my_windows_share_app .box_footer .btn_group {
+  background: #f7f7f7;
+  padding: 1.375rem 0 1.375rem 0;
+}
+
+aside.my_windows_share_app .box_footer .btn_group .wrap {
+  text-align: center;
+  margin: 0 0 0 1rem;
+  display: inline-block;
+  position: relative;
+}
+
+aside.my_windows_share_app .box_footer .btn_group .wrap:hover p, aside.my_windows_share_app .box_footer .btn_group .wrap:active p, aside.my_windows_share_app .box_footer .btn_group .wrap.active p {
+  font-weight: bold;
+}
+
+aside.my_windows_share_app .box_footer .btn_group .wrap:hover:before, aside.my_windows_share_app .box_footer .btn_group .wrap:active:before, aside.my_windows_share_app .box_footer .btn_group .wrap.active:before {
+  border-radius: 5px;
+  border: 1px solid transparent;
+  -webkit-animation: share_hover .3s 1 ease-in-out;
+          animation: share_hover .3s 1 ease-in-out;
+}
+
+aside.my_windows_share_app .box_footer .btn_group .wrap:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+aside.my_windows_share_app .box_footer .btn_group .wrap .c_wrap {
+  display: inline-block;
+  text-align: center;
+  background: #fff;
+  border-radius: .25rem;
+  padding: .625rem;
+}
+
+aside.my_windows_share_app .box_footer .btn_group .wrap .c_wrap div {
+  background: url(../images/my/share_app/f_btns.png) no-repeat;
+  background-size: 300%;
+  width: 2.1875rem;
+  height: 2.1875rem;
+}
+
+aside.my_windows_share_app .box_footer .btn_group .wrap .c_wrap div.c1 {
+  background-position: 0 0;
+}
+
+aside.my_windows_share_app .box_footer .btn_group .wrap .c_wrap div.c2 {
+  background-position: -2.1875rem 0;
+}
+
+aside.my_windows_share_app .box_footer .btn_group .wrap .c_wrap div.c3 {
+  background-position: -4.375rem 0;
+}
+
+aside.my_windows_share_app .box_footer .btn_group .wrap p {
+  line-height: 1;
+  font-size: .8125rem;
+  color: #838ba0;
+  padding: .25rem 0 0 0;
+}
+
+aside.my_windows_share_app .box_footer .quite_btn {
+  width: 100%;
+  background: #fff;
+  border: none;
+  padding: 0;
+  padding: .625rem 0 .625rem 0;
+  text-align: center;
+}
+
+aside.my_windows_share_app .box_footer .quite_btn:hover, aside.my_windows_share_app .box_footer .quite_btn:active, aside.my_windows_share_app .box_footer .quite_btn.active {
+  background: #4d515d;
+}
+
+aside.my_windows_share_app .box_footer .quite_btn:hover p, aside.my_windows_share_app .box_footer .quite_btn:active p, aside.my_windows_share_app .box_footer .quite_btn.active p {
+  color: #fff;
+}
+
+aside.my_windows_share_app .box_footer .quite_btn p {
+  display: inline-block;
+  line-height: 1;
+  color: #4d515d;
+  font-size: 1.25rem;
+}
+/*# sourceMappingURL=my_windows_share_app.css.map */

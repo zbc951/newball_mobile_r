@@ -1,0 +1,517 @@
+<header>
+  <ul>
+      <li class="back" [routerLink]="RouterPath.lobby"></li>
+      <li class="title">{{ 'Title.mine' | translate }}</li>
+      <li class="message_icon" [routerLink]="RouterPath.more.billboard"></li>
+      <!-- <li class="option" (click)="change_settingShow(true)"></li> -->
+  </ul>
+</header>
+<aside class="my_windows">
+  <div class="hellocard">
+
+      <div class="avatar"></div>
+      <div class="player_data">
+          <p class="name">{{ (member.memberInfo$ | async)?.alias}}</p>
+          <p class="days">{{ (member.memberInfo$ | async)?.maxcredit | formatNumber }}</p>
+      </div>
+      <div class="arrow"></div>
+  </div>
+  <div class="banner">
+      <!-- <div class="p1"></div> -->
+  </div>
+  <div class="group">
+      <ul>
+          <!-- <li class="my_mb"><span class="money_icon"></span>
+              <p>我的錢包</p>
+             
+          </li> -->
+          <li class="my_rd"><span class="record_icon" [routerLink]="RouterPath.more.credit"></span>
+              <p>{{ 'Title.Credit' | translate }}</p>
+          </li>
+          <li class="my_tr"><span class="transaction_icon" [routerLink]="RouterPath.more.rule"></span>
+              <p>{{ 'Title.Rule' | translate }}</p>
+          </li>
+          <li class="my_rd" (click)="change_settingShow(true)"><span class="new_my_ic ic2"></span>
+            <p>{{ 'Title.Setting' | translate }}</p>
+          </li>
+          <li class="my_rd"  (click)="goPCweb()"><span class="new_my_ic ic2"></span>
+            <p>{{ 'Login.Back' | translate }}</p>
+          </li>
+          <!-- <li class="my_ca"><span class="card_icon"></span>
+              <p>卡片管理</p>
+             
+          </li> -->
+
+      </ul>
+  </div>
+  <div class="row_scroll" *ngIf="!help">
+      <!-- <div class="row_btn">
+          <p><span class="cr"></span>兌獎紀錄 </p>
+          <p>獎品兌換﹅推薦獎金<span class="arrow"></span></p>
+         
+      </div>
+      <div class="row_btn help">
+          <p><span class="hp"></span>幫助中心</p>
+          <p>投注有疑問，看這裡<span class="arrow"></span></p>
+
+      </div>
+      <div class="row_btn line">
+          <p><span class="ab"></span>關於</p>
+          <p><span class="arrow"></span></p>
+        
+      </div>
+      <div class="row_btn line">
+          <p><span class="jo"></span>加入我們</p>
+          <p>合營計畫<span class="arrow"></span></p>
+      </div>
+      <div class="row_btn share_app">
+          <p><span class="sh"></span>分享APP</p>
+          <p><span class="arrow"></span></p>
+      </div> -->
+      <div class="row_btn line" (click)="helpOn()" >
+        <p><span class="hp"></span>手機操作教學</p>
+          <p><span class="arrow"></span></p>
+      </div>
+
+      <div class="row_btn line" [routerLink]="RouterPath.more.billboard">
+        <p><span class="message_icon"></span>{{ 'Title.Notice' | translate }}</p>
+        <p><span class="arrow"></span></p>
+      
+        </div>
+        <div class="row_btn" (click)="logout()" *ngIf="!isCashVer">
+            <p><span class="app"></span>{{ 'Title.Logout' | translate }}</p>
+            <p><span class="arrow"></span></p>
+        </div>
+
+  </div>
+  <div class="row_scroll" *ngIf="help">
+
+    <div class="row_btn line" (click)="helpOn()" >
+        <p><span class="hp"></span>返回</p>
+        <p><span class="arrow"></span></p>
+    </div>
+      <div class="row_btn line" (click)="helpSelect('body')" >
+        <p><span class="hp"></span>註冊.登入.客服.消息中心</p>
+          <p><span class="arrow"></span></p>
+      </div>
+      <div class="row_btn line" (click)="helpSelect('single_bet')" >
+        <p><span class="hp"></span>單關教學</p>
+          <p><span class="arrow"></span></p>
+      </div>
+      <div class="row_btn line"   (click)="helpSelect('multiple_bet')" >
+        <p><span class="hp"></span>串關教學</p>
+          <p><span class="arrow"></span></p>
+      </div>
+      <div class="row_btn line" (click)="helpSelect('history')" >
+        <p><span class="hp"></span>注單</p>
+          <p><span class="arrow"></span></p>
+      </div>
+    </div>
+
+
+</aside>
+<!-- <aside class="title_windows">
+  <ul class="bg">
+      <li class="title">
+          <p>公告標題</p>
+      </li>
+      <li class="content">公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告公告</li>
+      <li class="footer">
+          <div class="close">
+              <p>關閉</p>
+          </div>
+          <div class="detail">
+              <a href="../../html/message/message_message.html"></a>
+              <p>查看全部</p>
+          </div>
+      </li>
+  </ul>
+</aside> -->
+<aside class="my_windows_set active" *ngIf="settingShow">
+  <div class="header">
+      <ul>
+          <li class="title">{{ 'Lobby.Set_up' | translate }}</li>
+          <li class="back"></li>
+      </ul>
+  </div>
+  <div class="row_btn line">
+      <p>{{ 'Lobby.Handicap_settings' | translate }}</p>
+      <div class="box">
+          <div class="check" (click)="setOdd()">
+              <span class="p_left" [class.active] = "!configSet.openHKodd">
+                  <p>{{ 'Lobby.European_Disk' | translate }}</p>
+              </span>
+              <span class="p_right" [class.active] = "configSet.openHKodd">
+                  <p>{{ 'Lobby.HK_plate' | translate }}</p>
+              </span>
+          </div>
+      </div>
+  </div>
+  <div class="row_btn line">
+    <p>{{ 'Lobby.Betting mode' | translate }}</p>
+    <div class="box">
+        <div class="check" (click)="configSet.beginner = !configSet.beginner">
+            <span class="p_left " [class.active] = "configSet.beginner">
+                <p>{{ 'Lobby.Novice' | translate }}</p>
+            </span>
+            <span class="p_right" [class.active] = "!configSet.beginner">
+                <p>{{ 'Lobby.profession' | translate }}</p>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="row_btn line">
+    <p>{{ 'Lobby.Ordering_rules' | translate }}</p>
+    <div class="box">
+        <div class="check"  (click)="configSet.orderLeague = !configSet.orderLeague">
+            <span class="p_left " [class.active] = "configSet.orderLeague">
+                <p>{{ 'Lobby.alliance' | translate }}</p>
+            </span>
+            <span class="p_right" [class.active] = "!configSet.orderLeague">
+                <p>{{ 'Lobby.time' | translate }}</p>
+            </span>
+        </div>
+    </div>
+</div>
+  <div class="row_btn">
+      <p>{{ 'Lobby.Night_mode' | translate }}</p>
+      <div class="box_empty">
+          <div class="check" (click)="configSet.night = !configSet.night">
+              <span class="switch" [class.active] = "configSet.night"></span>
+          </div>
+      </div>
+  </div>
+  <!-- <div class="row_btn line">
+      <p>解鎖設置</p>
+      <p>手勢密碼<span class="arrow"></span></p>
+  </div> -->
+  <div class="row_btn line set_pw" [routerLink]="RouterPath.more.setting" *ngIf="!isCashVer">
+      <p>{{ 'Setting.PWD_Modify' | translate }}</p>
+      <p><span class="arrow"></span></p>
+  </div>
+  <!-- <div class="row_btn">
+      <p>清除緩存</p>
+      <p class="dark_blue">7.48Mb</p>
+  </div> -->
+  <!-- <div class="row_btn line">
+      <p>意見反饋</p>
+      <p><span class="arrow"></span></p>
+  </div> -->
+  <!-- <div class="row_btn">
+      <p>檢查更新</p>
+      <p>當前版本 v4.0.3<span class="arrow"></span></p>
+  </div> -->
+  <div class="get_out" (click)="change_settingShow(false)">{{ 'Lobby.drop_out' | translate }}</div>
+</aside>
+<aside class="my_windows_share_app">
+  <div class="box">
+      <div class="box_wrap">
+
+          <div class="title_wrap">
+              <h1></h1>
+          </div>
+          <div class="donate_wrap">
+              <div class="i1">
+              </div><div class="i2">
+              </div><div class="i3">
+              </div><div class="i4">
+              </div><div class="i5">
+              </div><div class="i6">
+              </div><div class="i7"></div>
+          </div>
+          <div class="donate_text_wrap">
+              <p>贊助夥伴</p>
+          </div>
+          <div class="search_wrap">
+              <div class="search_icon"></div>
+              <p>www.xxxxx.com</p>
+          </div>
+          <div class="img_wrap">
+              <div class="phone_img"></div>
+              <div class="code_img"></div>
+          </div>
+      </div>
+      <div class="footer_wrap">
+          <div class="footer_pack">
+              <div class="check_icon"></div>
+              <p>自動保存</p>
+          </div>
+          
+      </div>
+  </div>
+  <div class="box_footer">
+      <div class="btn_group">
+          <div class="wrap">
+              <div class="c_wrap">
+                  <div class="c1"></div>
+              </div>
+              <p>複製連結</p>
+          </div><div class="wrap">
+              <div class="c_wrap">
+                  <div class="c2"></div>
+              </div>
+              <p>保存圖片</p>
+          </div><div class="wrap">
+              <div class="c_wrap">
+                  <div class="c3"></div>
+              </div>
+              <p>更多</p>
+          </div>
+      </div>
+      <div class="quite_btn">
+          <p>退出</p>
+      </div>
+  </div>
+</aside>
+
+<ng-container [ngSwitch]="help_key">
+    <div class="tip" style="z-index: 1000;" *ngSwitchCase="'body'"> 
+        <section class="1 " [class.none]="page_1 != 1">
+            <div class="bg"></div>
+            <div class="okb" (click)=" NextPage()">
+                <a ></a>
+            </div>
+            <div class="off" (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+    
+        <section class="2 " [class.none]="page_1 != 2">
+            <div class="bg mt2"></div>
+            <div class="okb" (click)=" NextPage()">
+                <a ></a>
+            </div>
+            <div class="off" (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+    
+        <section class="3 " [class.none]="page_1 != 3">
+            <div class="bg mt3"></div>
+            <div class="okb t3" (click)=" NextPage()">
+                <a ></a>
+            </div>
+            <div class="off" (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+    
+        <section class="4 " [class.none]="page_1 != 4">
+            <div class="bg mt4"></div>
+            <div class="okb t4" (click)=" closeHelp()">
+                
+            </div>
+            <div class="off" (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+    
+    
+    
+    </div>
+    <div class="tip" style="z-index: 1000;" *ngSwitchCase="'single_bet'"> 
+        <section class="1" [class.none]="page_1 != 1">
+            <div class="sbg"></div>
+            <div class="nxb nt1"(click)=" NextPage()">
+                <a></a>
+            </div>
+            <div lass="soff" (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="2 " [class.none]="page_1 != 2">
+            <div class="sbg smt2"></div>
+            <div class="nxb nt2"(click)=" NextPage()">
+                <a></a>
+            </div>
+            <div lass="soff" (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="3 "[class.none]="page_1 != 3">
+            <div class="sbg smt3"></div>
+            <div class="nxb nt3"(click)=" NextPage()">
+                <a></a>
+            </div>
+            <div lass="soff" (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="4 "[class.none]="page_1 != 4">
+            <div class="sbg smt4"></div>
+            <div class="nxb nt4"(click)=" NextPage()">
+                <a></a>
+            </div>
+            <div lass="soff" (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="5 "[class.none]="page_1 != 5">
+            <div class="sbg smt5"></div>
+            <div class="nxb nt5"(click)=" NextPage()">
+                <a></a>
+            </div>
+            <div lass="soff" (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="6 "[class.none]="page_1 != 6">
+            <div class="sbg smt6"></div>
+            <div class="nxb nt6"(click)=" NextPage()">
+                <a></a>
+            </div>
+            <div lass="soff" (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="7 "[class.none]="page_1 != 7">
+            <div class="sbg smt7"></div>
+            <div class="nxb nt7"(click)=" NextPage()">
+                <a></a>
+            </div>
+            <div lass="soff" (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="8 "[class.none]="page_1 != 8">
+            <div class="sbg smt8"></div>
+            <div class="realb"  [routerLink]="RouterPath.lobby">
+                
+            </div>
+            <div class="backb" (click)=" closeHelp()">
+                
+            </div>
+            <div class="againb" (click)="againb()">
+                <a></a>
+            </div>
+            <div lass="soff" (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+    </div>
+
+    <div class="tip" style="z-index: 1000;" *ngSwitchCase="'multiple_bet'"> 
+        <section class="1" [class.none]="page_1 != 1">
+            <div class="mbg"></div>
+            <div  (click)=" NextPage()" class="mnxb">
+                <a></a>
+            </div>
+            <div class="soff"  (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="2 "[class.none]="page_1 != 2">
+            <div class="mbg mmt2"></div>
+            <div  (click)=" NextPage()" class="mnxb mbt2">
+                <a></a>
+            </div>
+            <div class="soff"  (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="3 "[class.none]="page_1 != 3">
+            <div class="mbg mmt3"></div>
+            <div  (click)=" NextPage()" class="mnxb mbt3">
+                <a></a>
+            </div>
+            <div class="soff"  (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="4 "[class.none]="page_1 != 4">
+            <div class="mbg mmt4"></div>
+            <div  (click)=" NextPage()" class="mnxb mbt4">
+                <a></a>
+            </div>
+            <div class="soff"  (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="5 "[class.none]="page_1 != 5">
+            <div class="mbg mmt5"></div>
+            <div  (click)=" NextPage()" class="mnxb mbt5">
+                <a></a>
+            </div>
+            <div class="soff"  (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="6 "[class.none]="page_1 != 6">
+            <div class="mbg mmt6"></div>
+            <div  (click)=" NextPage()" class="mnxb mbt6">
+                <a></a>
+            </div>
+            <div class="soff"  (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="7 "[class.none]="page_1 != 7">
+            <div class="mbg mmt7"></div>
+            <div  (click)=" NextPage()" class="mnxb mbt7">
+                <a></a>
+            </div>
+            <div class="soff"  (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="8 "[class.none]="page_1 != 8">
+            <div class="mbg mmt8"></div>
+            <div  (click)=" NextPage()" class="mnxb mbt8">
+                <a></a>
+            </div>
+            <div class="soff"  (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="9 "[class.none]="page_1 != 9">
+            <div class="mbg mmt9"></div>
+            <div  (click)=" NextPage()" class="mnxb mbt9">
+                <a></a>
+            </div>
+            <div class="soff"  (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+        <section class="10 "[class.none]="page_1 != 10">
+            <div class="mbg mmt10"></div>
+            <div class="realb" [routerLink]="RouterPath.lobby">
+                
+            </div>
+            <div class="backb" (click)=" closeHelp()">
+                
+            </div>
+            <div class="againb"  (click)="againb()">
+                <a></a>
+            </div>
+            <div class="soff"  (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+
+    </div>
+    <div class="tip" style="z-index: 1000;" *ngSwitchCase="'history'"> 
+        <section class="1" [class.none]="page_1 != 1">
+            <div class="nhbg"></div>
+            <div class="nxb nht1" (click)=" NextPage()">
+                <a></a>
+            </div>
+            <div class="soff" (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+    
+        <section class="2 " [class.none]="page_1 != 2">
+            <div class="nhbg2"></div>
+            <div class="nxb nht2" (click)=" NextPage()">
+                <a></a>
+            </div>
+            <div class="soff" (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+    
+        <section class="3 " [class.none]="page_1 != 3">
+            <div class="nhbg2 nhmt3"></div>
+            <div class="okb nht3" (click)=" closeHelp()">
+                
+            </div>
+            <div class="soff" (click)=" closeHelp()"><span>x</span>
+            </div>
+        </section>
+    
+    
+    </div>
+</ng-container>

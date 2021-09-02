@@ -1,0 +1,177 @@
+<aside class="now_bet_empty" [class.active]="orders.length == 0" (click)="onClose()">
+  <div class="wrap" >
+      <h1>{{ 'General.ClickOn' | translate }}</h1>
+      <div class="box">
+          <div class="empty_icon"></div>
+          <p>{{ 'General.NoBets' | translate }}</p>
+      </div>
+  </div>
+</aside>
+
+<aside class="yet_bill" [class.active]="orders.length > 0">
+    <div class="windows">
+        <span class="close" (click)="onClose()"></span>
+        <div class="w_wrap">
+            <h1>{{ 'Report.Order' | translate }}<span>{{orders.length}}</span></h1>
+            <div class="content">
+                <div class="bill" *ngFor="let order of orders;let idx = index" [class.active]="idx == orderSelected"c>
+                    <div class="title" (click)="selectOrder(idx)">
+                        <p class="g_name" *ngIf="order.sp == 1">{{order.gtype_c}}-{{order.partInfo}}-{{order.wtype_c}}</p>
+                        <p class="g_name" *ngIf="order.sp == 2">{{order.gtype_c}}-{{ 'DetailPlay.SP' | translate }}</p>
+                        <p class="g_type">{{getResult(order, true) | translate}}</p>
+                        <div class="r_wrap">
+                            <p>{{ (order.sp == 1)?order.wtype:'S'}}{{order.id}}</p>
+                            <i></i>
+                        </div>
+    
+                    </div>
+                    <div class="sample">
+                        <p class="blue">
+                            <span *ngIf="order.sp == 2">{{ 'special.'+order.wtype | translate }}</span>
+                          
+                            <span class="red">{{order.betOption}}</span>
+                            <span  *ngIf="order.sp == 2" class="black">@</span>
+                        </p>
+                        <p class="red">{{order.odd | OddsHK}}</p>
+                        <div class="r_wrap">
+                            <p>{{ 'General.Bet' | translate }}</p>
+                            <p>{{order.gold | formatNumber}}</p>
+                        </div>
+                    </div>
+                    <div class="detail">
+                        <ul *ngIf="order.wtype !== 'CPR'">
+                            <li class="box_1_normal" *ngIf="order.sp == 1">
+                                <p>{{order.gameName}} {{order.partInfo}}  {{order.orderCont[2]}}</p>
+                                <p>{{order.team1}} <span class="red">{{(order.head === 'Vs.') ? order.head : (order.head | headName: order.gtype)}}</span> {{order.team2}}</p>
+                            </li>
+                            <li class="box_1_normal" *ngIf="order.sp == 2">
+                                <p>{{ order.gameName }} {{order.orderCont[4]}}</p>
+                                <p>
+                                    <span class="blue">{{ order.team1 }}[{{'General.TeamHome' | translate }}]</span>
+                                    Vs.
+                                    <span class="blue">{{ order.team2 }}</span>
+                                 </p>
+                            </li>
+                            <li class="box_4_normal">
+                                <p>{{ 'General.AccDate' | translate }}</p>
+                                <p>{{order.betTime}}</p>
+                                <p>{{ 'General.GameDate' | translate }}</p>
+                                <p>{{order.gameTime}}</p>
+                            </li>
+                            <li class="box_4_normal">
+                                <p>{{ 'General.BetEffect' | translate }}</p>
+                                <p>{{order.effective_gold | formatNumber}}</p>
+                                <p>{{ 'General.Odds' | translate }}</p>
+                                <p class="red">{{order.odd | OddsHK}}</p>
+                            </li>
+                            <li class="box_2_normal">
+                                <p>{{ 'General.BetOption' | translate }}</p>
+                                <p class="blue">
+                                    <span *ngIf="order.sp == 2">{{ 'special.'+order.wtype | translate}}</span>
+                                    &nbsp;&nbsp;
+                                    <span class="red">{{order.betOption}} </span>
+                                </p>
+                            </li>
+                            <li class="box_2_normal">
+                                <p>{{ 'General.Result' | translate }}</p>
+                                <p>{{ getResult(order) | translate }}</p>
+                            </li>
+                            <li class="box_4_footer">
+                                <p>{{ 'General.Bet' | translate }}</p>
+                                <p>{{order.gold | formatNumber}}</p>
+                                <p>{{ 'General.Win' | translate }}</p>
+                                <p class="red">{{order.wouldWin | formatNumber}}</p>
+                            </li>
+                        </ul>
+                        <ul *ngIf="order.wtype === 'CPR'">
+                            <li class="box_1_num" *ngFor="let subGame of order.betAry;let idx = index">
+                                <div class="n1">{{ idx+1 }}</div>
+                                <div class="n2">
+                                    <p>{{subGame.subWtype | oddsName}} [ {{subGame.gameName}} {{subGame.partInfo}}]</p>
+                                    <p>{{subGame.team1}} <span class="red">{{(subGame.head === 'Vs.') ? subGame.head : (subGame.head | headName: order.gtype)}}</span> {{subGame.team2}}</p>
+                                    <p> <span class="blue">{{subGame.betOption}}</span> @ <span class="red">{{subGame.odd | OddsHK}}</span></p>
+                                    <p> {{ 'General.GameDate' | translate }}:{{subGame.gameTime}} </p>
+                                </div>
+                            </li>
+                            <li class="box_4_normal">
+                                <p>{{ 'General.AccDate' | translate }}</p>
+                                <p>{{order.betTime}}</p>
+                                <p>{{ 'General.BetEffect' | translate }}</p>
+                                <p>{{order.effective_gold | formatNumber}}</p>
+                            </li>
+                            <li class="box_2_normal">
+                                <p>{{ 'General.BetOption' | translate }}</p>
+                                <p class="blue">{{order.betOption}}</p>
+                            </li>
+                            <li class="box_4_normal">
+                                <p>{{ 'General.Result' | translate }}</p>
+                                <p>{{ getResult(order) | translate }}</p>
+                                <p>{{ 'General.Odds' | translate }}</p>
+                                <p>{{order.odd | OddsHK}}</p>
+                            </li>
+                            <li class="box_4_footer">
+                                <p>{{ 'General.Bet' | translate }}</p>
+                                <p>{{order.gold | formatNumber}}</p>
+                                <p>{{ 'General.Win' | translate }}</p>
+                                <p class="red">{{order.wouldWin | formatNumber}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="bill_blue_box_2">
+                <div class="box">
+                    <p>{{'Report.BetSum' | translate}}</p>
+                    <p>{{totGold | formatNumber}}</p>
+                </div>
+                <div class="box">
+                    <p>{{'Report.WinSum' | translate}}</p>
+                    <p>{{totWin | formatNumber}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+
+
+
+
+<!-- <aside class="yet_bill" [class.active]="orders.length > 0">
+  <div class="windows">
+      <span class="close" (click)="onClose()"></span>
+      <h1>{{finish? '已結注單' : '未結注單'}}<span>{{orders.length}}</span></h1>
+      <div class="content">
+          <ul *ngFor="let order of orders">
+              <li class="title"><p>{{order.bid}}</p></li>
+              <li>
+                  <div class="wrap">投注時間</div>
+                  <div class="wrap wrap_2">{{order.adddate}}</div>
+                  <div class="wrap">比賽時間</div>
+                  <div class="wrap no_limit">{{order.gameTime}}</div>
+              </li>
+              <li>
+                  <div class="wrap">狀態</div>
+                  <div class="wrap no_limit red">{{order.isResult.msg | translate}}</div>
+              </li>
+              <li>
+                  <div class="wrap">賽事</div>
+                  <div class="wrap no_limit"><p class="blue">{{order.gameName}} {{order.partInfo}}</p></div>
+              </li>
+              <li>
+                <div class="wrap">隊伍</div>
+                <div class="wrap no_limit">{{order.team1}} {{(order.head === 'Vs.') ? order.head : (order.head | headName: order.gtype)}} {{order.team2}} </div>
+              </li>
+              <li>
+                  <div class="wrap">注單內容</div>
+                  <div class="wrap no_limit"><p class="blue">{{order.betOption}}</p>@ <p class="red">{{order.odd}}</p></div>
+              </li>
+              <li>
+                  <div class="wrap">投注金額</div>
+                  <div class="wrap wrap_2">{{order.gold}}</div>
+                  <div class="wrap">{{finish? '投資結果' : '預估可贏'}}</div>
+                  <div class="wrap no_limit">{{order.wouldWin}}</div>
+              </li>
+          </ul>
+      </div>
+  </div>
+</aside> -->

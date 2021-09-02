@@ -1,0 +1,647 @@
+@import 'base/config';
+@keyframes live {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.header-liveLobby {
+  z-index: 9;
+  color: #2A3245;
+  line-height: 100px;
+  background: #fff;
+  .btn-back {
+    float: left;
+    display: block;
+    width: 160px;
+    height: 100px;
+    font-size: 32px;
+    text-indent: 1em;
+    background: none;
+    border: none;
+    &:before {
+      content: '';
+      width: 22px;
+      height: 22px;
+      border-right: 8px solid #FF0042;
+      border-bottom: 8px solid #FF0042;
+      transform: rotate(135deg);
+      position: absolute;
+      left: 24px;
+      top: 34px;
+    }
+  }
+  h2 {
+    float: left;
+    margin: 0;
+    width: calc(100% - 320px);
+    font-size: 40px;
+    text-align: center;
+  }
+}
+
+.page-liveLobby {
+  box-sizing: border-box;
+  padding: 120px 0 116px;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #1A1E33 60%, #404A66 100%);
+  .liveList {
+    padding: 0 2%;
+    text-align: justify;
+    text-justify: inter-ideograph;
+    &:after {
+      content: '';
+      display: inline-block;
+      width: 100%;
+    }
+    .game {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 2%;
+      display: inline-block;
+      vertical-align: top;
+      height: 280px;
+      color: #fff;
+      @each $type,
+      $color in $game-color {
+        &.#{$type} {
+          &:after {
+            background: #{$color};
+          }
+        }
+      }
+      .progressBar {
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(#fff, .2);
+        transform-origin: left;
+      }
+      .league {
+        padding: 29px 5% 0;
+        font-size: 30px;
+        @include afterClearfix;
+        p {
+          float: left;
+          min-width: 1em;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+      }
+      .team {
+        padding: 13px 5%;
+        width: 80%;
+        font-weight: 700;
+        >li {
+          padding: 10px 0;
+          @include afterClearfix;
+          &:first-of-type {
+            border-bottom: 1px solid rgba(#fff, .6);
+          }
+        }
+        .name {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        .score {
+          float: right;
+          width: 1.8em;
+          text-align: right;
+        }
+      }
+      .bottom {
+        font-size: 38px;
+        @include afterClearfix;
+        .btn-heart {
+          width: 80px;
+          height: 100%;
+          background: none;
+          border: 0;
+          &.active {
+            .icon {
+              fill: #EA555A;
+            }
+          }
+          .icon {
+            width: 40px;
+            height: 100%;
+            fill: rgba(#fff, .4);
+          }
+        }
+        .btn-ball {
+          position: absolute;
+          width: 80px;
+          height: 80px;
+          background: none;
+          border: 0;
+          .icon {
+            margin: 0 auto;
+            width: 38px;
+            height: 38px;
+            background-size: 100%;
+            @each $type in $game-league {
+              &-#{$type} {
+                background-image: url('/images/liveball/#{$type}.png');
+              }
+            }
+            @each $type,
+            $order in $game-type {
+              &-#{$type} {
+                background-image: url('/images/liveball/#{$type}.png');
+              }
+            }
+          }
+        }
+        .icon-member {
+          width: 1em;
+          height: 100%;
+          fill: rgba(#fff, .9);
+          ~span {
+            vertical-align: top;
+          }
+        }
+        .time {
+          text-align: right;
+          padding-right: .5em;
+        }
+      }
+      // 已開賽 ------------------------------------------------------
+      &.open {
+        border-radius: 30px;
+        &.FT {
+          background: linear-gradient(100deg, rgba(#00FF92, .7) 20%, rgba(#0096FF, .7) 100%), url('/images/livebg/FT.png') right center no-repeat, #000;
+          background-size: cover;
+        }
+        &.BS,
+        &.JB {
+          background: linear-gradient(115deg, rgba(#0094FF, .7) 20%, rgba(#FF303B, .7) 100%), url('/images/livebg/BS.png') right center no-repeat, #000;
+          background-size: cover;
+        }
+        &.BK {
+          background: linear-gradient(115deg, rgba(#005EFF, .7) 20%, rgba(#FF4800, .7) 100%), url('/images/livebg/BK.png') right center no-repeat, #000;
+          background-size: cover;
+        }
+        .live {
+          position: absolute;
+          animation: live 2s infinite;
+          &:before {
+            content: '●';
+            font-size: 12px;
+            transform: translate(-10px, -10px) scale(.5);
+            position: absolute;
+          }
+        }
+        .team {
+          .name {
+            float: left;
+            width: calc(100% - 2em);
+          }
+        }
+        .bottom {
+          >li {
+            height: 100%;
+            background: rgba(#fff, .2);
+            float: left;
+            &:nth-of-type(1) {
+              width: calc(100% - 4em);
+              background: linear-gradient(-135deg, transparent 15px, rgba(#fff, .2) 0);
+              border-radius: 0 0 0 30px;
+            }
+            &:nth-of-type(2) {
+              width: 4em;
+              text-align: center;
+              border-radius: 0 0 30px 0;
+            }
+          }
+        }
+      }
+      // 未開賽 ------------------------------------------------------
+      &.close {
+        background: rgba(#6E7980, .2);
+        &:after {
+          content: '';
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          height: 3px;
+        }
+        .bottom {
+          .btn-heart {
+            position: absolute;
+            height: 80px;
+          }
+        }
+        &:nth-of-type(6n+4),
+        &:nth-of-type(6n+5) {
+          // &.s {
+          .team {
+            .name {
+              text-align: center;
+            }
+          }
+        }
+        &:nth-of-type(6n+1),
+        &:nth-of-type(6n+2) {
+          // &.m {
+          .league {
+            padding-left: 80px;
+            width: calc(95% - 80px);
+          }
+          .team {
+            padding-left: 80px;
+            width: calc(95% - 160px);
+          }
+          .bottom {
+            .btn-heart {
+              top: 102px;
+            }
+            .btn-ball {
+              top: 16px;
+              left: 0;
+              height: 60px;
+            }
+          }
+        }
+        &:nth-of-type(6n+3),
+        &:nth-of-type(6n) {
+          // &.l {
+          .league {
+            padding-left: 100px;
+            width: calc(95% - 100px);
+          }
+          .team {
+            padding-left: 100px;
+            width: calc(95% - 200px);
+          }
+          .bottom {
+            .btn-heart {
+              top: 102px;
+              width: 100px;
+            }
+            .btn-ball {
+              top: 16px;
+              left: 0;
+              width: 100px;
+              height: 60px;
+            }
+          }
+        }
+      }
+      // 共用 ------------------------------------------------------
+      &:nth-of-type(6n+4),
+      &:nth-of-type(6n+5) {
+        // &.s {
+        width: 36%;
+        .live {
+          right: 5%;
+          top: 22px;
+          font-size: 24px;
+          line-height: 24px;
+        }
+        .league {
+          width: 90%;
+          font-size: 28px;
+          text-align: center;
+          p {
+            float: none;
+            height: 30px;
+          }
+        }
+        .team {
+          padding-top: 18px;
+          padding-bottom: 10px;
+          width: 90%;
+          overflow: hidden;
+          font-size: 32px;
+        }
+        .bottom {
+          height: 50px;
+          font-size: 32px;
+          line-height: 50px;
+          .btn-heart {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            height: 40px;
+          }
+          .btn-ball {
+            top: 15px;
+            right: 0;
+            height: 40px;
+          }
+        }
+      }
+      &:nth-of-type(6n+1),
+      &:nth-of-type(6n+2) {
+        // &.m {
+        width: 49%;
+        .live {
+          right: 5%;
+          top: 20px;
+          font-size: 26px;
+          line-height: 26px;
+        }
+        .league {
+          width: 75%;
+        }
+        .team {
+          font-size: 40px;
+        }
+        .bottom {
+          >li {
+            height: 58px;
+            line-height: 58px;
+          }
+        }
+      }
+      &:nth-of-type(6n+3),
+      &:nth-of-type(6n) {
+        // &.l {
+        width: 62%;
+        .live {
+          right: 5%;
+          top: 20px;
+          font-size: 30px;
+          line-height: 30px;
+        }
+        .team {
+          font-size: 40px;
+        }
+        .bottom {
+          >li {
+            height: 58px;
+            line-height: 58px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.btn-detail {
+  position: fixed;
+  right: 32px;
+  bottom: 220px;
+  width: 120px;
+  height: 120px;
+  background: #4143BF;
+  border-radius: 50%;
+  border: 0;
+  z-index: 1;
+  box-shadow: 0 6px 12px rgba(#0D173F, .5);
+  svg {
+    width: 100%;
+    height: 75px;
+    fill: #fff;
+  }
+}
+
+.btn-refresh {
+  position: fixed;
+  right: 32px;
+  bottom: 360px;
+  width: 120px;
+  height: 120px;
+  color: #fff;
+  font-size: 30px;
+  background: #4143BF;
+  border-radius: 50%;
+  border: 0;
+  z-index: 1;
+  box-shadow: 0 6px 12px rgba(#0D173F, .5);
+  svg {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    width: 100%;
+    height: 76px;
+    fill: #fff;
+  }
+}
+
+.dialog-detail {
+  font-size: 32px;
+  line-height: 1.5;
+  .content {
+    padding: 2%;
+  }
+  .details {
+    max-height: calc(100vh - 600px);
+    overflow: auto;
+    font-weight: 700;
+    text-align: left;
+    >li {
+      position: relative;
+      background: #FFF;
+      border: 1px solid #ACAEB5;
+      &:after {
+        content: '';
+        position: absolute;
+        right: 38px;
+        top: 38px;
+        width: 22px;
+        height: 22px;
+        border-right: 6px solid #79808A;
+        border-bottom: 6px solid #79808A;
+        transform: rotate(45deg);
+        transition: all 0.5s;
+      }
+      &.mix {
+        &:after {
+          top: 16px;
+        }
+      }
+      &.active {
+        &:after {
+          top: 50px;
+          transform: rotate(225deg);
+        }
+        .info {
+          max-height: 195px;
+          >li {
+            border-bottom-color: #ACAEB5;
+          }
+        }
+        &.mix {
+          &:after {
+            top: 24px;
+          }
+          .list {
+            >li {
+              max-height: 200px;
+            }
+          }
+        }
+        .footer {
+          max-height: 64px;
+        }
+      }
+      &:not(:last-of-type) {
+        margin-bottom: 2%;
+      }
+    }
+  }
+  .header {
+    padding: 8px 2%;
+    background: #F0F1F5;
+    border-bottom: 1px solid #ACAEB5;
+    .red {
+      margin: 0 26px;
+    }
+  }
+  .info {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .2s;
+    >li {
+      border-bottom: 1px solid transparent;
+      @include afterClearfix;
+      span {
+        display: block;
+        box-sizing: border-box;
+        float: left;
+        padding: 8px 1%;
+        &:nth-of-type(odd) {
+          width: 21%;
+          text-align: center;
+        }
+        &:nth-of-type(even) {
+          width: 29%;
+        }
+        &:not(:last-of-type) {
+          border-right: 1px solid #ACAEB5;
+        }
+      }
+    }
+  }
+  .mix {
+    .list {
+      counter-reset: section;
+      >li {
+        position: relative;
+        padding: 0 2% 0 80px;
+        max-height: 0;
+        width: auto;
+        font-size: 32px;
+        background: #FAFAFA;
+        overflow: hidden;
+        transition: max-height .2s;
+        &:not(:last-of-type) {
+          border-bottom: 1px solid #ACAEB5;
+        }
+        &:before {
+          counter-increment: section;
+          content: counter(section);
+          position: absolute;
+          left: 0;
+          top: 50%;
+          -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+          width: 80px;
+          font-size: 40px;
+          font-weight: 700;
+          text-align: center;
+        }
+        .type {
+          padding-top: 10px;
+        }
+        .team {
+          .red {
+            margin: 0 10px;
+          }
+        }
+        .data {
+          padding-bottom: 10px;
+          .blue {
+            margin-right: 10px;
+          }
+          .red {
+            margin: 0 10px;
+          }
+        }
+      }
+    }
+  }
+  .footer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .2s;
+    @include afterClearfix;
+    p {
+      padding: 8px 2%;
+    }
+    p:nth-of-type(1) {
+      float: left;
+      .red {
+        margin-left: 20px;
+      }
+    }
+    p:nth-of-type(2) {
+      float: right;
+    }
+  }
+  .btn-confirm {
+    margin-top: 2%;
+    width: 60%;
+    height: 100px;
+    color: #fff;
+    background: #FF0042;
+    border-radius: 10px;
+  }
+  .orange {
+    color: #FFAA00;
+  }
+  .red {
+    color: #FF0042;
+  }
+  .blue {
+    color: #004FFF;
+  }
+}
+
+.buttons {
+  z-index: 1;
+  bottom: 100%;
+  width: 100%;
+  box-shadow: 0 3px 6px rgba(#000, .4);
+  font-size: 0;
+  &-top {
+    background: #b0c4e2;
+                margin-bottom: 50px;
+  }
+  .btn {
+    color: #73788F;
+    font-size: 38px;
+    font-weight: bold;
+    line-height: 100px;
+    background-color: #fff;
+    border-left: 1px solid #E6E6E6;
+    border-right: 1px solid #C7C7C7;
+    border-bottom: 0 solid #000;
+    box-sizing: border-box;
+    margin: 0 10px 0 10px;
+    border-radius: 15px;
+    margin: 10px;
+    box-shadow: 0 2px 10px #95a2b5;
+    height: 88px;
+    &.focusing{
+      background-color: #FF0042;
+      color: white;
+    }
+
+    &.active {
+      background: #ff0042;
+      color: #fff;
+    }
+  }
+}

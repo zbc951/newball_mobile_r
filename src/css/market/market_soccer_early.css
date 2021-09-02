@@ -1,0 +1,30 @@
+nav.kinds ul.early.early.early {
+  font-family: 'my_font';
+  height: 2.5rem;
+  line-height: 2.5rem;
+  padding: 0 .625rem;
+  border-bottom: 1px solid #e0e3f3;
+}
+
+nav.kinds ul.early.early.early li {
+  position: relative;
+  height: 2.5rem;
+  line-height: 2.5rem;
+}
+
+nav.kinds ul.early.early.early li.active {
+  color: #4d515d;
+  position: relative;
+  padding: 0 .625rem;
+}
+
+nav.kinds ul.early.early.early li.active:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: .25rem;
+  background-color: #7c87bc;
+  bottom: 0;
+  left: 0;
+}
+/*# sourceMappingURL=market_soccer_early.css.map */

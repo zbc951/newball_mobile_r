@@ -1,0 +1,11 @@
+@import '~swiper/dist/css/swiper.css';
+
+.table_top{
+    position: sticky !important;
+    left: 0px;
+    right: 0px;
+    z-index: 10;
+    top: 0;
+    opacity: 1;
+    background: #fff;
+}

@@ -1,0 +1,15 @@
+.my_windows_set{
+  top:0;
+  z-index: unset;
+  aside.help_board{
+    div.board_content{
+      input{
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #e0e3f3;
+        resize: none;
+        padding: 20px 4vw 15px 4vw;
+      }
+    }
+  }
+}

@@ -1,0 +1,215 @@
+aside {
+  &.my_about {
+    width: 100vw;
+    height: 100vh;
+    padding: 2.5rem 0 calc(3.5rem + 100px) 0;
+    position: fixed;
+    background: url(../images/my_about/bg.jpg) no-repeat;
+    background-size: cover;
+    overflow-y: scroll;
+    .logo_wrap {
+      padding: 5.5rem 0 2.5rem 0;
+      text-align: center;
+      .logo_area {
+        vertical-align: bottom;
+        display: inline-block;
+        line-height: 1;
+        .logo {
+          width: 5.625rem;
+          height: 5.625rem;
+          line-height: 5.625rem;
+          margin: 0 0 .75rem 0;
+          border-radius: .75rem;
+          background: linear-gradient(to bottom, #9aa7e2 0%, #495dc4 100%);
+          p {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1;
+            color: #fff;
+            font-size: 1.5rem;
+          }
+        }
+        .title {
+          color: #838ba0;
+        }
+      }
+    }
+    .office_wrap {
+      text-align: center;
+      margin: 2.5rem 0 0 0;
+      h1 {
+        color: #98a2ba;
+        font-size: 1.125rem;
+        line-height: 1;
+        margin: 0 0 2.1875rem 0;
+      }
+      ul {
+        width: 100%;
+        text-align: left;
+        white-space: nowrap;
+        padding: 0 .9375rem 0 .9375rem;
+        overflow: hidden;
+        li {
+          display: inline-block;
+          text-align: center;
+          font-size: .8125rem;
+          width: 23.5%;
+          margin: 0 2% 0 0;
+          line-height: 1;
+          vertical-align: top;
+          &
+          div {
+            display: inline-block;
+          }
+          p {
+            // line-height: 1;
+            color: #838ba0;
+            line-height: .9375rem;
+            white-space: normal;
+          }
+          .icon_wrap {
+            height: 2.0625rem;
+            line-height: 2.0625rem;
+            margin: 0 0 .5rem 0;
+          }
+          .of1 {
+            background: url(./../images/my_about/of1.png) no-repeat;
+            width: 3.875rem;
+            height: 1.0625rem;
+            background-size: 100%;
+            vertical-align: middle;
+          }
+          .of2 {
+            background: url(./../images/my_about/of2.png) no-repeat;
+            width: 3rem;
+            height: 1.25rem;
+            background-size: 100%;
+            vertical-align: middle;
+          }
+          .of3 {
+            background: url(./../images/my_about/of3.png) no-repeat;
+            width: 2rem;
+            height: 2.0625rem;
+            background-size: 100%;
+            vertical-align: middle;
+          }
+          .of4 {
+            background: url(./../images/my_about/of4.png) no-repeat;
+            width: 2rem;
+            height: 2.0625rem;
+            background-size: 100%;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+    .donate_wrap {
+      text-align: center;
+      margin: 2.5rem 0 0 0;
+      h1 {
+        color: #98a2ba;
+        font-size: 1.125rem;
+        line-height: 1;
+        margin: 0 0 2.1875rem 0;
+      }
+      ul {
+        p {
+          color: #838ba0;
+          line-height: .9375rem;
+          font-size: .8125rem;
+        }
+        //第一排
+        &:not(:last-child) {
+          width: 100%;
+          text-align: left;
+          padding: 0 .9375rem 0 .9375rem;
+          white-space: nowrap;
+          li {
+            display: inline-block;
+            text-align: center;
+            vertical-align: top;
+            width: 23.5%;
+            line-height: 1;
+            margin: 0 2% 0 0;
+            &:first-child{
+              float: left;
+            }
+            &:last-child{
+              margin: 0;
+            }
+            .icon_wrap {
+              text-align: center;
+              margin: 0 0 .5rem 0;
+            
+            div{
+              background: url(./../images/my_about/ofs.png) no-repeat;
+              background-size: 700%;
+              width: 2.0625rem;
+              height: 2.0625rem;
+              background-position: 0 0;
+              display: inline-block;
+              vertical-align: middle;
+            }
+            .da1 {
+              background-position: 0 0;
+            }
+            .da2 {
+              background-position: -2.0625rem 0;
+            }
+            .da3 {
+              background-position: -4.125rem 0;
+            }
+            .da4 {
+              background-position: -6.1875rem 0;
+            }
+          }
+          }
+        }
+        //最後一排
+        &:last-child {
+          width: 100%;
+          text-align: center;
+          margin: .9375rem 0 0 0;
+          padding: 0 .9375rem 0 .9375rem;
+          white-space: nowrap;
+          li {
+            display: inline-block;
+            text-align: center;
+            // width: calc(6.5625rem - .3125rem);
+            width: 30%;
+            line-height: 1;
+            margin: 0 5% 0 0;
+            &:first-child{
+              float: left;
+            }
+            &:last-child{
+              float: right;
+              margin: 0;
+            }
+            .icon_wrap{
+                margin: 0 0 .5rem 0;
+                div{
+                  background: url(./../images/my_about/ofs.png) no-repeat;
+                  background-size: 700%;
+                  width: 2.0625rem;
+                  height: 2.0625rem;
+                  background-position: 0 0;
+                  display: inline-block;
+                  vertical-align: middle;
+                }
+            .da5 {
+              background-position: -8.25rem 0;
+            }
+            .da6 {
+              background-position: -10.3125rem 0;
+            }
+            .da7 {
+              background-position: -12.375rem 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

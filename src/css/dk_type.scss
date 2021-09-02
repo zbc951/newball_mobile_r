@@ -1,0 +1,244 @@
+body {
+  &.dk {
+    background: linear-gradient(to right, #191d1d 0%, #1d2849 100%);
+    header {
+      ul {
+        background: #000;
+        box-shadow: 0 3px 5px 0 transparent;
+        li {
+          &.title.title.title.title {
+            color: #fff;
+          }
+        }
+      }
+    }
+    nav {
+      &.kinds {
+        background: #000;
+      }
+    }
+    main {
+      &.market {
+        aside {
+          section {
+            &.status {
+              background: linear-gradient(to right, #191d1d 0%, #1d2849 100%);
+              p {
+                color: #fff;
+              }
+            }
+          }
+          article {
+            &.option {
+              background: #000;
+              box-shadow: inset 0px 3px 3px 0 transparent;
+              div {
+                &.mode {
+                  background: #000;
+                  span {
+                    p {
+                      color: #949da6;
+                    }
+                    &.active {
+                      background: #535353;
+                      p {
+                        color: #fff;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          ul {
+            background: #000;
+            li {
+              &.beginner {
+                span {
+                  &.title {
+                    background: linear-gradient(
+                      to right,
+                      #191d1d 0%,
+                      #1d2849 100%
+                    );
+                    p {
+                      color: #fff;
+                    }
+                  }
+                }
+                section {
+                  &.content {
+                    background: linear-gradient(
+                      to right,
+                      #191d1d 0%,
+                      #1d2849 100%
+                    );
+                    &:nth-child(odd) {
+                      background: #000;
+                    }
+                    span {
+                      &.counter {
+                        p {
+                          &.mid {
+                            color: #fff;
+                          }
+                        }
+                        div {
+                          &.country {
+                            p {
+                              &.name {
+                                color: #fff;
+                              }
+                            }
+                          }
+                        }
+                      }
+                      &.num_group {
+                        div {
+                          background: #60646d;
+                          p,
+                          span {
+                            color: #fff;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      section {
+        ul {
+          &.hot_area {
+            li {
+              &.marquee {
+                div {
+                  p {
+                    color: #fff;
+                  }
+                }
+              }
+            }
+          }
+          &.profile {
+            li {
+              &.u_data {
+                p {
+                  &.u_name,
+                  &.u_money {
+                    color: #fff;
+                  }
+                }
+                &.yet_sign{
+                  .wrap{
+                    button{
+                      color: #fff;
+                    }
+                  }
+                }
+              }
+              &.u_option {
+                div {
+                  p {
+                    color: #fff;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      article {
+        &.menu {
+          aside {
+            &.btn_group {
+              button {
+                background: #292f46;
+              }
+              p {
+                color: #fff;
+              }
+            }
+          }
+          ul {
+            &.game_kinds {
+              li {
+                background: #000;
+                background: repeating-linear-gradient(-45deg, #363636 0%, #363636 25%, #363636 50%,#252525 50%,#252525 75%, #363636 75%);
+                box-shadow: 0 0 4px 1px #636e9e;
+                div {
+                  &.left_triagle {
+                    
+                    &:before{
+                        background: #363636;
+                    }
+                  }
+                  &.right_triagle {
+                    &:before{
+                        background: #252525;
+                    }
+                  }
+                  &.title{
+                      p{
+                          color: #fff;
+                      }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    footer {
+      background: #000;
+      box-shadow: 0 -3px 5px 0 transparent;
+      ul{
+        li{
+          &.active{
+            p{
+              color: #fff;
+            }
+          }
+          // p{
+          //   color: #fff;
+          // }
+        }
+      }
+    }
+    aside {
+      &.set_window {
+        ul {
+          &.side_bar {
+            background: #000;
+            li {
+              background: #212727;
+              color: #fff;
+              border-bottom: 1px solid #4b5055;
+              .box {
+                .check {
+                  background: #191919;
+                  span {
+                    &.active {
+                      background: #757575;
+                      p {
+                        color: #fff;
+                      }
+                    }
+                  }
+                }
+              }
+              &.close{
+                box-shadow: 0px -3px 6px 0px transparent;
+              }
+            }
+          }
+        }
+      }
+    }
+  } //body_dk
+}
